@@ -51,7 +51,7 @@ jobs:
              s|cheats/devops/|devops/|g' \
             docs/index.md
 
-          # Cheat Sheets einkopieren
+          # Copy all cheat sheets
           cp cheats/cloud/*.md  docs/cloud/
           cp cheats/devops/*.md docs/devops/
 

@@ -21,6 +21,8 @@ This repository is a curated collection of cheat sheets and references for admin
 | [Oracle Cloud (OCI)](cheats/cloud/oci-cli-cheatsheet.md) | `oci` | Compute, VCN, Object Storage, OKE, OCIR |
 | [Telekom Cloud (OTC)](cheats/cloud/ctc-cheatsheet.md) | `openstack` / `otc` | ECS, VPC, OBS, CCE, DNS, EVS |
 | [STACKIT](cheats/cloud/stackit-cli-cheatsheet.md) | `stackit` | Projects, Services, Kubernetes |
+| [Hetzner Cloud](cheats/cloud/hetzner-cheatsheet.md) | `hcloud` | Servers, Networks, Firewalls, Load Balancers, Volumes |
+| [Cloudflare](cheats/cloud/cloudflare-cheatsheet.md) | `flarectl` / `wrangler` | DNS, CDN, Workers, Zero Trust, R2, Tunnel |
 
 ---
 
@@ -30,10 +32,14 @@ This repository is a curated collection of cheat sheets and references for admin
 |---|---|---|
 | **Kubernetes** | [kubectl](cheats/devops/k8s-cheatsheet.md) | Pods, Deployments, Services, RBAC, Debugging |
 | **Helm** | [helm](cheats/devops/helm-cheatsheet.md) | Charts, Releases, Repos, Templates, Plugins |
+| **Terraform / OpenTofu** | [terraform](cheats/devops/terraform-cheatsheet.md) | IaC, State, Workspaces, Modules, Multi-Cloud |
 | **ArgoCD** | [argocd](cheats/devops/argocd-cheatsheet.md) | GitOps, Apps, Sync, Projects, ApplicationSets |
 | **Vault** | [vault](cheats/devops/vault-cheatsheet.md) | KV, PKI, Transit, Auth Methods, Policies |
 | **Ansible** | [ansible](cheats/devops/ansible-cheatsheet.md) | Inventory, Playbooks, Roles, Templates, Galaxy |
+| **Prometheus & Grafana** | [prometheus-grafana](cheats/devops/prometheus-grafana-cheatsheet.md) | PromQL, Alertmanager, Dashboards, Loki |
 | **Docker** | [docker](cheats/devops/docker-cheatsheet.md) | Images, Container, Compose, Registry |
+| **Podman** | [podman](cheats/devops/podman-cheatsheet.md) | Rootless Containers, Pods, Systemd, Compose |
+| **Trivy** | [trivy](cheats/devops/trivy-cheatsheet.md) | Image Scan, IaC Scan, Secrets, SBOM, K8s Audit |
 | **Git** | [git](cheats/devops/git-cheatsheet.md) | Branches, Rebase, Stash, Tags, Hooks |
 | **GitHub CLI** | [gh](cheats/devops/github-cheatsheet.md) | PRs, Issues, Actions, Releases |
 | **GitLab CLI** | [glab](cheats/devops/gitlab-cheatsheet.md) | MRs, CI/CD, Registry, Variables |
@@ -123,24 +129,30 @@ multicloud_portfolio/
 └── cheats/                            # All cheat sheets
     ├── README.md                      # Cheat sheet index
     │
-    ├── cloud/                         # Cloud provider CLIs
-    │   ├── aws-cli-cheatsheet.md      # Amazon Web Services
-    │   ├── azure-cli-cheatsheet.md    # Microsoft Azure
-    │   ├── ctc-cheatsheet.md          # Telekom Cloud (OTC/OpenStack)
-    │   ├── gcp-cli-cheatsheet.md      # Google Cloud Platform
-    │   ├── oci-cli-cheatsheet.md      # Oracle Cloud Infrastructure
-    │   └── stackit-cli-cheatsheet.md  # STACKIT (Deutsche Telekom)
+    ├── cloud/                              # Cloud provider CLIs
+    │   ├── aws-cli-cheatsheet.md           # Amazon Web Services
+    │   ├── azure-cli-cheatsheet.md         # Microsoft Azure
+    │   ├── cloudflare-cheatsheet.md        # Cloudflare (DNS, CDN, Workers, Zero Trust)
+    │   ├── ctc-cheatsheet.md               # Telekom Cloud (OTC/OpenStack)
+    │   ├── gcp-cli-cheatsheet.md           # Google Cloud Platform
+    │   ├── hetzner-cheatsheet.md           # Hetzner Cloud
+    │   ├── oci-cli-cheatsheet.md           # Oracle Cloud Infrastructure
+    │   └── stackit-cli-cheatsheet.md       # STACKIT (Deutsche Telekom)
     │
-    └── devops/                        # DevOps tooling
-        ├── ansible-cheatsheet.md      # Ansible Automation
-        ├── argocd-cheatsheet.md       # ArgoCD GitOps
-        ├── docker-cheatsheet.md       # Docker / Container
-        ├── git-cheatsheet.md          # Git Version Control
-        ├── github-cheatsheet.md       # GitHub CLI (gh)
-        ├── gitlab-cheatsheet.md       # GitLab CLI (glab)
-        ├── helm-cheatsheet.md         # Helm Package Manager
-        ├── k8s-cheatsheet.md          # Kubernetes (kubectl)
-        └── vault-cheatsheet.md        # HashiCorp Vault
+    └── devops/                             # DevOps tooling
+        ├── ansible-cheatsheet.md           # Ansible Automation
+        ├── argocd-cheatsheet.md            # ArgoCD GitOps
+        ├── docker-cheatsheet.md            # Docker / Container
+        ├── git-cheatsheet.md               # Git Version Control
+        ├── github-cheatsheet.md            # GitHub CLI (gh)
+        ├── gitlab-cheatsheet.md            # GitLab CLI (glab)
+        ├── helm-cheatsheet.md              # Helm Package Manager
+        ├── k8s-cheatsheet.md               # Kubernetes (kubectl)
+        ├── podman-cheatsheet.md            # Podman (rootless containers)
+        ├── prometheus-grafana-cheatsheet.md # Prometheus & Grafana
+        ├── terraform-cheatsheet.md         # Terraform / OpenTofu (IaC)
+        ├── trivy-cheatsheet.md             # Trivy Security Scanner
+        └── vault-cheatsheet.md             # HashiCorp Vault
 ```
 
 ---
@@ -153,17 +165,21 @@ multicloud_portfolio/
 # all at once (macOS via Homebrew)
 brew install awscli azure-cli google-cloud-sdk oci-cli
 brew install openstack-client          # OTC/Telekom Cloud
-
-# STACKIT CLI
-brew install stackit
+brew install stackit                   # STACKIT CLI
+brew install hcloud                    # Hetzner Cloud
+brew install cloudflare/cloudflare/flarectl   # Cloudflare
+npm install -g wrangler                # Cloudflare Workers CLI
 ```
 
 ### DevOps Tools
 
 ```bash
 brew install kubectl helm argocd vault ansible
+brew install terraform                 # or: brew install opentofu
 brew install kubectx k9s stern        # Kubernetes extras
 brew install docker                   # or Docker Desktop
+brew install podman                   # rootless Docker alternative
+brew install trivy                    # security scanner
 ```
 
 ---
