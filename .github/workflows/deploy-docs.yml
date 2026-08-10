@@ -35,10 +35,7 @@ jobs:
           cache: pip
 
       - name: Install MkDocs Material + Plugins
-        run: |
-          pip install \
-            mkdocs-material \
-            mkdocs-minify-plugin
+        run: pip install -r requirements.txt
 
       # docs/ ist gitignored → wird hier frisch aus cheats/ und README.md gebaut.
       # Links im README.md zeigen auf cheats/cloud/... (für GitHub korrekt),
