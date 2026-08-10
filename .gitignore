@@ -1,6 +1,9 @@
 # Interne Dokumentation (nicht für das öffentliche Repo)
 docs/
 
+# MkDocs Build-Output
+site/
+
 # macOS
 .DS_Store
 .AppleDouble

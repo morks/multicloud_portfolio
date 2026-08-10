@@ -1,0 +1,123 @@
+site_name: Multi-Cloud Admin Portfolio
+site_url: https://morks.github.io/multicloud_portfolio/
+site_description: >
+  Praxiserprobte CLI Cheat Sheets für Multi-Cloud-Admins – AWS, Azure, GCP,
+  OCI, Telekom Cloud, STACKIT, Kubernetes, Helm, ArgoCD, Vault, Ansible & mehr.
+site_author: Michael Plaschke
+copyright: MIT License – frei verwendbar
+
+repo_url: https://github.com/morks/multicloud_portfolio
+repo_name: morks/multicloud_portfolio
+# edit_uri zeigt auf die Quell-Datei in cheats/, nicht auf das generierte docs/
+edit_uri: https://github.com/morks/multicloud_portfolio/edit/main/
+
+# docs/ wird vom CI aus cheats/ + README.md zusammengebaut (gitignored)
+docs_dir: docs
+site_dir: site
+
+# ---------------------------------------------------------------------------
+# Theme
+# ---------------------------------------------------------------------------
+theme:
+  name: material
+  language: de
+  favicon: https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f310.svg
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Dark Mode aktivieren
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Light Mode aktivieren
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+
+# ---------------------------------------------------------------------------
+# Navigation  (Pfade relativ zu docs_dir: docs/)
+# ---------------------------------------------------------------------------
+nav:
+  - 🏠 Start: index.md
+  - ☁️ Cloud:
+    - AWS CLI: cloud/aws-cli-cheatsheet.md
+    - Azure CLI: cloud/azure-cli-cheatsheet.md
+    - Google Cloud: cloud/gcp-cli-cheatsheet.md
+    - Oracle Cloud (OCI): cloud/oci-cli-cheatsheet.md
+    - Telekom Cloud (OTC): cloud/ctc-cheatsheet.md
+    - STACKIT: cloud/stackit-cli-cheatsheet.md
+  - 🛠️ DevOps:
+    - Kubernetes: devops/k8s-cheatsheet.md
+    - Helm: devops/helm-cheatsheet.md
+    - ArgoCD: devops/argocd-cheatsheet.md
+    - HashiCorp Vault: devops/vault-cheatsheet.md
+    - Ansible: devops/ansible-cheatsheet.md
+    - Docker: devops/docker-cheatsheet.md
+    - Git: devops/git-cheatsheet.md
+    - GitHub CLI: devops/github-cheatsheet.md
+    - GitLab CLI: devops/gitlab-cheatsheet.md
+
+# ---------------------------------------------------------------------------
+# Plugins
+# ---------------------------------------------------------------------------
+plugins:
+  - search:
+      lang: de
+  - minify:
+      minify_html: true
+
+# ---------------------------------------------------------------------------
+# Markdown Extensions
+# ---------------------------------------------------------------------------
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.keys
+  - toc:
+      permalink: true
+      title: Inhalt
+
+# ---------------------------------------------------------------------------
+# Extras
+# ---------------------------------------------------------------------------
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/morks/multicloud_portfolio
+      name: GitHub Repository
+  generator: false

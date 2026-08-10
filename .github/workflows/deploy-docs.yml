@@ -1,0 +1,82 @@
+name: 📚 Deploy Docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # -----------------------------------------------------------------------
+  # 1. Build
+  # -----------------------------------------------------------------------
+  build:
+    name: Build MkDocs Site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install MkDocs Material + Plugins
+        run: |
+          pip install \
+            mkdocs-material \
+            mkdocs-minify-plugin
+
+      # docs/ ist gitignored → wird hier frisch aus cheats/ und README.md gebaut.
+      # Links im README.md zeigen auf cheats/cloud/... (für GitHub korrekt),
+      # im MkDocs-Kontext (docs_dir=docs/) müssen sie auf cloud/... zeigen.
+      - name: Prepare docs structure
+        run: |
+          mkdir -p docs/cloud docs/devops
+
+          # Startseite: README.md kopieren und Pfade anpassen
+          cp README.md docs/index.md
+          sed -i \
+            's|cheats/cloud/|cloud/|g;
+             s|cheats/devops/|devops/|g' \
+            docs/index.md
+
+          # Cheat Sheets einkopieren
+          cp cheats/cloud/*.md  docs/cloud/
+          cp cheats/devops/*.md docs/devops/
+
+      - name: Build Documentation
+        run: mkdocs build --strict --verbose
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/
+
+  # -----------------------------------------------------------------------
+  # 2. Deploy
+  # -----------------------------------------------------------------------
+  deploy:
+    name: Deploy to GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
