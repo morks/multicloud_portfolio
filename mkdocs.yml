@@ -63,23 +63,34 @@ nav:
   - ☁️ Cloud:
     - AWS CLI: cloud/aws-cli-cheatsheet.md
     - Azure CLI: cloud/azure-cli-cheatsheet.md
+    - Azure Arc: cloud/azure-arc-cheatsheet.md
     - Google Cloud: cloud/gcp-cli-cheatsheet.md
+    - Anthos: cloud/anthos-cheatsheet.md
     - Oracle Cloud (OCI): cloud/oci-cli-cheatsheet.md
     - Telekom Cloud (OTC): cloud/ctc-cheatsheet.md
+    - OpenStack: cloud/openstack-cheatsheet.md
     - STACKIT: cloud/stackit-cli-cheatsheet.md
     - Hetzner Cloud: cloud/hetzner-cheatsheet.md
     - Cloudflare: cloud/cloudflare-cheatsheet.md
+    - MeshStack: cloud/meshstack-cheatsheet.md
   - 🛠️ DevOps:
     - Kubernetes: devops/k8s-cheatsheet.md
     - Helm: devops/helm-cheatsheet.md
     - Terraform / OpenTofu: devops/terraform-cheatsheet.md
     - ArgoCD: devops/argocd-cheatsheet.md
+    - FluxCD: devops/fluxcd-cheatsheet.md
     - HashiCorp Vault: devops/vault-cheatsheet.md
     - Ansible: devops/ansible-cheatsheet.md
+    - OpenShift: devops/openshift-cheatsheet.md
+    - Rancher: devops/rancher-cheatsheet.md
     - Prometheus & Grafana: devops/prometheus-grafana-cheatsheet.md
     - Docker: devops/docker-cheatsheet.md
     - Podman: devops/podman-cheatsheet.md
+    - NGINX: devops/nginx-cheatsheet.md
+    - HAProxy: devops/haproxy-cheatsheet.md
     - Trivy: devops/trivy-cheatsheet.md
+    - MLflow: devops/mlflow-cheatsheet.md
+    - NVIDIA AI Enterprise: devops/nvidia-ai-enterprise-cheatsheet.md
     - Git: devops/git-cheatsheet.md
     - GitHub CLI: devops/github-cheatsheet.md
     - GitLab CLI: devops/gitlab-cheatsheet.md

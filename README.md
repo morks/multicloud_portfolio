@@ -23,6 +23,10 @@ This repository is a curated collection of cheat sheets and references for admin
 | [STACKIT](cheats/cloud/stackit-cli-cheatsheet.md) | `stackit` | Projects, Services, Kubernetes |
 | [Hetzner Cloud](cheats/cloud/hetzner-cheatsheet.md) | `hcloud` | Servers, Networks, Firewalls, Load Balancers, Volumes |
 | [Cloudflare](cheats/cloud/cloudflare-cheatsheet.md) | `flarectl` / `wrangler` | DNS, CDN, Workers, Zero Trust, R2, Tunnel |
+| [Azure Arc](cheats/cloud/azure-arc-cheatsheet.md) | `az connectedk8s` | Arc Servers, Arc Kubernetes, GitOps, Data Services |
+| [Anthos](cheats/cloud/anthos-cheatsheet.md) | `gcloud` / `nomos` | Fleet, ACM, ASM, Policy Controller, Multi-Cluster |
+| [OpenStack](cheats/cloud/openstack-cheatsheet.md) | `openstack` | Nova, Neutron, Cinder, Glance, Swift, Heat, Ironic |
+| [MeshStack](cheats/cloud/meshstack-cheatsheet.md) | `meshstack` | Workspaces, Projects, Landing Zones, Chargeback |
 
 ---
 
@@ -40,6 +44,13 @@ This repository is a curated collection of cheat sheets and references for admin
 | **Docker** | [docker](cheats/devops/docker-cheatsheet.md) | Images, Container, Compose, Registry |
 | **Podman** | [podman](cheats/devops/podman-cheatsheet.md) | Rootless Containers, Pods, Systemd, Compose |
 | **Trivy** | [trivy](cheats/devops/trivy-cheatsheet.md) | Image Scan, IaC Scan, Secrets, SBOM, K8s Audit |
+| **OpenShift** | [oc](cheats/devops/openshift-cheatsheet.md) | Projects, Builds, Routes, SCC, OLM Operators |
+| **Rancher** | [rancher](cheats/devops/rancher-cheatsheet.md) | Cluster Mgmt, RKE2/K3s, Fleet GitOps, App Catalog |
+| **FluxCD** | [flux](cheats/devops/fluxcd-cheatsheet.md) | GitOps, HelmRelease, Image Automation, Multi-Tenancy |
+| **NGINX** | [nginx](cheats/devops/nginx-cheatsheet.md) | Server Blocks, Reverse Proxy, Load Balancing, Ingress |
+| **HAProxy** | [haproxy](cheats/devops/haproxy-cheatsheet.md) | Frontend/Backend, ACLs, SSL, Health Checks, Stats |
+| **MLflow** | [mlflow](cheats/devops/mlflow-cheatsheet.md) | Experiment Tracking, Model Registry, Serving, Projects |
+| **NVIDIA AI Enterprise** | [nvidia](cheats/devops/nvidia-ai-enterprise-cheatsheet.md) | GPU Operator, NIM, Triton, MIG, DCGM Monitoring |
 | **Git** | [git](cheats/devops/git-cheatsheet.md) | Branches, Rebase, Stash, Tags, Hooks |
 | **GitHub CLI** | [gh](cheats/devops/github-cheatsheet.md) | PRs, Issues, Actions, Releases |
 | **GitLab CLI** | [glab](cheats/devops/gitlab-cheatsheet.md) | MRs, CI/CD, Registry, Variables |
@@ -130,26 +141,37 @@ multicloud_portfolio/
     ├── README.md                      # Cheat sheet index
     │
     ├── cloud/                              # Cloud provider CLIs
+    │   ├── anthos-cheatsheet.md            # Google Anthos (Fleet, ACM, ASM)
     │   ├── aws-cli-cheatsheet.md           # Amazon Web Services
+    │   ├── azure-arc-cheatsheet.md         # Azure Arc (hybrid/multi-cloud)
     │   ├── azure-cli-cheatsheet.md         # Microsoft Azure
     │   ├── cloudflare-cheatsheet.md        # Cloudflare (DNS, CDN, Workers, Zero Trust)
     │   ├── ctc-cheatsheet.md               # Telekom Cloud (OTC/OpenStack)
     │   ├── gcp-cli-cheatsheet.md           # Google Cloud Platform
     │   ├── hetzner-cheatsheet.md           # Hetzner Cloud
+    │   ├── meshstack-cheatsheet.md         # MeshStack (cloud management)
     │   ├── oci-cli-cheatsheet.md           # Oracle Cloud Infrastructure
+    │   ├── openstack-cheatsheet.md         # OpenStack (generic/self-hosted)
     │   └── stackit-cli-cheatsheet.md       # STACKIT (Deutsche Telekom)
     │
     └── devops/                             # DevOps tooling
         ├── ansible-cheatsheet.md           # Ansible Automation
         ├── argocd-cheatsheet.md            # ArgoCD GitOps
         ├── docker-cheatsheet.md            # Docker / Container
+        ├── fluxcd-cheatsheet.md            # FluxCD GitOps
         ├── git-cheatsheet.md               # Git Version Control
         ├── github-cheatsheet.md            # GitHub CLI (gh)
         ├── gitlab-cheatsheet.md            # GitLab CLI (glab)
+        ├── haproxy-cheatsheet.md           # HAProxy Load Balancer
         ├── helm-cheatsheet.md              # Helm Package Manager
         ├── k8s-cheatsheet.md               # Kubernetes (kubectl)
+        ├── mlflow-cheatsheet.md            # MLflow (ML Experiment Tracking)
+        ├── nginx-cheatsheet.md             # NGINX Web Server / Proxy
+        ├── nvidia-ai-enterprise-cheatsheet.md # NVIDIA AI Enterprise / GPU
+        ├── openshift-cheatsheet.md         # OpenShift / OKD (oc CLI)
         ├── podman-cheatsheet.md            # Podman (rootless containers)
         ├── prometheus-grafana-cheatsheet.md # Prometheus & Grafana
+        ├── rancher-cheatsheet.md           # Rancher Kubernetes Management
         ├── terraform-cheatsheet.md         # Terraform / OpenTofu (IaC)
         ├── trivy-cheatsheet.md             # Trivy Security Scanner
         └── vault-cheatsheet.md             # HashiCorp Vault
