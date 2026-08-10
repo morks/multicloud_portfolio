@@ -1,44 +1,44 @@
 # Git Cheat Sheet
 
-## Installation & Konfiguration
+## Installation & Setup
 
 ```bash
 # Installation (macOS)
 brew install git
 
-# Globale Identität setzen
+# Set global identity
 git config --global user.name "Max Mustermann"
 git config --global user.email "max@example.com"
 
-# Standard-Editor setzen
+# Set default editor
 git config --global core.editor "code --wait"   # VS Code
 git config --global core.editor "vim"
 
-# Standard-Branch-Name auf main setzen
+# Set default branch name to main
 git config --global init.defaultBranch main
 
-# Alle globalen Einstellungen anzeigen
+# Show all global settings
 git config --global --list
 
-# SSH-Key generieren
+# Generate SSH key
 ssh-keygen -t ed25519 -C "max@example.com"
 ```
 
 ---
 
-## Repository anlegen & klonen
+## Create & Clone Repository
 
 ```bash
-# Neues Repo initialisieren
+# Initialize new repo
 git init
 
-# Vorhandenes Repo klonen
+# Clone existing repo
 git clone https://github.com/user/repo.git
 
-# Klonen in bestimmten Ordner
-git clone https://github.com/user/repo.git mein-ordner
+# Clone into specific folder
+git clone https://github.com/user/repo.git my-folder
 
-# Klonen eines einzelnen Branches
+# Clone a single branch
 git clone --branch develop --single-branch https://github.com/user/repo.git
 ```
 
@@ -47,27 +47,27 @@ git clone --branch develop --single-branch https://github.com/user/repo.git
 ## Staging & Commits
 
 ```bash
-# Änderungen anzeigen (unstaged)
+# Show changes (unstaged)
 git status
 git diff
 
-# Alle Änderungen stagen
+# Stage all changes
 git add .
 
-# Einzelne Datei stagen
+# Stage single file
 git add src/main.go
 
-# Interaktiv stagen (Hunk-weise)
+# Stage interactively (hunk by hunk)
 git add -p
 
-# Commit erstellen
-git commit -m "feat: neue Funktion hinzugefügt"
+# Create commit
+git commit -m "feat: add new feature"
 
-# Letzten Commit nachträglich bearbeiten (Nachricht oder Inhalt)
+# Edit last commit retroactively (message or content)
 git commit --amend
 
-# Leeren Commit erstellen (z. B. CI triggern)
-git commit --allow-empty -m "ci: pipeline neu starten"
+# Create empty commit (e.g. to trigger CI)
+git commit --allow-empty -m "ci: restart pipeline"
 ```
 
 ---
@@ -75,26 +75,26 @@ git commit --allow-empty -m "ci: pipeline neu starten"
 ## Branches
 
 ```bash
-# Alle Branches anzeigen (lokal + remote)
+# Show all branches (local + remote)
 git branch -a
 
-# Neuen Branch erstellen und wechseln
-git switch -c feature/mein-feature
+# Create and switch to new branch
+git switch -c feature/my-feature
 
-# Branch wechseln
+# Switch branch
 git switch main
 
-# Branch löschen (lokal)
-git branch -d feature/mein-feature
+# Delete branch (local)
+git branch -d feature/my-feature
 
-# Branch mit Gewalt löschen
-git branch -D feature/mein-feature
+# Force delete branch
+git branch -D feature/my-feature
 
-# Remote-Branch löschen
-git push origin --delete feature/mein-feature
+# Delete remote branch
+git push origin --delete feature/my-feature
 
-# Branch umbenennen
-git branch -m alter-name neuer-name
+# Rename branch
+git branch -m old-name new-name
 ```
 
 ---
@@ -102,25 +102,25 @@ git branch -m alter-name neuer-name
 ## Merge & Rebase
 
 ```bash
-# Branch in aktuellen Branch mergen
-git merge feature/mein-feature
+# Merge branch into current branch
+git merge feature/my-feature
 
-# Merge ohne Fast-Forward (erzeugt immer Merge-Commit)
-git merge --no-ff feature/mein-feature
+# Merge without fast-forward (always creates merge commit)
+git merge --no-ff feature/my-feature
 
-# Merge abbrechen
+# Abort merge
 git merge --abort
 
-# Rebase auf main
+# Rebase onto main
 git rebase main
 
-# Interaktiver Rebase (letzte 3 Commits umschreiben)
+# Interactive rebase (rewrite last 3 commits)
 git rebase -i HEAD~3
 
-# Rebase abbrechen
+# Abort rebase
 git rebase --abort
 
-# Cherry-Pick: einzelnen Commit übernehmen
+# Cherry-pick: apply a single commit
 git cherry-pick <commit-sha>
 ```
 
@@ -129,82 +129,82 @@ git cherry-pick <commit-sha>
 ## Remote
 
 ```bash
-# Remotes anzeigen
+# Show remotes
 git remote -v
 
-# Remote hinzufügen
+# Add remote
 git remote add origin https://github.com/user/repo.git
 
-# Remote umbenennen
+# Rename remote
 git remote rename origin upstream
 
-# Remote entfernen
+# Remove remote
 git remote remove upstream
 
-# Änderungen vom Remote holen (kein Merge)
+# Fetch changes from remote (no merge)
 git fetch origin
 
-# Holen und mergen
+# Fetch and merge
 git pull origin main
 
-# Rebase-Pull (sauberere Historie)
+# Rebase pull (cleaner history)
 git pull --rebase origin main
 
-# Lokale Änderungen pushen
+# Push local changes
 git push origin main
 
-# Branch erstmalig pushen und Tracking setzen
-git push -u origin feature/mein-feature
+# Push branch for the first time and set tracking
+git push -u origin feature/my-feature
 
-# Force Push (Vorsicht!)
-git push --force-with-lease origin feature/mein-feature
+# Force push (use with caution!)
+git push --force-with-lease origin feature/my-feature
 ```
 
 ---
 
-## Log & Historie
+## Log & History
 
 ```bash
-# Kompakte Log-Übersicht
+# Compact log overview
 git log --oneline --graph --decorate --all
 
-# Letzte 10 Commits
+# Last 10 commits
 git log -10
 
-# Commits eines Autors
+# Commits by an author
 git log --author="Max"
 
-# Commits die eine Datei betreffen
+# Commits affecting a file
 git log -- src/main.go
 
-# Diff zwischen zwei Branches
-git diff main..feature/mein-feature
+# Diff between two branches
+git diff main..feature/my-feature
 
-# Welcher Commit hat Zeile X eingeführt?
+# Which commit introduced line X?
 git blame src/main.go
 ```
 
 ---
 
-## Rückgängig machen
+## Undo Changes
 
 ```bash
-# Datei aus Staging entfernen
+# Remove file from staging
 git restore --staged src/main.go
 
-# Lokale Änderungen einer Datei verwerfen
+# Discard local changes to a file
 git restore src/main.go
 
-# Letzten Commit rückgängig machen (Änderungen behalten)
+# Undo last commit (keep changes)
 git reset --soft HEAD~1
 
-# Letzten Commit rückgängig machen (Änderungen verwerfen)
+# Undo last commit (discard changes)
 git reset --hard HEAD~1
 
-# Einen Commit durch neuen "Revert-Commit" umkehren (sicher für geteilte Branches)
+# Reverse a commit with a new "revert commit" (safe for shared branches)
 git revert <commit-sha>
 
-# Alle lokalen Änderungen verwerfen
+# Discard all local changes
 git checkout -- .
 ```
 
@@ -213,28 +213,28 @@ git checkout -- .
 ## Stash
 
 ```bash
-# Aktuelle Änderungen zwischenspeichern
+# Save current changes temporarily
 git stash
 
-# Mit Beschreibung stashen
-git stash push -m "WIP: Fehlerbehandlung"
+# Stash with description
+git stash push -m "WIP: error handling"
 
-# Stash-Liste anzeigen
+# Show stash list
 git stash list
 
-# Letzten Stash anwenden (behalten)
+# Apply last stash (keep it)
 git stash apply
 
-# Letzten Stash anwenden und löschen
+# Apply last stash and delete it
 git stash pop
 
-# Bestimmten Stash anwenden
+# Apply specific stash
 git stash apply stash@{2}
 
-# Stash löschen
+# Delete stash
 git stash drop stash@{0}
 
-# Alle Stashes löschen
+# Delete all stashes
 git stash clear
 ```
 
@@ -243,22 +243,22 @@ git stash clear
 ## Tags
 
 ```bash
-# Alle Tags anzeigen
+# Show all tags
 git tag
 
-# Lightweight Tag erstellen
+# Create lightweight tag
 git tag v1.0.0
 
-# Annotierter Tag (mit Nachricht)
+# Annotated tag (with message)
 git tag -a v1.0.0 -m "Release v1.0.0"
 
-# Tag pushen
+# Push tag
 git push origin v1.0.0
 
-# Alle Tags pushen
+# Push all tags
 git push origin --tags
 
-# Tag löschen (lokal + remote)
+# Delete tag (local + remote)
 git tag -d v1.0.0
 git push origin --delete v1.0.0
 ```
@@ -268,46 +268,46 @@ git push origin --delete v1.0.0
 ## .gitignore
 
 ```bash
-# Datei aus Tracking entfernen (ohne zu löschen)
+# Remove file from tracking (without deleting)
 git rm --cached .env
 
-# .gitignore-Muster testen
-git check-ignore -v meine-datei.log
+# Test .gitignore patterns
+git check-ignore -v my-file.log
 
-# Globale .gitignore setzen
+# Set global .gitignore
 git config --global core.excludesfile ~/.gitignore_global
 ```
 
 ---
 
-## Nützliche Shortcuts
+## Useful Shortcuts
 
 ```bash
-# Alle Branches die gemergt sind (aufräumen)
+# All branches that are merged (cleanup)
 git branch --merged | grep -v "\*\|main\|master" | xargs git branch -d
 
-# Reflog: jede Aktion der letzten Zeit
+# Reflog: every action from recent history
 git reflog
 
-# Datei aus einem anderen Branch übernehmen
+# Get a file from another branch
 git checkout other-branch -- path/to/file
 
-# Submodule initialisieren und aktualisieren
+# Initialize and update submodules
 git submodule update --init --recursive
 ```
 
 ---
 
-## Conventional Commits (Empfehlung)
+## Conventional Commits (Recommended)
 
 ```
-feat:     neues Feature
-fix:      Bugfix
-docs:     Dokumentation
-style:    Formatierung, kein Logik-Änderung
-refactor: Refactoring ohne Feature/Fix
-test:     Tests hinzufügen/ändern
-chore:    Build, Dependencies, Tooling
-ci:       CI/CD-Konfiguration
-perf:     Performance-Verbesserung
+feat:     new feature
+fix:      bugfix
+docs:     documentation
+style:    formatting, no logic change
+refactor: refactoring without feature/fix
+test:     add/modify tests
+chore:    build, dependencies, tooling
+ci:       CI/CD configuration
+perf:     performance improvement
 ```

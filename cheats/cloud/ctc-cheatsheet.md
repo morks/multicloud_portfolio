@@ -1,34 +1,34 @@
 # CTC Cheat Sheet (Telekom Cloud / Open Telekom Cloud)
 
-> Die Open Telekom Cloud (OTC) basiert auf OpenStack. CLI-Tools: `otc` (eigener Client) sowie die OpenStack-Standard-CLIs `openstack`, `swift`, `nova`, `neutron` usw.
+> The Open Telekom Cloud (OTC) is based on OpenStack. CLI tools: `otc` (proprietary client) as well as the standard OpenStack CLIs `openstack`, `swift`, `nova`, `neutron`, etc.
 
-## Installation & Konfiguration
+## Installation & Setup
 
 ```bash
-# otc-cli installieren (Go-Binary)
+# Install otc-cli (Go binary)
 brew install iits-consulting/tap/otc-cli
 
-# Alternativ via GitHub-Releases
+# Alternative via GitHub releases
 curl -Lo otc https://github.com/iits-consulting/otc-cli/releases/latest/download/otc-linux-amd64
 chmod +x otc && sudo mv otc /usr/local/bin/
 
-# OpenStack-Client (Standard-Tools)
+# OpenStack client (standard tools)
 pip install python-openstackclient
 
-# Version prüfen
+# Check version
 otc --version
 openstack --version
 
-# Konfigurationsassistent (interaktiv)
+# Configuration wizard (interactive)
 otc configure
 
-# Konfiguration anzeigen
+# Show configuration
 otc configure show
 
-# openstack rc-Datei sourcen (aus OTC-Konsole heruntergeladen)
-source ~/Downloads/MeinProjekt-openrc.sh
+# Source openstack rc file (downloaded from OTC console)
+source ~/Downloads/MyProject-openrc.sh
 
-# Umgebungsvariablen direkt setzen
+# Set environment variables directly
 export OS_AUTH_URL=https://iam.eu-de.otc.t-systems.com/v3
 export OS_PROJECT_NAME=eu-de_<projektname>
 export OS_USER_DOMAIN_NAME=OTC-EU-DE-<domainid>
@@ -39,28 +39,28 @@ export OS_REGION_NAME=eu-de
 
 ---
 
-## Authentifizierung & Projekte
+## Authentication & Projects
 
 ```bash
-# Token anfordern (Prüfung ob Auth funktioniert)
+# Request token (verify auth works)
 openstack token issue
 
-# Aktuelles Projekt anzeigen
+# Show current project
 openstack project show $OS_PROJECT_NAME
 
-# Alle Projekte auflisten
+# List all projects
 openstack project list
 
-# Domänen auflisten
+# List domains
 openstack domain list
 
-# Benutzer auflisten (Adminrechte nötig)
+# List users (admin rights required)
 openstack user list
 
-# Eigene Rollen prüfen
+# Check own roles
 openstack role assignment list --user $OS_USERNAME --names
 
-# Token-Ablauf und Details
+# Token expiry and details
 openstack token issue -f json | jq '.expires'
 ```
 
@@ -69,100 +69,100 @@ openstack token issue -f json | jq '.expires'
 ## Compute – ECS (Elastic Cloud Server)
 
 ```bash
-# Instanzen auflisten
+# List instances
 openstack server list
 otc ecs list
 
-# Instanzdetails anzeigen
-openstack server show <server-name-oder-id>
+# Show instance details
+openstack server show <server-name-or-id>
 
-# Instanz erstellen
+# Create instance
 openstack server create \
   --image "Standard_Debian_12_latest" \
   --flavor s3.medium.4 \
   --network <network-name> \
-  --key-name mein-keypair \
+  --key-name my-keypair \
   --security-group default \
-  mein-server
+  my-server
 
-# Instanz starten / stoppen / neu starten
+# Start / stop / restart instance
 openstack server start <server-id>
 openstack server stop <server-id>
 openstack server reboot <server-id>
 
-# Instanz löschen
+# Delete instance
 openstack server delete <server-id>
 
-# SSH-Key erstellen
-openstack keypair create mein-keypair > mein-keypair.pem
-chmod 400 mein-keypair.pem
+# Create SSH key
+openstack keypair create my-keypair > my-keypair.pem
+chmod 400 my-keypair.pem
 
-# SSH-Key importieren
-openstack keypair create --public-key ~/.ssh/id_rsa.pub mein-keypair
+# Import SSH key
+openstack keypair create --public-key ~/.ssh/id_rsa.pub my-keypair
 
-# Keypairs auflisten
+# List keypairs
 openstack keypair list
 
-# Verfügbare Flavors (VM-Typen)
+# Available flavors (VM types)
 openstack flavor list --public
 
-# Verfügbare Images
+# Available images
 openstack image list --status active
 ```
 
 ---
 
-## Netzwerk – VPC & Neutron
+## Network – VPC & Neutron
 
 ```bash
-# VPCs / Netzwerke auflisten
+# List VPCs / networks
 openstack network list
 otc vpc list
 
-# VPC erstellen
-otc vpc create --name mein-vpc --cidr 10.0.0.0/16
+# Create VPC
+otc vpc create --name my-vpc --cidr 10.0.0.0/16
 
-# Subnets auflisten
+# List subnets
 openstack subnet list
 
-# Subnet erstellen
+# Create subnet
 openstack subnet create \
   --network <network-name> \
   --subnet-range 10.0.1.0/24 \
   --gateway 10.0.1.1 \
   --dns-nameserver 100.125.4.25 \
-  mein-subnet
+  my-subnet
 
-# Floating IP zuweisen
+# Assign floating IP
 openstack floating ip create admin_external_net
 openstack server add floating ip <server-id> <floating-ip>
 
-# Floating IPs auflisten
+# List floating IPs
 openstack floating ip list
 
-# Security Groups auflisten
+# List security groups
 openstack security group list
 
-# Security Group erstellen
-openstack security group create meine-sg --description "HTTP+SSH"
+# Create security group
+openstack security group create my-sg --description "HTTP+SSH"
 
-# Regel hinzufügen (SSH)
+# Add rule (SSH)
 openstack security group rule create \
   --protocol tcp --dst-port 22 \
-  --remote-ip 0.0.0.0/0 meine-sg
+  --remote-ip 0.0.0.0/0 my-sg
 
-# Regel hinzufügen (HTTP)
+# Add rule (HTTP)
 openstack security group rule create \
   --protocol tcp --dst-port 80 \
-  --remote-ip 0.0.0.0/0 meine-sg
+  --remote-ip 0.0.0.0/0 my-sg
 
-# Router auflisten / erstellen
+# List / create router
 openstack router list
-openstack router create mein-router
-openstack router set --external-gateway admin_external_net mein-router
-openstack router add subnet mein-router mein-subnet
+openstack router create my-router
+openstack router set --external-gateway admin_external_net my-router
+openstack router add subnet my-router my-subnet
 
-# ELB (Load Balancer) auflisten
+# List ELB (load balancers)
 otc elb list
 ```
 
@@ -171,36 +171,36 @@ otc elb list
 ## Object Storage – OBS (OpenStack Swift)
 
 ```bash
-# Container (Buckets) auflisten
+# List containers (buckets)
 openstack container list
 swift list
 
-# Container erstellen
-openstack container create mein-container
+# Create container
+openstack container create my-container
 
-# Objekte hochladen
-openstack object create mein-container lokale-datei.txt
-swift upload mein-container lokale-datei.txt
+# Upload objects
+openstack object create my-container lokale-datei.txt
+swift upload my-container lokale-datei.txt
 
-# Objekte auflisten
-openstack object list mein-container
+# List objects
+openstack object list my-container
 
-# Objekt herunterladen
-openstack object save mein-container datei.txt
-swift download mein-container datei.txt
+# Download object
+openstack object save my-container datei.txt
+swift download my-container datei.txt
 
-# Objekt löschen
-openstack object delete mein-container datei.txt
+# Delete object
+openstack object delete my-container datei.txt
 
-# Container löschen (muss leer sein)
-openstack container delete mein-container
+# Delete container (must be empty)
+openstack container delete my-container
 
-# Container öffentlich zugänglich machen
-swift post -r '.r:*' mein-container
+# Make container publicly accessible
+swift post -r '.r:*' my-container
 
-# Statistik anzeigen
+# Show statistics
 swift stat
-swift stat mein-container
+swift stat my-container
 ```
 
 ---
@@ -208,34 +208,34 @@ swift stat mein-container
 ## Block Storage – EVS (Cinder)
 
 ```bash
-# Volumes auflisten
+# List volumes
 openstack volume list
 otc evs list
 
-# Volume erstellen (50 GB SSD)
+# Create volume (50 GB SSD)
 openstack volume create \
   --size 50 \
   --type SSD \
   --availability-zone eu-de-01 \
-  mein-volume
+  my-volume
 
-# Volume an Server anhängen
+# Attach volume to server
 openstack server add volume <server-id> <volume-id>
 
-# Volume trennen
+# Detach volume
 openstack server remove volume <server-id> <volume-id>
 
-# Snapshot erstellen
+# Create snapshot
 openstack volume snapshot create \
   --volume <volume-id> \
-  --name mein-snapshot
+  --name my-snapshot
 
-# Volume aus Snapshot wiederherstellen
+# Restore volume from snapshot
 openstack volume create \
   --snapshot <snapshot-id> \
-  --size 50 wiederhergestelltes-volume
+  --size 50 restored-volume
 
-# Volume löschen
+# Delete volume
 openstack volume delete <volume-id>
 ```
 
@@ -244,28 +244,28 @@ openstack volume delete <volume-id>
 ## CCE – Cloud Container Engine (Kubernetes)
 
 ```bash
-# Cluster auflisten
+# List clusters
 otc cce cluster list
 
-# Cluster erstellen
+# Create cluster
 otc cce cluster create \
-  --name mein-cce-cluster \
+  --name my-cce-cluster \
   --flavor cce.s2.small \
   --vpc-id <vpc-id> \
   --subnet-id <subnet-id>
 
-# Cluster-Details anzeigen
+# Show cluster details
 otc cce cluster show <cluster-id>
 
-# kubeconfig herunterladen
+# Download kubeconfig
 otc cce cluster get-credentials <cluster-id> > ~/.kube/config
-# oder
+# or
 otc cce cluster get-credentials <cluster-id> --kubeconfig ~/.kube/otc-config.yaml
 
-# Node Pools auflisten
+# List node pools
 otc cce nodepool list --cluster-id <cluster-id>
 
-# Nodes auflisten
+# List nodes
 otc cce node list --cluster-id <cluster-id>
 ```
 
@@ -274,26 +274,26 @@ otc cce node list --cluster-id <cluster-id>
 ## DNS & Domain
 
 ```bash
-# Zonen auflisten
+# List zones
 openstack zone list
 otc dns zone list
 
-# Zone erstellen (öffentlich)
+# Create zone (public)
 openstack zone create \
   --type public \
   --email admin@meinedomain.de \
   meinedomain.de.
 
-# DNS-Record erstellen (A-Record)
+# Create DNS record (A record)
 openstack recordset create \
   --type A \
   --records "1.2.3.4" \
   meinedomain.de. www.meinedomain.de.
 
-# Records einer Zone auflisten
+# List records of a zone
 openstack recordset list meinedomain.de.
 
-# Zone löschen
+# Delete zone
 openstack zone delete meinedomain.de.
 ```
 
@@ -302,31 +302,31 @@ openstack zone delete meinedomain.de.
 ## IAM – Identity Access Management
 
 ```bash
-# Benutzer erstellen
+# Create user
 openstack user create \
   --domain <domain-id> \
   --password "SecurePass123" \
-  neuer-user
+  new-user
 
-# Benutzer einer Gruppe zuweisen
+# Assign user to a group
 openstack group add user <group-id> <user-id>
 
-# Gruppe erstellen
-openstack group create meine-gruppe
+# Create group
+openstack group create my-group
 
-# Rolle zuweisen
+# Assign role
 openstack role add \
   --project <project-id> \
   --user <user-id> \
   <role-name>
 
-# Agenturen (AK/SK) anlegen – für programmatischen Zugriff
-# In der OTC-Konsole: IAM → My Credentials → Access Keys
+# Create credentials (AK/SK) – for programmatic access
+# In the OTC console: IAM → My Credentials → Access Keys
 
-# Umgebungsvariablen für AK/SK setzen
+# Set environment variables for AK/SK
 export AWS_ACCESS_KEY_ID=<ak>
 export AWS_SECRET_ACCESS_KEY=<sk>
-# OBS kann dann via s3-kompatibler API genutzt werden
+# OBS can then be used via S3-compatible API
 ```
 
 ---
@@ -334,20 +334,20 @@ export AWS_SECRET_ACCESS_KEY=<sk>
 ## Monitoring & CES (Cloud Eye)
 
 ```bash
-# Metriken auflisten (via REST-API, da kein direkter CLI-Befehl)
-# Basis-URL: https://ces.eu-de.otc.t-systems.com/v1.0/<project-id>/metrics
+# List metrics (via REST API, as there is no direct CLI command)
+# Base URL: https://ces.eu-de.otc.t-systems.com/v1.0/<project-id>/metrics
 
-# OTC Quota anzeigen
+# Show OTC quota
 otc quota list
 
-# Ressourcen-Taggen
-openstack server set --tag Umgebung=Produktion <server-id>
+# Tag resources
+openstack server set --tag Environment=Production <server-id>
 openstack server show <server-id> -f json | jq '.tags'
 ```
 
 ---
 
-## Terraform mit OTC
+## Terraform with OTC
 
 ```bash
 # Provider in main.tf
@@ -378,28 +378,28 @@ terraform apply
 
 ---
 
-## Tipps & Tricks
+## Tips & Tricks
 
 ```bash
-# JSON-Ausgabe für Scripting
+# JSON output for scripting
 openstack server list -f json | jq '.[].Name'
 
-# Tabellenausgabe anpassen
+# Customize table output
 openstack server list -c Name -c Status -c Networks
 
-# Alle Ressourcen eines Projekts finden (Quota-Übersicht)
+# Find all resources of a project (quota overview)
 openstack quota show
 
-# Region in RC-Datei überprüfen
+# Check region in RC file
 env | grep OS_
 
-# OTC-spezifische API-Endpunkte abrufen
+# Retrieve OTC-specific API endpoints
 openstack catalog list
 
-# Fehlermeldungen debuggen
+# Debug error messages
 openstack --debug server list 2>&1 | head -50
 
-# OTC-Dokumentation
+# OTC documentation
 # https://docs.otc.t-systems.com/
 # https://github.com/opentelekomcloud/python-otcextensions
 ```

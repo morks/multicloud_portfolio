@@ -1,30 +1,30 @@
 # OCI CLI Cheat Sheet (Oracle Cloud Infrastructure)
 
-## Installation & Konfiguration
+## Installation & Setup
 
 ```bash
 # Installation (macOS via Homebrew)
 brew install oci-cli
 
-# Installation (offizieller Installer)
+# Installation (official installer)
 bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
 
-# Version prüfen
+# Check version
 oci --version
 
-# Setup-Assistent (interaktiv, legt ~/.oci/config an)
+# Setup wizard (interactive, creates ~/.oci/config)
 oci setup config
 
-# Config-Datei manuell prüfen
+# Manually check config file
 cat ~/.oci/config
 
-# Konfigurationsprofil auflisten
+# List configuration profiles
 oci setup repair-file-permissions --file ~/.oci/config
 
-# API-Key-Fingerprint anzeigen
+# Show API key fingerprint
 oci iam user list-api-keys --user-id <user-ocid>
 
-# Aktuelle Identität prüfen
+# Check current identity
 oci iam user get --user-id $(oci iam user list --query 'data[0].id' --raw-output)
 ```
 
@@ -33,22 +33,22 @@ oci iam user get --user-id $(oci iam user list --query 'data[0].id' --raw-output
 ## Profile & Tenancies
 
 ```bash
-# Standard-Profil nutzen (DEFAULT in ~/.oci/config)
+# Use default profile (DEFAULT in ~/.oci/config)
 oci iam compartment list
 
-# Alternatives Profil nutzen
+# Use alternative profile
 oci iam compartment list --profile PROD
 
-# Tenancy-OCID anzeigen
+# Show Tenancy OCID
 oci iam tenancy get --tenancy-id <tenancy-ocid>
 
-# Alle Regionen anzeigen
+# Show all regions
 oci iam region list
 
-# Abonnierte Regionen der Tenancy
+# Subscribed regions for the tenancy
 oci iam region-subscription list --tenancy-id <tenancy-ocid>
 
-# Region für eine Session setzen
+# Set region for a session
 export OCI_CLI_REGION=eu-frankfurt-1
 ```
 
@@ -57,76 +57,76 @@ export OCI_CLI_REGION=eu-frankfurt-1
 ## IAM – Compartments & Policies
 
 ```bash
-# Alle Compartments auflisten (root)
+# List all compartments (root)
 oci iam compartment list --all
 
-# Compartment erstellen
+# Create compartment
 oci iam compartment create \
   --compartment-id <parent-ocid> \
-  --name "mein-compartment" \
-  --description "Beschreibung"
+  --name "my-compartment" \
+  --description "Description"
 
-# Groups auflisten
+# List groups
 oci iam group list --all
 
-# User einer Gruppe hinzufügen
+# Add user to a group
 oci iam group add-user \
   --group-id <group-ocid> \
   --user-id <user-ocid>
 
-# Policies auflisten
+# List policies
 oci iam policy list --compartment-id <compartment-ocid>
 
-# Policy erstellen
+# Create policy
 oci iam policy create \
   --compartment-id <compartment-ocid> \
-  --name "meine-policy" \
-  --description "Zugriff auf Object Storage" \
-  --statements '["Allow group Admins to manage object-family in compartment MeinCompartment"]'
+  --name "my-policy" \
+  --description "Access to Object Storage" \
+  --statements '["Allow group Admins to manage object-family in compartment MyCompartment"]'
 ```
 
 ---
 
-## Compute – Instanzen
+## Compute – Instances
 
 ```bash
-# Instanzen auflisten
+# List instances
 oci compute instance list \
   --compartment-id <compartment-ocid> \
   --output table
 
-# Instanz-Details anzeigen
+# Show instance details
 oci compute instance get --instance-id <instance-ocid>
 
-# Instanz starten
+# Start instance
 oci compute instance action \
   --instance-id <instance-ocid> \
   --action START
 
-# Instanz stoppen
+# Stop instance
 oci compute instance action \
   --instance-id <instance-ocid> \
   --action STOP
 
-# Instanz neu starten
+# Restart instance
 oci compute instance action \
   --instance-id <instance-ocid> \
   --action SOFTRESET
 
-# Instanz terminieren
+# Terminate instance
 oci compute instance terminate \
   --instance-id <instance-ocid>
 
-# Verfügbare Shapes auflisten
+# List available shapes
 oci compute shape list --compartment-id <compartment-ocid>
 
-# Images auflisten (Oracle-Images)
+# List images (Oracle images)
 oci compute image list \
   --compartment-id <compartment-ocid> \
   --operating-system "Oracle Linux" \
   --output table
 
-# SSH-Verbindung via bastion (Instance Console Connection)
+# SSH connection via bastion (Instance Console Connection)
 oci compute instance-console-connection create \
   --instance-id <instance-ocid> \
   --public-key-file ~/.ssh/id_rsa.pub
@@ -137,36 +137,36 @@ oci compute instance-console-connection create \
 ## VCN – Virtual Cloud Network
 
 ```bash
-# VCNs auflisten
+# List VCNs
 oci network vcn list --compartment-id <compartment-ocid>
 
-# VCN erstellen
+# Create VCN
 oci network vcn create \
   --compartment-id <compartment-ocid> \
   --cidr-block "10.0.0.0/16" \
-  --display-name "mein-vcn"
+  --display-name "my-vcn"
 
-# Subnets auflisten
+# List subnets
 oci network subnet list --compartment-id <compartment-ocid>
 
-# Subnet erstellen
+# Create subnet
 oci network subnet create \
   --compartment-id <compartment-ocid> \
   --vcn-id <vcn-ocid> \
   --cidr-block "10.0.1.0/24" \
   --display-name "public-subnet"
 
-# Security Lists anzeigen
+# Show security lists
 oci network security-list list --compartment-id <compartment-ocid>
 
-# Internet Gateway erstellen
+# Create internet gateway
 oci network internet-gateway create \
   --compartment-id <compartment-ocid> \
   --vcn-id <vcn-ocid> \
   --is-enabled true \
-  --display-name "mein-igw"
+  --display-name "my-igw"
 
-# Load Balancer auflisten
+# List load balancers
 oci lb load-balancer list --compartment-id <compartment-ocid>
 ```
 
@@ -175,47 +175,47 @@ oci lb load-balancer list --compartment-id <compartment-ocid>
 ## Object Storage
 
 ```bash
-# Buckets auflisten
+# List buckets
 oci os bucket list --compartment-id <compartment-ocid>
 
-# Bucket erstellen
+# Create bucket
 oci os bucket create \
   --compartment-id <compartment-ocid> \
-  --name "mein-bucket" \
+  --name "my-bucket" \
   --namespace <namespace>
 
-# Namespace anzeigen
+# Show namespace
 oci os ns get
 
-# Objekte auflisten
-oci os object list --bucket-name "mein-bucket"
+# List objects
+oci os object list --bucket-name "my-bucket"
 
-# Datei hochladen
+# Upload file
 oci os object put \
-  --bucket-name "mein-bucket" \
-  --file ./lokale-datei.txt \
-  --name "pfad/im/bucket/datei.txt"
+  --bucket-name "my-bucket" \
+  --file ./local-file.txt \
+  --name "path/in/bucket/file.txt"
 
-# Datei herunterladen
+# Download file
 oci os object get \
-  --bucket-name "mein-bucket" \
-  --name "pfad/im/bucket/datei.txt" \
-  --file ./heruntergeladen.txt
+  --bucket-name "my-bucket" \
+  --name "path/in/bucket/file.txt" \
+  --file ./downloaded.txt
 
-# Objekt löschen
+# Delete object
 oci os object delete \
-  --bucket-name "mein-bucket" \
-  --name "pfad/im/bucket/datei.txt"
+  --bucket-name "my-bucket" \
+  --name "path/in/bucket/file.txt"
 
-# Bulk-Upload eines Verzeichnisses
+# Bulk upload a directory
 oci os object bulk-upload \
-  --bucket-name "mein-bucket" \
-  --src-dir ./mein-verzeichnis/
+  --bucket-name "my-bucket" \
+  --src-dir ./my-directory/
 
-# Pre-Authenticated Request (PAR) erstellen
+# Create Pre-Authenticated Request (PAR)
 oci os preauth-request create \
-  --bucket-name "mein-bucket" \
-  --name "mein-par" \
+  --bucket-name "my-bucket" \
+  --name "my-par" \
   --access-type ObjectRead \
   --time-expires "2026-12-31T23:59:59Z"
 ```
@@ -225,26 +225,26 @@ oci os preauth-request create \
 ## Database – Autonomous Database (ADB)
 
 ```bash
-# Autonomous Databases auflisten
+# List Autonomous Databases
 oci db autonomous-database list --compartment-id <compartment-ocid>
 
-# ADB erstellen (ATP)
+# Create ADB (ATP)
 oci db autonomous-database create \
   --compartment-id <compartment-ocid> \
   --db-name "MYATP" \
-  --display-name "Meine ATP" \
+  --display-name "My ATP" \
   --cpu-core-count 1 \
   --data-storage-size-in-tbs 1 \
   --admin-password "SecurePass#123" \
   --db-workload ATP
 
-# ADB starten
+# Start ADB
 oci db autonomous-database start --autonomous-database-id <adb-ocid>
 
-# ADB stoppen
+# Stop ADB
 oci db autonomous-database stop --autonomous-database-id <adb-ocid>
 
-# Wallet herunterladen (für Verbindung)
+# Download wallet (for connection)
 oci db autonomous-database generate-wallet \
   --autonomous-database-id <adb-ocid> \
   --password "WalletPass#1" \
@@ -256,27 +256,27 @@ oci db autonomous-database generate-wallet \
 ## Container Engine (OKE – Kubernetes)
 
 ```bash
-# Cluster auflisten
+# List clusters
 oci ce cluster list --compartment-id <compartment-ocid>
 
-# Cluster erstellen
+# Create cluster
 oci ce cluster create \
   --compartment-id <compartment-ocid> \
-  --name "mein-oke-cluster" \
+  --name "my-oke-cluster" \
   --vcn-id <vcn-ocid> \
   --kubernetes-version "v1.29.1"
 
-# kubeconfig für OKE-Cluster laden
+# Load kubeconfig for OKE cluster
 oci ce cluster create-kubeconfig \
   --cluster-id <cluster-ocid> \
   --file ~/.kube/config \
   --region eu-frankfurt-1 \
   --token-version 2.0.0
 
-# Node Pools auflisten
+# List node pools
 oci ce node-pool list --compartment-id <compartment-ocid>
 
-# Node Pool erstellen
+# Create node pool
 oci ce node-pool create \
   --cluster-id <cluster-ocid> \
   --compartment-id <compartment-ocid> \
@@ -290,22 +290,22 @@ oci ce node-pool create \
 ## Container Registry (OCIR)
 
 ```bash
-# Repositories auflisten
+# List repositories
 oci artifacts container repository list --compartment-id <compartment-ocid>
 
-# Docker-Login bei OCIR
+# Docker login to OCIR
 docker login <region-key>.ocir.io \
   -u "<tenancy-namespace>/<username>" \
   -p "<auth-token>"
 
-# Image taggen für OCIR
-docker tag mein-image:1.0 \
-  fra.ocir.io/<namespace>/mein-repo/mein-image:1.0
+# Tag image for OCIR
+docker tag my-image:1.0 \
+  fra.ocir.io/<namespace>/my-repo/my-image:1.0
 
-# Image pushen
-docker push fra.ocir.io/<namespace>/mein-repo/mein-image:1.0
+# Push image
+docker push fra.ocir.io/<namespace>/my-repo/my-image:1.0
 
-# Auth-Token erstellen (für Registry-Login)
+# Create auth token (for registry login)
 oci iam auth-token create \
   --user-id <user-ocid> \
   --description "OCIR Token"
@@ -316,57 +316,57 @@ oci iam auth-token create \
 ## Resource Manager (Terraform)
 
 ```bash
-# Stacks auflisten
+# List stacks
 oci resource-manager stack list --compartment-id <compartment-ocid>
 
-# Stack aus ZIP erstellen
+# Create stack from ZIP
 oci resource-manager stack create \
   --compartment-id <compartment-ocid> \
-  --display-name "mein-stack" \
+  --display-name "my-stack" \
   --config-source config-source='{"configSourceType":"ZIP_UPLOAD","zipFileBase64Encoded":"'$(base64 terraform.zip)'"}'
 
-# Plan ausführen
+# Run plan
 oci resource-manager job create-plan-job \
   --stack-id <stack-ocid>
 
-# Apply ausführen
+# Run apply
 oci resource-manager job create-apply-job \
   --stack-id <stack-ocid> \
   --execution-plan-strategy FROM_LATEST_JOB_OUTPUTS
 
-# Job-Log anzeigen
+# Show job log
 oci resource-manager job get-job-logs --job-id <job-ocid>
 ```
 
 ---
 
-## Tipps & Tricks
+## Tips & Tricks
 
 ```bash
-# Output als JSON (Standard)
+# Output as JSON (default)
 oci iam compartment list --output json
 
-# Output als Tabelle
+# Output as table
 oci iam compartment list --output table
 
-# JMESPath-Query auf Ausgabe anwenden
+# Apply JMESPath query to output
 oci compute instance list \
   --compartment-id <compartment-ocid> \
   --query 'data[*].{"Name":"display-name","State":"lifecycle-state"}' \
   --output table
 
-# Nur bestimmten Wert ausgeben (raw)
+# Output a specific value only (raw)
 oci iam compartment list \
-  --query 'data[?name==`MeinCompartment`].id | [0]' \
+  --query 'data[?name==`MyCompartment`].id | [0]' \
   --raw-output
 
-# Debug-Logging aktivieren
+# Enable debug logging
 oci --debug iam compartment list ...
 
-# CLI-Konfiguration erweitern (~/.oci/oci_cli_rc)
+# Extend CLI configuration (~/.oci/oci_cli_rc)
 echo "[OCI_CLI_SETTINGS]
 default_profile=DEFAULT" >> ~/.oci/oci_cli_rc
 
-# Automatische Paginierung bei großen Ergebnislisten
+# Automatic pagination for large result sets
 oci iam compartment list --all
 ```

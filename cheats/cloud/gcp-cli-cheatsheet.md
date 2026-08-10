@@ -1,140 +1,140 @@
 # Google Cloud CLI (gcloud) Cheat Sheet
 
-## Installation & Konfiguration
+## Installation & Setup
 
 ```bash
 # Installation (macOS)
 brew install --cask google-cloud-sdk
 
-# Login (öffnet Browser)
+# Login (opens browser)
 gcloud auth login
 
-# Application Default Credentials (für SDKs/Terraform)
+# Application Default Credentials (for SDKs/Terraform)
 gcloud auth application-default login
 
-# Aktuelles Konto anzeigen
+# Show current account
 gcloud auth list
 
-# Konto wechseln
-gcloud config set account mein@email.com
+# Switch account
+gcloud config set account my@email.com
 
-# Aktives Projekt anzeigen
+# Show active project
 gcloud config get-value project
 
-# Projekt wechseln
-gcloud config set project mein-projekt-id
+# Switch project
+gcloud config set project my-project-id
 
-# Alle Konfigurationen anzeigen
+# Show all configurations
 gcloud config list
 
-# Neue Konfiguration erstellen (Named Profile)
-gcloud config configurations create mein-profil
+# Create new configuration (Named Profile)
+gcloud config configurations create my-profile
 
-# Konfiguration aktivieren
-gcloud config configurations activate mein-profil
+# Activate configuration
+gcloud config configurations activate my-profile
 
-# CLI-Version anzeigen
+# Show CLI version
 gcloud version
 
-# Komponenten aktualisieren
+# Update components
 gcloud components update
 ```
 
 ---
 
-## Projekte
+## Projects
 
 ```bash
-# Alle Projekte auflisten
+# List all projects
 gcloud projects list
 
-# Projekt erstellen
-gcloud projects create mein-neues-projekt \
-  --name "Mein Projekt" \
+# Create project
+gcloud projects create my-new-project \
+  --name "My Project" \
   --organization ORG_ID
 
-# Projekt-Details anzeigen
-gcloud projects describe mein-projekt-id
+# Show project details
+gcloud projects describe my-project-id
 
-# Projekt löschen
-gcloud projects delete mein-projekt-id
+# Delete project
+gcloud projects delete my-project-id
 
-# Billing-Konto verknüpfen
-gcloud billing projects link mein-projekt-id \
+# Link billing account
+gcloud billing projects link my-project-id \
   --billing-account 0X0X0X-0X0X0X-0X0X0X
 ```
 
 ---
 
-## Compute Engine – Virtuelle Maschinen
+## Compute Engine – Virtual Machines
 
 ```bash
-# Alle VM-Instanzen auflisten
+# List all VM instances
 gcloud compute instances list
 
-# VM erstellen
-gcloud compute instances create meine-vm \
+# Create VM
+gcloud compute instances create my-vm \
   --zone europe-west3-a \
   --machine-type e2-micro \
   --image-family debian-12 \
   --image-project debian-cloud \
   --boot-disk-size 20GB
 
-# VM starten / stoppen / löschen
-gcloud compute instances start meine-vm --zone europe-west3-a
-gcloud compute instances stop meine-vm --zone europe-west3-a
-gcloud compute instances delete meine-vm --zone europe-west3-a
+# Start / stop / delete VM
+gcloud compute instances start my-vm --zone europe-west3-a
+gcloud compute instances stop my-vm --zone europe-west3-a
+gcloud compute instances delete my-vm --zone europe-west3-a
 
-# Per SSH verbinden
-gcloud compute ssh meine-vm --zone europe-west3-a
+# Connect via SSH
+gcloud compute ssh my-vm --zone europe-west3-a
 
-# SSH via IAP-Tunnel (ohne öffentliche IP)
-gcloud compute ssh meine-vm \
+# SSH via IAP tunnel (without public IP)
+gcloud compute ssh my-vm \
   --zone europe-west3-a \
   --tunnel-through-iap
 
-# Serielle Konsole anzeigen (Debugging)
-gcloud compute instances get-serial-port-output meine-vm \
+# Show serial console output (debugging)
+gcloud compute instances get-serial-port-output my-vm \
   --zone europe-west3-a
 
-# Snapshot einer Disk erstellen
-gcloud compute disks snapshot meine-disk \
+# Create a disk snapshot
+gcloud compute disks snapshot my-disk \
   --zone europe-west3-a \
-  --snapshot-names mein-snapshot
+  --snapshot-names my-snapshot
 ```
 
 ---
 
-## Netzwerk – VPC, Firewall
+## Network – VPC, Firewall
 
 ```bash
-# VPC-Netzwerke auflisten
+# List VPC networks
 gcloud compute networks list
 
-# VPC erstellen
-gcloud compute networks create mein-netzwerk \
+# Create VPC
+gcloud compute networks create my-network \
   --subnet-mode custom
 
-# Subnetz erstellen
-gcloud compute networks subnets create mein-subnet \
-  --network mein-netzwerk \
+# Create subnet
+gcloud compute networks subnets create my-subnet \
+  --network my-network \
   --region europe-west3 \
   --range 10.0.1.0/24
 
-# Firewall-Regeln auflisten
+# List firewall rules
 gcloud compute firewall-rules list
 
-# Firewall-Regel erstellen (HTTPS eingehend)
+# Create firewall rule (HTTPS inbound)
 gcloud compute firewall-rules create allow-https \
-  --network mein-netzwerk \
+  --network my-network \
   --allow tcp:443 \
   --source-ranges 0.0.0.0/0 \
   --description "Allow HTTPS inbound"
 
-# Firewall-Regel löschen
+# Delete firewall rule
 gcloud compute firewall-rules delete allow-https
 
-# Externe IP-Adressen auflisten
+# List external IP addresses
 gcloud compute addresses list
 ```
 
@@ -143,34 +143,34 @@ gcloud compute addresses list
 ## Cloud Storage (GCS)
 
 ```bash
-# Alle Buckets auflisten
+# List all buckets
 gcloud storage buckets list
 
-# Bucket erstellen
-gcloud storage buckets create gs://mein-bucket \
+# Create bucket
+gcloud storage buckets create gs://my-bucket \
   --location europe-west3 \
   --uniform-bucket-level-access
 
-# Dateien auflisten
-gcloud storage ls gs://mein-bucket/
+# List files
+gcloud storage ls gs://my-bucket/
 
-# Datei hochladen
-gcloud storage cp meine-datei.txt gs://mein-bucket/
+# Upload file
+gcloud storage cp my-file.txt gs://my-bucket/
 
-# Datei herunterladen
-gcloud storage cp gs://mein-bucket/meine-datei.txt ./
+# Download file
+gcloud storage cp gs://my-bucket/my-file.txt ./
 
-# Ordner synchronisieren
-gcloud storage rsync -r ./lokaler-ordner gs://mein-bucket/ziel/
+# Sync folder
+gcloud storage rsync -r ./local-folder gs://my-bucket/target/
 
-# Datei/Ordner löschen
-gcloud storage rm gs://mein-bucket/meine-datei.txt
+# Delete file/folder
+gcloud storage rm gs://my-bucket/my-file.txt
 
-# Bucket-Größe anzeigen
-gcloud storage du -s gs://mein-bucket/
+# Show bucket size
+gcloud storage du -s gs://my-bucket/
 
-# Bucket löschen (muss leer sein)
-gcloud storage buckets delete gs://mein-bucket
+# Delete bucket (must be empty)
+gcloud storage buckets delete gs://my-bucket
 ```
 
 ---
@@ -178,120 +178,120 @@ gcloud storage buckets delete gs://mein-bucket
 ## GKE – Google Kubernetes Engine
 
 ```bash
-# Cluster auflisten
+# List clusters
 gcloud container clusters list
 
-# Cluster erstellen
-gcloud container clusters create mein-cluster \
+# Create cluster
+gcloud container clusters create my-cluster \
   --zone europe-west3-a \
   --num-nodes 2 \
   --machine-type e2-standard-2
 
-# kubeconfig abrufen
-gcloud container clusters get-credentials mein-cluster \
+# Fetch kubeconfig
+gcloud container clusters get-credentials my-cluster \
   --zone europe-west3-a
 
-# Cluster skalieren
-gcloud container clusters resize mein-cluster \
+# Scale cluster
+gcloud container clusters resize my-cluster \
   --zone europe-west3-a \
   --num-nodes 3
 
-# Cluster upgraden
-gcloud container clusters upgrade mein-cluster \
+# Upgrade cluster
+gcloud container clusters upgrade my-cluster \
   --zone europe-west3-a
 
-# Cluster löschen
-gcloud container clusters delete mein-cluster --zone europe-west3-a
+# Delete cluster
+gcloud container clusters delete my-cluster --zone europe-west3-a
 ```
 
 ---
 
-## Cloud SQL – Managed Datenbanken
+## Cloud SQL – Managed Databases
 
 ```bash
-# Instanzen auflisten
+# List instances
 gcloud sql instances list
 
-# Instanz erstellen (PostgreSQL)
-gcloud sql instances create meine-db \
+# Create instance (PostgreSQL)
+gcloud sql instances create my-db \
   --database-version POSTGRES_15 \
   --tier db-f1-micro \
   --region europe-west3
 
-# Instanz starten / stoppen
-gcloud sql instances patch meine-db --activation-policy ALWAYS
-gcloud sql instances patch meine-db --activation-policy NEVER
+# Start / stop instance
+gcloud sql instances patch my-db --activation-policy ALWAYS
+gcloud sql instances patch my-db --activation-policy NEVER
 
-# Datenbank erstellen
-gcloud sql databases create mein-schema --instance meine-db
+# Create database
+gcloud sql databases create my-schema --instance my-db
 
-# Backup erstellen
-gcloud sql backups create --instance meine-db
+# Create backup
+gcloud sql backups create --instance my-db
 
-# Mit Instanz verbinden
-gcloud sql connect meine-db --user postgres
+# Connect to instance
+gcloud sql connect my-db --user postgres
 ```
 
 ---
 
-## IAM – Berechtigungen
+## IAM – Permissions
 
 ```bash
-# Aktuelle IAM-Policy eines Projekts anzeigen
-gcloud projects get-iam-policy mein-projekt-id
+# Show current IAM policy for a project
+gcloud projects get-iam-policy my-project-id
 
-# Rolle einem Nutzer zuweisen
-gcloud projects add-iam-policy-binding mein-projekt-id \
+# Assign role to a user
+gcloud projects add-iam-policy-binding my-project-id \
   --member="user:max@example.com" \
   --role="roles/compute.admin"
 
-# Rolle entfernen
-gcloud projects remove-iam-policy-binding mein-projekt-id \
+# Remove role
+gcloud projects remove-iam-policy-binding my-project-id \
   --member="user:max@example.com" \
   --role="roles/compute.admin"
 
-# Service Account erstellen
-gcloud iam service-accounts create mein-sa \
-  --display-name "Mein Service Account"
+# Create service account
+gcloud iam service-accounts create my-sa \
+  --display-name "My Service Account"
 
-# Service Account Key erstellen (JSON)
+# Create service account key (JSON)
 gcloud iam service-accounts keys create key.json \
-  --iam-account mein-sa@mein-projekt-id.iam.gserviceaccount.com
+  --iam-account my-sa@my-project-id.iam.gserviceaccount.com
 
-# Alle Service Accounts auflisten
+# List all service accounts
 gcloud iam service-accounts list
 ```
 
 ---
 
-## Cloud Run – Serverless Container
+## Cloud Run – Serverless Containers
 
 ```bash
-# Services auflisten
+# List services
 gcloud run services list
 
-# Container deployen
-gcloud run deploy mein-service \
-  --image gcr.io/mein-projekt/mein-image:latest \
+# Deploy container
+gcloud run deploy my-service \
+  --image gcr.io/my-project/my-image:latest \
   --region europe-west3 \
   --platform managed \
   --allow-unauthenticated
 
-# Service-URL abrufen
-gcloud run services describe mein-service \
+# Fetch service URL
+gcloud run services describe my-service \
   --region europe-west3 \
   --format 'value(status.url)'
 
-# Service löschen
-gcloud run services delete mein-service --region europe-west3
+# Delete service
+gcloud run services delete my-service --region europe-west3
 ```
 
 ---
 
-## Nützliche Allgemein-Optionen
+## Useful General Options
 
 ```bash
-# Ausgabeformat: json, yaml, text, table, value
+# Output format: json, yaml, text, table, value
 gcloud compute instances list --format=table
 gcloud compute instances list --format=json
 gcloud compute instances list --format="value(name,zone)"
@@ -300,23 +300,23 @@ gcloud compute instances list --format="value(name,zone)"
 gcloud compute instances list --filter="status=RUNNING"
 gcloud compute instances list --filter="zone:europe-west3-a"
 
-# Standardzone/-region setzen
+# Set default zone/region
 gcloud config set compute/zone europe-west3-a
 gcloud config set compute/region europe-west3
 
-# Alle verfügbaren Regionen/Zonen
+# List all available regions/zones
 gcloud compute regions list
 gcloud compute zones list
 
-# API aktivieren (z.B. Compute Engine)
+# Enable API (e.g. Compute Engine)
 gcloud services enable compute.googleapis.com
 
-# Aktivierte APIs anzeigen
+# Show enabled APIs
 gcloud services list --enabled
 
-# Logs anzeigen
+# Show logs
 gcloud logging read "resource.type=gce_instance" --limit 50
 
-# Hilfe zu einem Befehl
+# Help for a command
 gcloud compute instances create --help
 ```

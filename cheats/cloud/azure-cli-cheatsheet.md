@@ -1,30 +1,30 @@
 # Azure CLI Cheat Sheet
 
-## Installation & Konfiguration
+## Installation & Setup
 
 ```bash
 # Installation (macOS)
 brew install azure-cli
 
-# Login (öffnet Browser)
+# Login (opens browser)
 az login
 
-# Login mit Service Principal (CI/CD)
+# Login with Service Principal (CI/CD)
 az login --service-principal \
   --username <APP_ID> \
   --password <PASSWORD> \
   --tenant <TENANT_ID>
 
-# Aktuelles Konto anzeigen
+# Show current account
 az account show
 
-# Alle verfügbaren Subscriptions auflisten
+# List all available subscriptions
 az account list --output table
 
-# Aktive Subscription wechseln
+# Switch active subscription
 az account set --subscription "Meine Subscription"
 
-# Azure CLI Version
+# Azure CLI version
 az version
 
 # Logout
@@ -36,33 +36,33 @@ az logout
 ## Resource Groups
 
 ```bash
-# Alle Resource Groups auflisten
+# List all resource groups
 az group list --output table
 
-# Resource Group erstellen
+# Create resource group
 az group create \
   --name meine-rg \
   --location germanywestcentral
 
-# Resource Group löschen (mit Bestätigung)
+# Delete resource group (with confirmation)
 az group delete --name meine-rg
 
-# Alle Ressourcen in einer Group anzeigen
+# Show all resources in a group
 az resource list --resource-group meine-rg --output table
 ```
 
 ---
 
-## VMs – Virtuelle Maschinen
+## VMs – Virtual Machines
 
 ```bash
-# Alle VMs auflisten
+# List all VMs
 az vm list --output table
 
-# VMs mit Status auflisten
+# List VMs with status
 az vm list --show-details --output table
 
-# VM erstellen
+# Create VM
 az vm create \
   --resource-group meine-rg \
   --name meine-vm \
@@ -72,22 +72,22 @@ az vm create \
   --generate-ssh-keys \
   --location germanywestcentral
 
-# VM starten / stoppen / neu starten
+# Start / stop / restart VM
 az vm start --resource-group meine-rg --name meine-vm
 az vm stop --resource-group meine-rg --name meine-vm
 az vm restart --resource-group meine-rg --name meine-vm
 
-# VM löschen
+# Delete VM
 az vm delete --resource-group meine-rg --name meine-vm
 
-# Per SSH verbinden (public IP abrufen)
+# Connect via SSH (retrieve public IP)
 az vm show \
   --resource-group meine-rg \
   --name meine-vm \
   --show-details \
   --query publicIps -o tsv
 
-# Größe (SKU) einer VM ändern
+# Change VM size (SKU)
 az vm resize \
   --resource-group meine-rg \
   --name meine-vm \
@@ -96,13 +96,13 @@ az vm resize \
 
 ---
 
-## Netzwerk – VNet, NSG, Public IP
+## Network – VNet, NSG, Public IP
 
 ```bash
-# VNets auflisten
+# List VNets
 az network vnet list --output table
 
-# VNet erstellen
+# Create VNet
 az network vnet create \
   --resource-group meine-rg \
   --name mein-vnet \
@@ -110,16 +110,16 @@ az network vnet create \
   --subnet-name default \
   --subnet-prefix 10.0.1.0/24
 
-# Network Security Groups auflisten
+# List Network Security Groups
 az network nsg list --output table
 
-# NSG-Regeln anzeigen
+# Show NSG rules
 az network nsg rule list \
   --resource-group meine-rg \
   --nsg-name meine-nsg \
   --output table
 
-# NSG-Regel hinzufügen (z.B. HTTPS eingehend)
+# Add NSG rule (e.g. HTTPS inbound)
 az network nsg rule create \
   --resource-group meine-rg \
   --nsg-name meine-nsg \
@@ -131,7 +131,7 @@ az network nsg rule create \
   --destination-port-range 443 \
   --access Allow
 
-# Public IP-Adressen auflisten
+# List public IP addresses
 az network public-ip list --output table
 ```
 
@@ -140,41 +140,41 @@ az network public-ip list --output table
 ## Storage – Blob Storage
 
 ```bash
-# Alle Storage Accounts auflisten
+# List all storage accounts
 az storage account list --output table
 
-# Storage Account erstellen
+# Create storage account
 az storage account create \
   --name meinaccount \
   --resource-group meine-rg \
   --location germanywestcentral \
   --sku Standard_LRS
 
-# Container auflisten
+# List containers
 az storage container list \
   --account-name meinaccount \
   --output table
 
-# Container erstellen
+# Create container
 az storage container create \
   --name mein-container \
   --account-name meinaccount
 
-# Datei hochladen
+# Upload file
 az storage blob upload \
   --account-name meinaccount \
   --container-name mein-container \
   --name meine-datei.txt \
   --file ./meine-datei.txt
 
-# Datei herunterladen
+# Download file
 az storage blob download \
   --account-name meinaccount \
   --container-name mein-container \
   --name meine-datei.txt \
   --file ./download.txt
 
-# Blobs auflisten
+# List blobs
 az storage blob list \
   --account-name meinaccount \
   --container-name mein-container \
@@ -186,10 +186,10 @@ az storage blob list \
 ## AKS – Azure Kubernetes Service
 
 ```bash
-# Cluster auflisten
+# List clusters
 az aks list --output table
 
-# Cluster erstellen
+# Create cluster
 az aks create \
   --resource-group meine-rg \
   --name mein-cluster \
@@ -197,36 +197,36 @@ az aks create \
   --node-vm-size Standard_B2s \
   --generate-ssh-keys
 
-# kubeconfig abrufen
+# Retrieve kubeconfig
 az aks get-credentials \
   --resource-group meine-rg \
   --name mein-cluster
 
-# Cluster skalieren
+# Scale cluster
 az aks scale \
   --resource-group meine-rg \
   --name mein-cluster \
   --node-count 3
 
-# Cluster löschen
+# Delete cluster
 az aks delete --resource-group meine-rg --name mein-cluster
 ```
 
 ---
 
-## Azure SQL / Datenbanken
+## Azure SQL / Databases
 
 ```bash
-# SQL Server auflisten
+# List SQL servers
 az sql server list --output table
 
-# SQL-Datenbanken eines Servers auflisten
+# List SQL databases for a server
 az sql db list \
   --resource-group meine-rg \
   --server mein-server \
   --output table
 
-# Datenbank erstellen
+# Create database
 az sql db create \
   --resource-group meine-rg \
   --server mein-server \
@@ -239,24 +239,24 @@ az sql db create \
 ## App Service / Web Apps
 
 ```bash
-# App Service Plans auflisten
+# List App Service Plans
 az appservice plan list --output table
 
-# Web Apps auflisten
+# List Web Apps
 az webapp list --output table
 
-# Web App erstellen
+# Create Web App
 az webapp create \
   --resource-group meine-rg \
   --plan mein-plan \
   --name meine-app \
   --runtime "NODE:18-lts"
 
-# App starten / stoppen
+# Start / stop app
 az webapp start --resource-group meine-rg --name meine-app
 az webapp stop --resource-group meine-rg --name meine-app
 
-# App-Logs streamen
+# Stream app logs
 az webapp log tail \
   --resource-group meine-rg \
   --name meine-app
@@ -267,41 +267,41 @@ az webapp log tail \
 ## Azure AD / Entra ID
 
 ```bash
-# Aktuellen Tenant anzeigen
+# Show current tenant
 az account show --query tenantId
 
-# Service Principal erstellen
+# Create Service Principal
 az ad sp create-for-rbac \
   --name mein-sp \
   --role Contributor \
   --scopes /subscriptions/<SUBSCRIPTION_ID>
 
-# Aktuelle Benutzer auflisten
+# List current users
 az ad user list --output table
 
-# Gruppen auflisten
+# List groups
 az ad group list --output table
 ```
 
 ---
 
-## Nützliche Allgemein-Optionen
+## Useful General Options
 
 ```bash
-# Ausgabeformat setzen: json, table, tsv, yaml
+# Set output format: json, table, tsv, yaml
 az vm list --output table
 az vm list --output json
 az vm list --output tsv
 
-# JMESPath Query – nur bestimmte Felder
+# JMESPath query – specific fields only
 az vm list --query '[*].[name, location, provisioningState]' --output table
 
-# Standardwerte setzen (spart --resource-group bei jedem Befehl)
+# Set defaults (saves typing --resource-group on every command)
 az configure --defaults group=meine-rg location=germanywestcentral
 
-# Interaktiver Modus (Autocomplete im Terminal)
+# Interactive mode (autocomplete in terminal)
 az interactive
 
-# Hilfe zu einem Befehl
+# Show help for a command
 az vm create --help
 ```

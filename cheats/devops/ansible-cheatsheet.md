@@ -9,10 +9,10 @@ brew install ansible
 # Installation via pip
 pip3 install ansible ansible-lint
 
-# Version prüfen
+# Check version
 ansible --version
 
-# Ansible-Verzeichnis-Struktur (Best Practice)
+# Ansible directory structure (Best Practice)
 # inventory/
 # ├── production/
 # │   ├── hosts.ini
@@ -29,17 +29,17 @@ ansible --version
 # └── postgresql/
 # ansible.cfg
 
-# Shell-Completion
+# Shell completion
 pip install argcomplete
 activate-global-python-argcomplete
 ```
 
 ---
 
-## Konfiguration (ansible.cfg)
+## Configuration (ansible.cfg)
 
 ```ini
-# ansible.cfg (im Projektverzeichnis)
+# ansible.cfg (in the project directory)
 [defaults]
 inventory          = inventory/
 remote_user        = ansible
@@ -50,7 +50,7 @@ stdout_callback    = yaml
 collections_path   = ./collections
 roles_path         = ./roles
 
-# Parallelisierung
+# Parallelization
 forks              = 20
 
 # Logging
@@ -72,7 +72,7 @@ pipelining         = True
 ## Inventory
 
 ```ini
-# inventory/hosts.ini – statisches Inventory
+# inventory/hosts.ini – static Inventory
 [webserver]
 web01.beispiel.de ansible_user=ubuntu
 web02.beispiel.de ansible_user=ubuntu ansible_port=2222
@@ -84,24 +84,24 @@ db02.beispiel.de ansible_user=ec2-user
 [loadbalancer]
 lb01.beispiel.de
 
-# Variablen für eine Gruppe
+# Variables for a group
 [webserver:vars]
 http_port=80
 https_port=443
 app_version=1.5.0
 
-# Gruppe aus Gruppen
+# Group of groups
 [produktion:children]
 webserver
 datenbank
 loadbalancer
 
-# Host mit IP
+# Host with IP
 192.168.1.100 ansible_user=root ansible_ssh_private_key_file=~/.ssh/key.pem
 ```
 
 ```yaml
-# inventory/hosts.yml – YAML-Format (empfohlen)
+# inventory/hosts.yml – YAML format (recommended)
 all:
   children:
     webserver:
@@ -120,74 +120,74 @@ all:
 ```
 
 ```bash
-# Dynamisches Inventory (z.B. AWS)
+# Dynamic Inventory (e.g. AWS)
 pip install boto3 botocore
 ansible-inventory -i aws_ec2.yaml --list
 ansible-inventory -i aws_ec2.yaml --graph
 
-# Inventory aus mehreren Quellen
+# Inventory from multiple sources
 # inventory/
 # ├── hosts.ini
 # ├── aws_ec2.yaml
 # └── group_vars/
 
-# Inventory testen / anzeigen
+# Test / show Inventory
 ansible-inventory -i inventory/ --list
 ansible-inventory -i inventory/ --graph
 
-# Hosts einer Gruppe anzeigen
+# Show hosts of a group
 ansible webserver --list-hosts
 ```
 
 ---
 
-## Ad-hoc-Befehle
+## Ad-hoc Commands
 
 ```bash
-# Ping (Verbindung testen)
+# Ping (test connection)
 ansible all -m ping
 ansible webserver -m ping
 ansible all -m ping -i inventory/hosts.ini
 
-# Shell-Befehl ausführen
+# Execute shell command
 ansible all -m shell -a "uptime"
 ansible webserver -m shell -a "df -h"
 
-# Datei kopieren
+# Copy file
 ansible all -m copy \
   -a "src=./config.conf dest=/etc/app/config.conf mode=0644"
 
-# Paket installieren
+# Install package
 ansible all -m apt \
   -a "name=nginx state=present" \
   --become
 
-# Service starten / stoppen
+# Start / stop service
 ansible webserver -m service \
   -a "name=nginx state=started enabled=yes" \
   --become
 
-# Benutzer anlegen
+# Create user
 ansible all -m user \
   -a "name=deploy state=present shell=/bin/bash groups=sudo" \
   --become
 
-# Datei löschen
+# Delete file
 ansible all -m file \
   -a "path=/tmp/test.txt state=absent"
 
-# Verzeichnis erstellen
+# Create directory
 ansible all -m file \
-  -a "path=/opt/meine-app state=directory mode=0755 owner=deploy"
+  -a "path=/opt/my-app state=directory mode=0755 owner=deploy"
 
-# Facts eines Hosts anzeigen
+# Show facts of a host
 ansible web01.beispiel.de -m setup
 ansible web01.beispiel.de -m setup -a "filter=ansible_distribution*"
 
-# Mit bestimmtem User ausführen
+# Run with specific user
 ansible all -m shell -a "whoami" --become-user=deploy --become
 
-# Parallele Ausführung begrenzen
+# Limit parallel execution
 ansible all -m ping -f 5           # max 5 parallel
 ```
 
@@ -198,7 +198,7 @@ ansible all -m ping -f 5           # max 5 parallel
 ```yaml
 # playbooks/webserver.yml
 ---
-- name: Webserver einrichten
+- name: Set up webserver
   hosts: webserver
   become: true
   vars:
@@ -206,118 +206,118 @@ ansible all -m ping -f 5           # max 5 parallel
     app_port: 8080
 
   pre_tasks:
-    - name: System aktualisieren
+    - name: Update system
       apt:
         update_cache: yes
         cache_valid_time: 3600
 
   tasks:
-    - name: Nginx installieren
+    - name: Install Nginx
       package:
         name: nginx
         state: present
 
-    - name: Nginx-Konfiguration kopieren
+    - name: Copy Nginx configuration
       template:
         src: templates/nginx.conf.j2
-        dest: /etc/nginx/sites-available/meine-app
+        dest: /etc/nginx/sites-available/my-app
         mode: '0644'
-      notify: Nginx neu starten
+      notify: Restart Nginx
 
-    - name: Site aktivieren
+    - name: Activate site
       file:
-        src: /etc/nginx/sites-available/meine-app
-        dest: /etc/nginx/sites-enabled/meine-app
+        src: /etc/nginx/sites-available/my-app
+        dest: /etc/nginx/sites-enabled/my-app
         state: link
 
-    - name: Nginx starten
+    - name: Start Nginx
       service:
         name: nginx
         state: started
         enabled: yes
 
   handlers:
-    - name: Nginx neu starten
+    - name: Restart Nginx
       service:
         name: nginx
         state: reloaded
 
   post_tasks:
-    - name: Deployment-Info ausgeben
+    - name: Output deployment info
       debug:
-        msg: "App {{ app_version }} deployed auf {{ inventory_hostname }}"
+        msg: "App {{ app_version }} deployed on {{ inventory_hostname }}"
 ```
 
 ```bash
-# Playbook ausführen
+# Run playbook
 ansible-playbook playbooks/webserver.yml
 
-# Mit Inventory-Datei
+# With inventory file
 ansible-playbook -i inventory/production/ playbooks/webserver.yml
 
 # Dry-Run (Check Mode)
 ansible-playbook playbooks/webserver.yml --check
 
-# Verbose-Modus
-ansible-playbook playbooks/webserver.yml -v    # einfach
-ansible-playbook playbooks/webserver.yml -vvv  # sehr ausführlich
+# Verbose mode
+ansible-playbook playbooks/webserver.yml -v    # simple
+ansible-playbook playbooks/webserver.yml -vvv  # very verbose
 
-# Bestimmte Hosts / Gruppen
+# Specific hosts / groups
 ansible-playbook playbooks/webserver.yml --limit web01.beispiel.de
 ansible-playbook playbooks/webserver.yml --limit "webserver:!web02"
 
-# Bestimmte Tags ausführen
+# Run specific tags
 ansible-playbook playbooks/webserver.yml --tags nginx,config
 ansible-playbook playbooks/webserver.yml --skip-tags debug
 
-# Extra-Variablen übergeben
+# Pass extra variables
 ansible-playbook playbooks/webserver.yml \
   --extra-vars "app_version=1.6.0 env=production"
 
-# Extra-Variablen aus Datei
+# Extra variables from file
 ansible-playbook playbooks/webserver.yml \
   --extra-vars "@vars/prod.yml"
 
-# Ab bestimmter Task starten
+# Start at specific task
 ansible-playbook playbooks/webserver.yml \
-  --start-at-task="Nginx-Konfiguration kopieren"
+  --start-at-task="Copy Nginx configuration"
 
-# Step-by-Step (interaktiv bestätigen)
+# Step-by-step (confirm interactively)
 ansible-playbook playbooks/webserver.yml --step
 
-# Passwort-Vault entschlüsseln
+# Decrypt password vault
 ansible-playbook playbooks/webserver.yml \
   --ask-vault-pass
-# oder:
+# or:
 ansible-playbook playbooks/webserver.yml \
   --vault-password-file ~/.vault_pass
 ```
 
 ---
 
-## Rollen (Roles)
+## Roles
 
 ```bash
-# Rolle erstellen (Gerüst)
-ansible-galaxy role init meine-rolle
+# Create role (scaffold)
+ansible-galaxy role init my-role
 
-# Rollenstruktur
-# meine-rolle/
-# ├── defaults/       # Standardvariablen (niedrigste Priorität)
+# Role structure
+# my-role/
+# ├── defaults/       # Default variables (lowest priority)
 # │   └── main.yml
-# ├── vars/           # Rollenvariablen (hohe Priorität)
+# ├── vars/           # Role variables (high priority)
 # │   └── main.yml
-# ├── tasks/          # Hauptaufgaben
+# ├── tasks/          # Main tasks
 # │   └── main.yml
 # ├── handlers/       # Handler
 # │   └── main.yml
 # ├── templates/      # Jinja2-Templates
-# ├── files/          # Statische Dateien
-# ├── meta/           # Rollenmeta (Abhängigkeiten)
+# ├── files/          # Static files
+# ├── meta/           # Role metadata (dependencies)
 # │   └── main.yml
 # └── README.md
 
-# Rolle in Playbook nutzen
+# Use role in Playbook
 cat << 'EOF' > playbooks/site.yml
 ---
 - hosts: webserver
@@ -327,14 +327,14 @@ cat << 'EOF' > playbooks/site.yml
     - { role: app-deploy, app_version: "1.5.0" }
 EOF
 
-# Rollen von Ansible Galaxy installieren
+# Install roles from Ansible Galaxy
 ansible-galaxy install geerlingguy.nginx
 ansible-galaxy install geerlingguy.docker
 
-# Aus requirements.yml installieren
+# Install from requirements.yml
 ansible-galaxy install -r requirements.yml
 
-# requirements.yml Beispiel
+# requirements.yml example
 cat << 'EOF' > requirements.yml
 roles:
   - name: geerlingguy.nginx
@@ -349,23 +349,23 @@ collections:
     version: ">=6.0.0"
 EOF
 
-# Installierte Rollen auflisten
+# List installed roles
 ansible-galaxy role list
 ```
 
 ---
 
-## Variablen & Priorität
+## Variables & Priority
 
 ```yaml
-# Prioritätsreihenfolge (höchste zuerst):
+# Priority order (highest first):
 # 1. extra vars (--extra-vars)
 # 2. task vars
 # 3. block vars
 # 4. role vars (vars/)
 # 5. set_fact
 # 6. registered vars
-# 7. host_vars/ (pro Host)
+# 7. host_vars/ (per host)
 # 8. group_vars/all
 # 9. group_vars/<group>
 # 10. inventory vars
@@ -377,57 +377,57 @@ app_workers: 4
 log_level: info
 
 # host_vars/web01.beispiel.de.yml
-app_port: 8090     # überschreibt Group-Var für diesen Host
+app_port: 8090     # overrides Group-Var for this host
 ```
 
 ```yaml
-# Variablen in Tasks registrieren und nutzen
-- name: App-Version auslesen
+# Register and use variables in tasks
+- name: Read app version
   command: /opt/app/bin/app --version
   register: app_version_result
 
-- name: Version ausgeben
+- name: Output version
   debug:
     msg: "Version: {{ app_version_result.stdout }}"
 
-- name: Nur wenn bestimmte Version
+- name: Only for specific version
   debug:
-    msg: "Neue Version!"
+    msg: "New version!"
   when: "'1.5' in app_version_result.stdout"
 ```
 
 ---
 
-## Ansible Vault (Secrets verschlüsseln)
+## Ansible Vault (Encrypting Secrets)
 
 ```bash
-# Datei verschlüsseln
+# Encrypt file
 ansible-vault encrypt vars/secrets.yml
 
-# Datei entschlüsseln
+# Decrypt file
 ansible-vault decrypt vars/secrets.yml
 
-# Datei anzeigen (ohne zu entschlüsseln)
+# View file (without decrypting)
 ansible-vault view vars/secrets.yml
 
-# Datei erstellen (direkt verschlüsselt)
+# Create file (directly encrypted)
 ansible-vault create vars/secrets.yml
 
-# Datei bearbeiten
+# Edit file
 ansible-vault edit vars/secrets.yml
 
-# Passwort ändern
+# Change password
 ansible-vault rekey vars/secrets.yml
 
-# Einzelnen Wert verschlüsseln (für Inline-Verwendung)
-ansible-vault encrypt_string 'geheimesPasswort' --name 'db_password'
+# Encrypt single value (for inline use)
+ansible-vault encrypt_string 'secretPassword' --name 'db_password'
 
-# Vault-Passwort-Datei (nicht ins Git!)
-echo "meinVaultPasswort" > ~/.vault_pass
+# Vault password file (do not commit to Git!)
+echo "myVaultPassword" > ~/.vault_pass
 chmod 600 ~/.vault_pass
 ansible-playbook site.yml --vault-password-file ~/.vault_pass
 
-# Mehrere Vault-IDs (für unterschiedliche Passwörter)
+# Multiple Vault IDs (for different passwords)
 ansible-vault encrypt_string 'secret' \
   --vault-id dev@~/.vault_pass_dev \
   --name 'db_password'
@@ -435,7 +435,7 @@ ansible-vault encrypt_string 'secret' \
 
 ---
 
-## Jinja2-Templates
+## Jinja2 Templates
 
 ```jinja2
 {# templates/nginx.conf.j2 #}
@@ -448,13 +448,13 @@ server {
     }
 }
 
-{# Bedingungen #}
+{# Conditions #}
 {% if ssl_enabled | default(false) %}
     listen 443 ssl;
     ssl_certificate {{ ssl_cert_path }};
 {% endif %}
 
-{# Schleifen #}
+{# Loops #}
 upstream backend {
 {% for host in groups['webserver'] %}
     server {{ hostvars[host]['ansible_default_ipv4']['address'] }}:{{ app_port }};
@@ -474,49 +474,49 @@ upstream backend {
 ## Collections & Galaxy
 
 ```bash
-# Collections installieren
+# Install collections
 ansible-galaxy collection install community.general
 ansible-galaxy collection install amazon.aws
 ansible-galaxy collection install azure.azcollection
 ansible-galaxy collection install google.cloud
 ansible-galaxy collection install kubernetes.core
 
-# Collection aus requirements.yml
+# Collection from requirements.yml
 ansible-galaxy collection install -r requirements.yml
 
-# Installierte Collections anzeigen
+# Show installed collections
 ansible-galaxy collection list
 
-# Collection-Info
+# Collection info
 ansible-galaxy collection info community.general
 
-# Eigene Collection erstellen
-ansible-galaxy collection init meine_org.meine_collection
+# Create custom collection
+ansible-galaxy collection init my_org.my_collection
 ```
 
 ---
 
-## Nützliche Module
+## Useful Modules
 
 ```yaml
-# Datei-Management
+# File management
 - copy: src=datei.conf dest=/etc/datei.conf mode=0644 owner=root
 - template: src=config.j2 dest=/etc/config.conf
 - file: path=/opt/app state=directory mode=0755
-- lineinfile: path=/etc/hosts line="10.0.0.1 db.lokal"
+- lineinfile: path=/etc/hosts line="10.0.0.1 db.local"
 - replace: path=/etc/app.conf regexp='DEBUG=true' replace='DEBUG=false'
 
-# Paketverwaltung
+# Package management
 - apt: name=nginx state=present update_cache=yes         # Debian/Ubuntu
 - yum: name=httpd state=latest                           # RHEL/CentOS
 - dnf: name=podman state=present                         # Fedora/RHEL 8+
-- package: name=curl state=present                       # OS-agnostisch
+- package: name=curl state=present                       # OS-agnostic
 
-# Dienste
+# Services
 - service: name=nginx state=started enabled=yes
 - systemd: name=myapp daemon_reload=yes state=restarted
 
-# Benutzer & Gruppen
+# Users & Groups
 - user: name=deploy shell=/bin/bash groups=sudo state=present
 - group: name=deploy state=present
 - authorized_key: user=deploy key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
@@ -524,13 +524,13 @@ ansible-galaxy collection init meine_org.meine_collection
 # Git
 - git: repo=https://github.com/org/repo.git dest=/opt/app version=main
 
-# Archiv
+# Archive
 - unarchive: src=app.tar.gz dest=/opt/ remote_src=yes
 
 # Docker
 - community.docker.docker_image: name=nginx tag=alpine source=pull
 - community.docker.docker_container:
-    name: mein-container
+    name: my-container
     image: nginx:alpine
     ports: ["80:80"]
     state: started
@@ -540,7 +540,7 @@ ansible-galaxy collection init meine_org.meine_collection
     state: present
     definition: "{{ lookup('file', 'deployment.yaml') | from_yaml }}"
 
-# Cloud-Module
+# Cloud modules
 - amazon.aws.ec2_instance: ...
 - azure.azcollection.azure_rm_virtualmachine: ...
 - google.cloud.gcp_compute_instance: ...
@@ -548,44 +548,44 @@ ansible-galaxy collection init meine_org.meine_collection
 
 ---
 
-## Tipps & Tricks
+## Tips & Tricks
 
 ```bash
-# Syntax prüfen (ohne Ausführen)
+# Check syntax (without executing)
 ansible-playbook playbooks/site.yml --syntax-check
 
-# Linting (Code-Qualität)
+# Linting (code quality)
 ansible-lint playbooks/site.yml
 pip install ansible-lint
 
-# Tasks auflisten (ohne Ausführen)
+# List tasks (without executing)
 ansible-playbook playbooks/site.yml --list-tasks
 
-# Hosts auflisten
+# List hosts
 ansible-playbook playbooks/site.yml --list-hosts
 
-# Tags auflisten
+# List tags
 ansible-playbook playbooks/site.yml --list-tags
 
-# Ansible-Facts cachen (für Performance)
+# Cache Ansible facts (for performance)
 # In ansible.cfg:
 # [defaults]
 # fact_caching = jsonfile
 # fact_caching_connection = /tmp/ansible_facts
 # fact_caching_timeout = 3600
 
-# Parallele Ausführung (forks)
+# Parallel execution (forks)
 ansible-playbook playbooks/site.yml -f 20
 
-# Ausgabe-Callback (yaml ist lesbarer)
+# Output callback (yaml is more readable)
 ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook playbooks/site.yml
 
-# Fehlgeschlagene Hosts in retry-Datei speichern
+# Save failed hosts in retry file
 ansible-playbook playbooks/site.yml
-# erstellt playbooks/site.retry bei Fehler
+# creates playbooks/site.retry on failure
 ansible-playbook playbooks/site.yml --limit @playbooks/site.retry
 
 # AWX / Ansible Automation Platform
-# Web-UI für Ansible: https://github.com/ansible/awx
+# Web UI for Ansible: https://github.com/ansible/awx
 # Enterprise: Red Hat Ansible Automation Platform (AAP)
 ```

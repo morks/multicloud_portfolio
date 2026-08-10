@@ -1,33 +1,33 @@
 # AWS CLI Cheat Sheet
 
-## Installation & Konfiguration
+## Installation & Setup
 
 ```bash
 # Installation (macOS)
 brew install awscli
 
-# Konfigurieren (Access Key, Secret, Region, Output-Format)
+# Configure (Access Key, Secret, Region, output format)
 aws configure
 
-# Standard-Ausgabeformat dauerhaft auf Tabelle setzen (~/.aws/config)
+# Set default output format permanently to table (~/.aws/config)
 aws configure set output table
 
-# Nur für ein bestimmtes Profil
+# For a specific profile only
 aws configure set output table --profile mein-profil
 
-# Alternativ: Session-weit per Umgebungsvariable
+# Alternative: session-wide via environment variable
 export AWS_DEFAULT_OUTPUT=table
 
-# Konfigurieren mit Named Profile
+# Configure with named profile
 aws configure --profile mein-profil
 
-# Aktuelles Profil anzeigen
+# Show current profile
 aws configure list
 
-# SSO Login (für Accenture Landing Zone)
+# SSO Login (for Accenture Landing Zone)
 aws sso login --profile mein-profil
 
-# Aktuelle Identität prüfen
+# Check current identity
 aws sts get-caller-identity
 ```
 
@@ -36,22 +36,22 @@ aws sts get-caller-identity
 ## IAM – Identity & Access Management
 
 ```bash
-# Alle IAM-User auflisten
+# List all IAM users
 aws iam list-users
 
-# IAM-User erstellen
+# Create IAM user
 aws iam create-user --user-name max-mustermann
 
-# Access Key für User erstellen
+# Create access key for user
 aws iam create-access-key --user-name max-mustermann
 
-# Gruppen eines Users anzeigen
+# Show groups for a user
 aws iam list-groups-for-user --user-name max-mustermann
 
-# Aktuelle Rollen (Policies) des eigenen Accounts prüfen
+# Check policies attached to own account
 aws iam list-attached-user-policies --user-name max-mustermann
 
-# Rolle annehmen (AssumeRole)
+# Assume a role (AssumeRole)
 aws sts assume-role \
   --role-arn arn:aws:iam::123456789012:role/MeineRolle \
   --role-session-name meine-session
@@ -59,24 +59,24 @@ aws sts assume-role \
 
 ---
 
-## EC2 – Virtuelle Maschinen
+## EC2 – Virtual Machines
 
 ```bash
-# Alle Instanzen auflisten (mit Name-Tag und Status)
+# List all instances (with Name tag and status)
 aws ec2 describe-instances \
   --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`].Value|[0],State.Name,InstanceId]' \
   --output table
 
-# Instanz starten
+# Start instance
 aws ec2 start-instances --instance-ids i-0abc123def456
 
-# Instanz stoppen
+# Stop instance
 aws ec2 stop-instances --instance-ids i-0abc123def456
 
-# Instanz beenden (terminieren)
+# Terminate instance
 aws ec2 terminate-instances --instance-ids i-0abc123def456
 
-# Neue Instanz starten
+# Launch new instance
 aws ec2 run-instances \
   --image-id ami-0abcdef1234567890 \
   --instance-type t3.micro \
@@ -84,16 +84,16 @@ aws ec2 run-instances \
   --security-group-ids sg-12345678 \
   --subnet-id subnet-12345678
 
-# Instanz via EC2 Instance Connect verbinden
+# Connect to instance via EC2 Instance Connect
 aws ec2-instance-connect send-ssh-public-key \
   --instance-id i-0abc123def456 \
   --instance-os-user ec2-user \
   --ssh-public-key file://~/.ssh/id_rsa.pub
 
-# Security Groups auflisten
+# List security groups
 aws ec2 describe-security-groups --output table
 
-# Key Pairs auflisten
+# List key pairs
 aws ec2 describe-key-pairs
 ```
 
@@ -102,67 +102,67 @@ aws ec2 describe-key-pairs
 ## S3 – Object Storage
 
 ```bash
-# Alle Buckets auflisten
+# List all buckets
 aws s3 ls
 
-# Inhalt eines Buckets anzeigen
+# Show bucket contents
 aws s3 ls s3://mein-bucket/
 
-# Datei hochladen
+# Upload file
 aws s3 cp meine-datei.txt s3://mein-bucket/pfad/
 
-# Datei herunterladen
+# Download file
 aws s3 cp s3://mein-bucket/pfad/meine-datei.txt ./
 
-# Ordner synchronisieren (lokal → S3)
+# Sync folder (local → S3)
 aws s3 sync ./lokaler-ordner s3://mein-bucket/ziel/
 
-# Datei/Ordner löschen
+# Delete file/folder
 aws s3 rm s3://mein-bucket/pfad/meine-datei.txt
 
-# Bucket erstellen
+# Create bucket
 aws s3 mb s3://neuer-bucket --region eu-central-1
 
-# Bucket-Größe anzeigen
+# Show bucket size
 aws s3 ls s3://mein-bucket --recursive --human-readable --summarize
 ```
 
 ---
 
-## VPC – Netzwerk
+## VPC – Network
 
 ```bash
-# Alle VPCs auflisten
+# List all VPCs
 aws ec2 describe-vpcs --output table
 
-# Subnets einer VPC auflisten
+# List subnets for a VPC
 aws ec2 describe-subnets \
   --filters "Name=vpc-id,Values=vpc-12345678" \
   --output table
 
-# Security Group Regeln anzeigen
+# Show security group rules
 aws ec2 describe-security-groups \
   --group-ids sg-12345678
 
-# Internet Gateway auflisten
+# List internet gateways
 aws ec2 describe-internet-gateways
 ```
 
 ---
 
-## RDS – Managed Datenbanken
+## RDS – Managed Databases
 
 ```bash
-# Alle DB-Instanzen auflisten
+# List all DB instances
 aws rds describe-db-instances \
   --query 'DBInstances[*].[DBInstanceIdentifier,DBInstanceStatus,Engine]' \
   --output table
 
-# DB-Instanz starten / stoppen
+# Start / stop DB instance
 aws rds start-db-instance --db-instance-identifier meine-db
 aws rds stop-db-instance --db-instance-identifier meine-db
 
-# Snapshot erstellen
+# Create snapshot
 aws rds create-db-snapshot \
   --db-instance-identifier meine-db \
   --db-snapshot-identifier mein-snapshot
@@ -173,15 +173,15 @@ aws rds create-db-snapshot \
 ## EKS – Kubernetes
 
 ```bash
-# Cluster auflisten
+# List clusters
 aws eks list-clusters
 
-# kubeconfig für Cluster setzen
+# Set kubeconfig for cluster
 aws eks update-kubeconfig \
   --name mein-cluster \
   --region eu-central-1
 
-# Nodegroups eines Clusters auflisten
+# List node groups for a cluster
 aws eks list-nodegroups --cluster-name mein-cluster
 ```
 
@@ -190,63 +190,63 @@ aws eks list-nodegroups --cluster-name mein-cluster
 ## CloudFormation / Terraform
 
 ```bash
-# Stacks auflisten
+# List stacks
 aws cloudformation list-stacks \
   --stack-status-filter CREATE_COMPLETE UPDATE_COMPLETE
 
-# Stack-Events (Fehlerdiagnose)
+# Stack events (error diagnosis)
 aws cloudformation describe-stack-events \
   --stack-name mein-stack
 
-# Stack löschen
+# Delete stack
 aws cloudformation delete-stack --stack-name mein-stack
 ```
 
 ---
 
-## Nützliche Allgemein-Optionen
+## Useful General Options
 
 ```bash
-# Ausgabe als JSON (Standard)
+# Output as JSON (default)
 aws ec2 describe-instances --output json
 
-# Ausgabe als Tabelle
+# Output as table
 aws ec2 describe-instances --output table
 
-# Ausgabe als Text (für Skripte)
+# Output as text (for scripts)
 aws ec2 describe-instances --output text
 
-# JMESPath Query – nur bestimmte Felder
+# JMESPath query – specific fields only
 aws ec2 describe-instances \
   --query 'Reservations[*].Instances[*].InstanceId'
 
-# Mit spezifischem Profil ausführen
+# Run with specific profile
 aws s3 ls --profile mein-profil
 
-# Mit spezifischer Region ausführen
+# Run with specific region
 aws ec2 describe-instances --region us-east-1
 
-# Dry Run – Befehl testen ohne Ausführung
+# Dry run – test command without executing
 aws ec2 run-instances --dry-run ...
 
-# Debug-Ausgabe aktivieren
+# Enable debug output
 aws ec2 describe-instances --debug
 ```
 
 ---
 
-## Häufige Filter-Muster
+## Common Filter Patterns
 
 ```bash
-# Instanzen nach Tag filtern
+# Filter instances by tag
 aws ec2 describe-instances \
   --filters "Name=tag:Environment,Values=production"
 
-# Nur laufende Instanzen
+# Running instances only
 aws ec2 describe-instances \
   --filters "Name=instance-state-name,Values=running"
 
-# Ressourcen nach Name-Tag suchen
+# Find resources by Name tag
 aws ec2 describe-instances \
   --filters "Name=tag:Name,Values=mein-server*"
 ```

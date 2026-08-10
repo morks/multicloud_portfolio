@@ -20,7 +20,7 @@ site_dir: site
 # ---------------------------------------------------------------------------
 theme:
   name: material
-  language: de
+  language: en
   favicon: https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f310.svg
   icon:
     repo: fontawesome/brands/github
@@ -31,14 +31,14 @@ theme:
       accent: cyan
       toggle:
         icon: material/weather-night
-        name: Dark Mode aktivieren
+        name: Switch to Dark Mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: indigo
       accent: cyan
       toggle:
         icon: material/weather-sunny
-        name: Light Mode aktivieren
+        name: Switch to Light Mode
   features:
     - navigation.tabs
     - navigation.tabs.sticky
@@ -83,7 +83,7 @@ nav:
 # ---------------------------------------------------------------------------
 plugins:
   - search:
-      lang: de
+      lang: en
   - minify:
       minify_html: true
 
@@ -110,7 +110,7 @@ markdown_extensions:
   - pymdownx.keys
   - toc:
       permalink: true
-      title: Inhalt
+      title: Contents
 
 # ---------------------------------------------------------------------------
 # Extras

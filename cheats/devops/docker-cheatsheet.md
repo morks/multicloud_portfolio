@@ -1,19 +1,19 @@
 # Docker Cheat Sheet
 
-## Installation & Konfiguration
+## Installation & Setup
 
 ```bash
 # Installation (macOS via Homebrew)
 brew install --cask docker
 
-# Docker Desktop starten
+# Start Docker Desktop
 open -a Docker
 
-# Version prüfen
+# Check version
 docker --version
 docker info
 
-# Docker ohne sudo (Linux)
+# Docker without sudo (Linux)
 sudo usermod -aG docker $USER
 ```
 
@@ -22,179 +22,179 @@ sudo usermod -aG docker $USER
 ## Images
 
 ```bash
-# Image aus Registry pullen
+# Pull image from registry
 docker pull nginx:alpine
 docker pull golang:1.22
 
-# Lokale Images auflisten
+# List local images
 docker images
 docker image ls
 
-# Image bauen aus Dockerfile (im aktuellen Verzeichnis)
-docker build -t mein-app:1.0.0 .
+# Build image from Dockerfile (in current directory)
+docker build -t my-app:1.0.0 .
 
-# Mit bestimmtem Dockerfile
-docker build -f Dockerfile.prod -t mein-app:prod .
+# With specific Dockerfile
+docker build -f Dockerfile.prod -t my-app:prod .
 
-# Build-Argument übergeben
-docker build --build-arg GO_VERSION=1.22 -t mein-app .
+# Pass build argument
+docker build --build-arg GO_VERSION=1.22 -t my-app .
 
-# Image taggen
-docker tag mein-app:1.0.0 registry.beispiel.de/mein-app:1.0.0
+# Tag image
+docker tag my-app:1.0.0 registry.beispiel.de/my-app:1.0.0
 
-# Image pushen
-docker push registry.beispiel.de/mein-app:1.0.0
+# Push image
+docker push registry.beispiel.de/my-app:1.0.0
 
-# Image löschen
-docker rmi mein-app:1.0.0
+# Delete image
+docker rmi my-app:1.0.0
 
-# Nicht verwendete Images aufräumen
+# Clean up unused images
 docker image prune
-docker image prune -a        # alle ungenutzten Images
+docker image prune -a        # all unused images
 ```
 
 ---
 
-## Container starten & verwalten
+## Starting & Managing Containers
 
 ```bash
-# Container starten (Vordergrund)
+# Start container (foreground)
 docker run nginx:alpine
 
-# Im Hintergrund starten (detached)
+# Start in background (detached)
 docker run -d nginx:alpine
 
-# Port-Weiterleitung (Host:Container)
+# Port forwarding (Host:Container)
 docker run -d -p 8080:80 nginx:alpine
 
-# Mit Namen
-docker run -d --name mein-nginx -p 8080:80 nginx:alpine
+# With name
+docker run -d --name my-nginx -p 8080:80 nginx:alpine
 
-# Umgebungsvariablen übergeben
-docker run -d -e DB_HOST=localhost -e DB_PORT=5432 mein-app
+# Pass environment variables
+docker run -d -e DB_HOST=localhost -e DB_PORT=5432 my-app
 
-# Env-Datei übergeben
-docker run -d --env-file .env mein-app
+# Pass env file
+docker run -d --env-file .env my-app
 
-# Volume mounten
+# Mount volume
 docker run -d -v $(pwd)/data:/var/lib/postgresql/data postgres:16
 
 # Named Volume
 docker run -d -v pgdata:/var/lib/postgresql/data postgres:16
 
-# Interaktive Shell starten
+# Start interactive shell
 docker run -it ubuntu:22.04 bash
 
-# Container nach Beenden automatisch löschen
-docker run --rm mein-app
+# Automatically delete container after exit
+docker run --rm my-app
 
-# Ressourcen begrenzen
-docker run -d --memory="512m" --cpus="1.0" mein-app
+# Limit resources
+docker run -d --memory="512m" --cpus="1.0" my-app
 
-# Container mit Restart-Policy
+# Container with restart policy
 docker run -d --restart unless-stopped nginx:alpine
 ```
 
 ---
 
-## Container inspizieren & verwalten
+## Inspecting & Managing Containers
 
 ```bash
-# Laufende Container anzeigen
+# Show running containers
 docker ps
 
-# Alle Container (auch gestoppte)
+# All containers (including stopped)
 docker ps -a
 
-# Logs anzeigen
-docker logs mein-nginx
-docker logs -f mein-nginx          # follow (stream)
-docker logs --tail 100 mein-nginx  # letzte 100 Zeilen
+# Show logs
+docker logs my-nginx
+docker logs -f my-nginx          # follow (stream)
+docker logs --tail 100 my-nginx  # last 100 lines
 
-# Container stoppen / starten / neustarten
-docker stop mein-nginx
-docker start mein-nginx
-docker restart mein-nginx
+# Stop / start / restart container
+docker stop my-nginx
+docker start my-nginx
+docker restart my-nginx
 
-# Container löschen
-docker rm mein-nginx
-docker rm -f mein-nginx            # erzwingen (auch wenn laufend)
+# Delete container
+docker rm my-nginx
+docker rm -f my-nginx            # force (even if running)
 
-# Shell in laufendem Container öffnen
-docker exec -it mein-nginx bash
-docker exec -it mein-nginx sh      # für Alpine
+# Open shell in running container
+docker exec -it my-nginx bash
+docker exec -it my-nginx sh      # for Alpine
 
-# Befehl in Container ausführen
-docker exec mein-nginx nginx -t
+# Execute command in container
+docker exec my-nginx nginx -t
 
-# Container-Details anzeigen
-docker inspect mein-nginx
+# Show container details
+docker inspect my-nginx
 
-# Ressourcen-Nutzung anzeigen
+# Show resource usage
 docker stats
-docker stats mein-nginx
+docker stats my-nginx
 
-# Prozesse im Container
-docker top mein-nginx
+# Processes in container
+docker top my-nginx
 
-# Port-Mappings anzeigen
-docker port mein-nginx
+# Show port mappings
+docker port my-nginx
 
-# Dateien aus Container kopieren
-docker cp mein-nginx:/etc/nginx/nginx.conf ./nginx.conf
+# Copy files from container
+docker cp my-nginx:/etc/nginx/nginx.conf ./nginx.conf
 
-# Dateien in Container kopieren
-docker cp ./nginx.conf mein-nginx:/etc/nginx/nginx.conf
+# Copy files into container
+docker cp ./nginx.conf my-nginx:/etc/nginx/nginx.conf
 ```
 
 ---
 
-## Dockerfile Referenz
+## Dockerfile Reference
 
 ```dockerfile
-# Basis-Image
+# Base image
 FROM golang:1.22-alpine AS builder
 
 # Maintainer (Label)
 LABEL maintainer="max@example.com"
 LABEL version="1.0"
 
-# Arbeitsverzeichnis setzen
+# Set working directory
 WORKDIR /app
 
-# Dateien kopieren (Layer-Cache nutzen!)
+# Copy files (use layer cache!)
 COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
 
-# Build-Argument
+# Build argument
 ARG VERSION=dev
 RUN go build -ldflags "-X main.version=${VERSION}" -o app .
 
-# --- Finales Image (Multi-Stage) ---
+# --- Final image (Multi-Stage) ---
 FROM alpine:3.19
 
-# Zertifikate für HTTPS
+# Certificates for HTTPS
 RUN apk --no-cache add ca-certificates tzdata
 
 WORKDIR /app
 
-# Nur Binary aus Builder kopieren
+# Copy only binary from builder
 COPY --from=builder /app/app .
 
-# Non-root User anlegen
+# Create non-root user
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
-# Port dokumentieren (nur informativ)
+# Document port (informational only)
 EXPOSE 8080
 
 # Healthcheck
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD wget -qO- http://localhost:8080/health || exit 1
 
-# Startbefehl
+# Start command
 ENTRYPOINT ["./app"]
 CMD ["--port", "8080"]
 ```
@@ -224,43 +224,43 @@ bin
 ## Volumes
 
 ```bash
-# Named Volume erstellen
+# Create named volume
 docker volume create pgdata
 
-# Volumes auflisten
+# List volumes
 docker volume ls
 
-# Volume-Details anzeigen
+# Show volume details
 docker volume inspect pgdata
 
-# Volume löschen
+# Delete volume
 docker volume rm pgdata
 
-# Ungenutzte Volumes aufräumen
+# Clean up unused volumes
 docker volume prune
 ```
 
 ---
 
-## Netzwerke
+## Networks
 
 ```bash
-# Netzwerke anzeigen
+# Show networks
 docker network ls
 
-# Netzwerk erstellen
-docker network create mein-netz
+# Create network
+docker network create my-net
 
-# Container mit Netzwerk verbinden
-docker network connect mein-netz mein-container
+# Connect container to network
+docker network connect my-net my-container
 
-# Container vom Netzwerk trennen
-docker network disconnect mein-netz mein-container
+# Disconnect container from network
+docker network disconnect my-net my-container
 
-# Netzwerk löschen
-docker network rm mein-netz
+# Delete network
+docker network rm my-net
 
-# Ungenutzte Netzwerke aufräumen
+# Clean up unused networks
 docker network prune
 ```
 
@@ -269,41 +269,41 @@ docker network prune
 ## Docker Compose
 
 ```bash
-# Services starten (Vordergrund)
+# Start services (foreground)
 docker compose up
 
-# Im Hintergrund starten
+# Start in background
 docker compose up -d
 
-# Neu bauen und starten
+# Rebuild and start
 docker compose up -d --build
 
-# Services stoppen
+# Stop services
 docker compose down
 
-# Stoppen und Volumes löschen
+# Stop and delete volumes
 docker compose down -v
 
-# Status anzeigen
+# Show status
 docker compose ps
 
-# Logs anzeigen
+# Show logs
 docker compose logs
-docker compose logs -f app          # einzelner Service
+docker compose logs -f app          # single service
 
-# Einzelnen Service neustarten
+# Restart single service
 docker compose restart app
 
-# Befehl in Service ausführen
+# Execute command in service
 docker compose exec app sh
 
-# Nur bestimmten Service starten
+# Start only specific service
 docker compose up -d db
 ```
 
 ---
 
-## docker-compose.yml Beispiel
+## docker-compose.yml Example
 
 ```yaml
 # docker-compose.yml
@@ -313,8 +313,8 @@ services:
       context: .
       args:
         VERSION: "1.0.0"
-    image: mein-app:1.0.0
-    container_name: mein-app
+    image: my-app:1.0.0
+    container_name: my-app
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -333,10 +333,10 @@ services:
 
   db:
     image: postgres:16-alpine
-    container_name: mein-db
+    container_name: my-db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: meinedb
+      POSTGRES_DB: mydb
       POSTGRES_USER: dbuser
       POSTGRES_PASSWORD_FILE: /run/secrets/db_password
     volumes:
@@ -366,10 +366,10 @@ secrets:
 ## Registry & Login
 
 ```bash
-# Docker Hub einloggen
+# Log in to Docker Hub
 docker login
 
-# Andere Registry
+# Other registry
 docker login registry.beispiel.de
 
 # GitHub Container Registry
@@ -378,61 +378,61 @@ docker login ghcr.io -u USERNAME --password-stdin <<< $GITHUB_TOKEN
 # GitLab Registry
 docker login registry.gitlab.com -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
 
-# Ausloggen
+# Log out
 docker logout registry.beispiel.de
 ```
 
 ---
 
-## Aufräumen (System bereinigen)
+## System Cleanup
 
 ```bash
-# Gestoppte Container löschen
+# Delete stopped containers
 docker container prune
 
-# Nicht verwendete Images löschen
+# Delete unused images
 docker image prune -a
 
-# Ungenutzte Volumes löschen
+# Delete unused volumes
 docker volume prune
 
-# Ungenutzte Netzwerke löschen
+# Delete unused networks
 docker network prune
 
-# Alles auf einmal (Vorsicht!)
+# Everything at once (caution!)
 docker system prune
 
-# Alles inklusive Volumes (Vorsicht!)
+# Everything including volumes (caution!)
 docker system prune -a --volumes
 
-# Speicherplatz-Übersicht
+# Disk space overview
 docker system df
 ```
 
 ---
 
-## Nützliche Tricks
+## Useful Tricks
 
 ```bash
-# Letzten Container-Fehler ansehen
+# View last container error
 docker ps -a --filter "status=exited" --format "table {{.Names}}\t{{.Status}}"
 
-# Image-Größe analysieren (Dive-Tool)
+# Analyze image size (Dive tool)
 brew install dive
-dive mein-app:1.0.0
+dive my-app:1.0.0
 
-# Container-IP herausfinden
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mein-container
+# Find container IP
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container
 
-# Alle Container stoppen
+# Stop all containers
 docker stop $(docker ps -q)
 
-# Alle Container löschen
+# Delete all containers
 docker rm $(docker ps -aq)
 
-# Image-History anzeigen (Layer-Analyse)
-docker history mein-app:1.0.0
+# Show image history (layer analysis)
+docker history my-app:1.0.0
 
-# Multi-Arch Image bauen (BuildKit)
-docker buildx build --platform linux/amd64,linux/arm64 -t mein-app:multi --push .
+# Build multi-arch image (BuildKit)
+docker buildx build --platform linux/amd64,linux/arm64 -t my-app:multi --push .
 ```

@@ -1,35 +1,35 @@
 # Kubernetes (kubectl) Cheat Sheet
 
-## Installation & Konfiguration
+## Installation & Setup
 
 ```bash
-# kubectl installieren (macOS)
+# Install kubectl (macOS)
 brew install kubectl
 
-# Version prüfen
+# Check version
 kubectl version --client
 
-# Shell-Completion einrichten
+# Set up shell completion
 echo 'source <(kubectl completion zsh)' >> ~/.zshrc
 echo 'alias k=kubectl' >> ~/.zshrc
 echo 'complete -F __start_kubectl k' >> ~/.zshrc
 
-# kubeconfig anzeigen
+# Show kubeconfig
 kubectl config view
 
-# Aktuellen Kontext anzeigen
+# Show current context
 kubectl config current-context
 
-# Alle Kontexte auflisten
+# List all contexts
 kubectl config get-contexts
 
-# Kontext wechseln
-kubectl config use-context mein-cluster
+# Switch context
+kubectl config use-context my-cluster
 
-# Namespace dauerhaft setzen
-kubectl config set-context --current --namespace=mein-namespace
+# Set namespace permanently
+kubectl config set-context --current --namespace=my-namespace
 
-# Mehrere kubeconfig-Dateien mergen
+# Merge multiple kubeconfig files
 KUBECONFIG=~/.kube/config:~/.kube/prod-config kubectl config view --merge --flatten > ~/.kube/merged-config
 ```
 
@@ -38,42 +38,42 @@ KUBECONFIG=~/.kube/config:~/.kube/prod-config kubectl config view --merge --flat
 ## Pods
 
 ```bash
-# Alle Pods im aktuellen Namespace
+# All pods in current namespace
 kubectl get pods
-kubectl get pods -o wide          # mit Node-Info und IP
-kubectl get pods -A               # alle Namespaces
-kubectl get pods --watch          # Live-Updates
+kubectl get pods -o wide          # with node info and IP
+kubectl get pods -A               # all namespaces
+kubectl get pods --watch          # live updates
 
-# Pod-Details anzeigen
+# Show pod details
 kubectl describe pod <pod-name>
 
-# Pod-Logs anzeigen
+# Show pod logs
 kubectl logs <pod-name>
-kubectl logs <pod-name> -c <container-name>   # spezifischer Container
-kubectl logs <pod-name> --previous            # vorheriger abgestürzter Container
-kubectl logs -f <pod-name>                    # Follow/Live-Logs
-kubectl logs --tail=100 <pod-name>            # letzte 100 Zeilen
+kubectl logs <pod-name> -c <container-name>   # specific container
+kubectl logs <pod-name> --previous            # previous crashed container
+kubectl logs -f <pod-name>                    # follow/live logs
+kubectl logs --tail=100 <pod-name>            # last 100 lines
 
-# In Pod einloggen (Shell)
+# Log into pod (shell)
 kubectl exec -it <pod-name> -- /bin/bash
 kubectl exec -it <pod-name> -c <container> -- /bin/sh
 
-# Einzel-Befehl in Pod ausführen
+# Run a single command in pod
 kubectl exec <pod-name> -- env
 
-# Pod löschen
+# Delete pod
 kubectl delete pod <pod-name>
-kubectl delete pod <pod-name> --grace-period=0 --force   # sofort
+kubectl delete pod <pod-name> --grace-period=0 --force   # immediately
 
-# Temporären Debug-Pod starten
+# Start a temporary debug pod
 kubectl run debug --image=busybox --restart=Never -it --rm -- /bin/sh
 
-# Port-Forward zu einem Pod
+# Port-forward to a pod
 kubectl port-forward pod/<pod-name> 8080:80
 
-# Datei in/aus Pod kopieren
-kubectl cp <pod-name>:/pfad/datei.txt ./lokal.txt
-kubectl cp ./lokal.txt <pod-name>:/pfad/datei.txt
+# Copy file to/from pod
+kubectl cp <pod-name>:/path/file.txt ./local.txt
+kubectl cp ./local.txt <pod-name>:/path/file.txt
 ```
 
 ---
@@ -81,45 +81,45 @@ kubectl cp ./lokal.txt <pod-name>:/pfad/datei.txt
 ## Deployments
 
 ```bash
-# Deployments auflisten
+# List deployments
 kubectl get deployments
 kubectl get deploy -o wide
 
-# Deployment erstellen
+# Create deployment
 kubectl create deployment nginx --image=nginx:alpine --replicas=3
 
-# Deployment aus YAML anlegen
+# Create deployment from YAML
 kubectl apply -f deployment.yaml
 
-# Deployment aktualisieren (Image)
-kubectl set image deployment/mein-deploy \
+# Update deployment (image)
+kubectl set image deployment/my-deploy \
   container-name=nginx:1.25
 
-# Rollout-Status prüfen
-kubectl rollout status deployment/mein-deploy
+# Check rollout status
+kubectl rollout status deployment/my-deploy
 
-# Rollout-History anzeigen
-kubectl rollout history deployment/mein-deploy
+# Show rollout history
+kubectl rollout history deployment/my-deploy
 
-# Rollback (auf vorherige Version)
-kubectl rollout undo deployment/mein-deploy
+# Rollback (to previous version)
+kubectl rollout undo deployment/my-deploy
 
-# Rollback auf spezifische Revision
-kubectl rollout undo deployment/mein-deploy --to-revision=2
+# Rollback to specific revision
+kubectl rollout undo deployment/my-deploy --to-revision=2
 
-# Skalieren
-kubectl scale deployment mein-deploy --replicas=5
+# Scale
+kubectl scale deployment my-deploy --replicas=5
 
 # Autoscaler (HPA)
-kubectl autoscale deployment mein-deploy \
+kubectl autoscale deployment my-deploy \
   --min=2 --max=10 --cpu-percent=70
 
-# Deployment pausieren / fortsetzen
-kubectl rollout pause deployment/mein-deploy
-kubectl rollout resume deployment/mein-deploy
+# Pause / resume deployment
+kubectl rollout pause deployment/my-deploy
+kubectl rollout resume deployment/my-deploy
 
-# Deployment löschen
-kubectl delete deployment mein-deploy
+# Delete deployment
+kubectl delete deployment my-deploy
 ```
 
 ---
@@ -127,33 +127,33 @@ kubectl delete deployment mein-deploy
 ## Services
 
 ```bash
-# Services auflisten
+# List services
 kubectl get services
 kubectl get svc
 
-# Service erstellen (ClusterIP)
-kubectl expose deployment mein-deploy \
+# Create service (ClusterIP)
+kubectl expose deployment my-deploy \
   --port=80 --target-port=8080
 
-# Service vom Typ LoadBalancer erstellen
-kubectl expose deployment mein-deploy \
+# Create service of type LoadBalancer
+kubectl expose deployment my-deploy \
   --type=LoadBalancer --port=80
 
-# Service vom Typ NodePort
-kubectl expose deployment mein-deploy \
+# Service of type NodePort
+kubectl expose deployment my-deploy \
   --type=NodePort --port=80
 
-# Service-Details
-kubectl describe service mein-service
+# Service details
+kubectl describe service my-service
 
-# Endpoints anzeigen
-kubectl get endpoints mein-service
+# Show endpoints
+kubectl get endpoints my-service
 
-# Service löschen
-kubectl delete service mein-service
+# Delete service
+kubectl delete service my-service
 
-# Port-Forward zu einem Service
-kubectl port-forward service/mein-service 8080:80
+# Port-forward to a service
+kubectl port-forward service/my-service 8080:80
 ```
 
 ---
@@ -161,27 +161,27 @@ kubectl port-forward service/mein-service 8080:80
 ## Namespaces
 
 ```bash
-# Namespaces auflisten
+# List namespaces
 kubectl get namespaces
 kubectl get ns
 
-# Namespace erstellen
-kubectl create namespace mein-namespace
+# Create namespace
+kubectl create namespace my-namespace
 
-# Im Namespace arbeiten (-n Flag)
-kubectl get pods -n mein-namespace
-kubectl get all -n mein-namespace
+# Work in namespace (-n flag)
+kubectl get pods -n my-namespace
+kubectl get all -n my-namespace
 
-# Namespace löschen (löscht alle Ressourcen darin!)
-kubectl delete namespace mein-namespace
+# Delete namespace (deletes all resources in it!)
+kubectl delete namespace my-namespace
 
-# Ressourcenquota für Namespace setzen
+# Set resource quota for namespace
 kubectl apply -f - <<EOF
 apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: quota
-  namespace: mein-namespace
+  namespace: my-namespace
 spec:
   hard:
     pods: "20"
@@ -197,31 +197,31 @@ EOF
 ## ConfigMaps & Secrets
 
 ```bash
-# ConfigMap erstellen
-kubectl create configmap mein-config \
+# Create ConfigMap
+kubectl create configmap my-config \
   --from-literal=DB_HOST=localhost \
   --from-literal=DB_PORT=5432
 
-# ConfigMap aus Datei erstellen
-kubectl create configmap mein-config --from-file=config.properties
+# Create ConfigMap from file
+kubectl create configmap my-config --from-file=config.properties
 
-# ConfigMap anzeigen
-kubectl get configmap mein-config -o yaml
+# Show ConfigMap
+kubectl get configmap my-config -o yaml
 
-# Secret erstellen
-kubectl create secret generic mein-secret \
+# Create secret
+kubectl create secret generic my-secret \
   --from-literal=username=admin \
   --from-literal=password=geheim123
 
-# Secret als TLS anlegen
+# Create TLS secret
 kubectl create secret tls tls-secret \
   --cert=tls.crt \
   --key=tls.key
 
-# Secret decodieren
-kubectl get secret mein-secret -o jsonpath='{.data.password}' | base64 -d
+# Decode secret
+kubectl get secret my-secret -o jsonpath='{.data.password}' | base64 -d
 
-# Alle Secrets anzeigen
+# Show all secrets
 kubectl get secrets
 ```
 
@@ -230,16 +230,16 @@ kubectl get secrets
 ## Ingress
 
 ```bash
-# Ingress auflisten
+# List ingress resources
 kubectl get ingress
 kubectl get ing -A
 
-# Ingress anlegen
+# Create ingress
 kubectl apply -f - <<EOF
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: mein-ingress
+  name: my-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -252,13 +252,13 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: mein-service
+            name: my-service
             port:
               number: 80
 EOF
 
-# Ingress löschen
-kubectl delete ingress mein-ingress
+# Delete ingress
+kubectl delete ingress my-ingress
 ```
 
 ---
@@ -266,35 +266,35 @@ kubectl delete ingress mein-ingress
 ## Nodes
 
 ```bash
-# Nodes auflisten
+# List nodes
 kubectl get nodes
 kubectl get nodes -o wide
 
-# Node-Details anzeigen
+# Show node details
 kubectl describe node <node-name>
 
-# Node-Ressourcenauslastung (Metrics-Server erforderlich)
+# Node resource usage (metrics-server required)
 kubectl top nodes
 kubectl top pods
 
-# Node cordonen (keine neuen Pods mehr)
+# Cordon node (no new pods)
 kubectl cordon <node-name>
 
-# Node drainen (Pods umziehen, dann warten)
+# Drain node (move pods, then wait)
 kubectl drain <node-name> \
   --ignore-daemonsets \
   --delete-emptydir-data
 
-# Node wieder aktivieren
+# Re-enable node
 kubectl uncordon <node-name>
 
-# Taints setzen
+# Set taints
 kubectl taint nodes <node-name> key=value:NoSchedule
 
-# Taint entfernen
+# Remove taint
 kubectl taint nodes <node-name> key=value:NoSchedule-
 
-# Labels anzeigen / setzen
+# Show / set labels
 kubectl get nodes --show-labels
 kubectl label node <node-name> env=production
 ```
@@ -306,20 +306,20 @@ kubectl label node <node-name> env=production
 ```bash
 # StatefulSets
 kubectl get statefulsets
-kubectl scale statefulset mein-sts --replicas=3
-kubectl rollout status statefulset/mein-sts
+kubectl scale statefulset my-sts --replicas=3
+kubectl rollout status statefulset/my-sts
 
 # DaemonSets
 kubectl get daemonsets -A
 kubectl describe daemonset <name> -n kube-system
 
 # Jobs
-kubectl create job mein-job --image=busybox -- echo "Fertig"
+kubectl create job my-job --image=busybox -- echo "Fertig"
 kubectl get jobs
-kubectl logs job/mein-job
+kubectl logs job/my-job
 
 # CronJob
-kubectl create cronjob mein-cron \
+kubectl create cronjob my-cron \
   --image=busybox \
   --schedule="0 * * * *" \
   -- /bin/sh -c "date"
@@ -328,19 +328,19 @@ kubectl get cronjobs
 
 ---
 
-## RBAC – Rollen & Berechtigungen
+## RBAC – Roles & Permissions
 
 ```bash
-# Rollen auflisten
+# List roles
 kubectl get roles -A
 kubectl get clusterroles
 
-# ClusterRole erstellen
+# Create ClusterRole
 kubectl create clusterrole pod-reader \
   --verb=get,list,watch \
   --resource=pods
 
-# RoleBinding erstellen
+# Create RoleBinding
 kubectl create rolebinding dev-pod-reader \
   --clusterrole=pod-reader \
   --user=developer \
@@ -351,14 +351,14 @@ kubectl create clusterrolebinding admin-user \
   --clusterrole=cluster-admin \
   --user=admin@beispiel.de
 
-# ServiceAccount erstellen
-kubectl create serviceaccount mein-sa
+# Create ServiceAccount
+kubectl create serviceaccount my-sa
 
-# Berechtigungen prüfen
+# Check permissions
 kubectl auth can-i list pods
 kubectl auth can-i create deployments --namespace=production
-kubectl auth can-i --list                           # alle eigenen Rechte
-kubectl auth can-i list pods --as=developer         # als anderer User prüfen
+kubectl auth can-i --list                           # all own permissions
+kubectl auth can-i list pods --as=developer         # check as another user
 ```
 
 ---
@@ -366,19 +366,19 @@ kubectl auth can-i list pods --as=developer         # als anderer User prüfen
 ## PersistentVolumes & Storage
 
 ```bash
-# PersistentVolumes auflisten
+# List PersistentVolumes
 kubectl get pv
-kubectl get pvc -A                  # alle PVCs
+kubectl get pvc -A                  # all PVCs
 
-# StorageClass anzeigen
+# Show StorageClass
 kubectl get storageclass
 
-# PVC erstellen
+# Create PVC
 kubectl apply -f - <<EOF
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mein-pvc
+  name: my-pvc
 spec:
   accessModes: [ReadWriteOnce]
   storageClassName: standard
@@ -387,46 +387,46 @@ spec:
       storage: 10Gi
 EOF
 
-# PVC-Details
-kubectl describe pvc mein-pvc
+# PVC details
+kubectl describe pvc my-pvc
 ```
 
 ---
 
-## Ressourcen allgemein
+## General Resources
 
 ```bash
-# Alle Ressourcen in einem Namespace
-kubectl get all -n mein-namespace
+# All resources in a namespace
+kubectl get all -n my-namespace
 
-# Alle API-Ressourcen anzeigen
+# Show all API resources
 kubectl api-resources
 
-# Ressource als YAML exportieren
-kubectl get deployment mein-deploy -o yaml > backup.yaml
+# Export resource as YAML
+kubectl get deployment my-deploy -o yaml > backup.yaml
 
-# Ressource bearbeiten (öffnet Editor)
-kubectl edit deployment mein-deploy
+# Edit resource (opens editor)
+kubectl edit deployment my-deploy
 
-# Ressource mit Patch aktualisieren
-kubectl patch deployment mein-deploy \
+# Update resource with patch
+kubectl patch deployment my-deploy \
   -p '{"spec":{"replicas":3}}'
 
-# Label-Selektor nutzen
+# Use label selector
 kubectl get pods -l app=nginx,env=prod
 
-# Ressource annotieren
+# Annotate resource
 kubectl annotate pod <pod-name> \
   description="Debug-Pod"
 
-# Events anzeigen (Fehlersuche)
+# Show events (troubleshooting)
 kubectl get events --sort-by='.lastTimestamp'
-kubectl get events -n mein-namespace --watch
+kubectl get events -n my-namespace --watch
 
-# Diff: lokale YAML vs. live-Konfiguration
+# Diff: local YAML vs. live configuration
 kubectl diff -f deployment.yaml
 
-# Dry-Run
+# Dry-run
 kubectl apply -f deployment.yaml --dry-run=client
 kubectl apply -f deployment.yaml --dry-run=server
 ```
@@ -436,31 +436,31 @@ kubectl apply -f deployment.yaml --dry-run=server
 ## Debugging & Troubleshooting
 
 ```bash
-# Pod-Status sofort erklären
+# Explain pod status immediately
 kubectl describe pod <pod-name> | grep -A5 Events
 
-# Container-Restart-Gründe
+# Container restart reasons
 kubectl get pod <pod-name> -o jsonpath='{.status.containerStatuses[0].lastState}'
 
-# Ressourcenverbrauch (Metrics-Server nötig)
+# Resource usage (metrics-server required)
 kubectl top pods --sort-by=memory
 kubectl top pods --containers
 
-# Network-Debug-Pod starten
+# Start network debug pod
 kubectl run netdebug \
   --image=nicolaka/netshoot \
   --restart=Never -it --rm
 
-# DNS-Auflösung testen
+# Test DNS resolution
 kubectl run dns-test \
   --image=busybox --restart=Never -it --rm \
   -- nslookup kubernetes.default
 
-# Node-Shell via privilegiertem Pod (Notfall)
+# Node shell via privileged pod (emergency)
 kubectl debug node/<node-name> \
   -it --image=ubuntu
 
-# Ephemeral Debug-Container (ab K8s 1.23)
+# Ephemeral debug container (from K8s 1.23)
 kubectl debug -it <pod-name> \
   --image=busybox \
   --target=<container-name>
@@ -468,10 +468,10 @@ kubectl debug -it <pod-name> \
 
 ---
 
-## Nützliche Aliases & Tools
+## Useful Aliases & Tools
 
 ```bash
-# Empfohlene Aliases in ~/.zshrc
+# Recommended aliases in ~/.zshrc
 alias k='kubectl'
 alias kgp='kubectl get pods'
 alias kgs='kubectl get services'
@@ -481,18 +481,18 @@ alias kdel='kubectl delete'
 alias klog='kubectl logs -f'
 alias kex='kubectl exec -it'
 
-# kubectx / kubens (Kontext & Namespace schnell wechseln)
+# kubectx / kubens (quickly switch context & namespace)
 brew install kubectx
-kubectx             # Kontext interaktiv wechseln
-kubens              # Namespace interaktiv wechseln
+kubectx             # interactively switch context
+kubens              # interactively switch namespace
 
-# k9s – Terminal-UI für Kubernetes
+# k9s – terminal UI for Kubernetes
 brew install k9s
-k9s                 # startet interaktive TUI
+k9s                 # launches interactive TUI
 
-# stern – Multi-Pod Log-Streaming
+# stern – multi-pod log streaming
 brew install stern
-stern mein-deploy   # Logs aller Pods im Deployment
+stern my-deploy   # logs of all pods in deployment
 
 # kustomize
 brew install kustomize

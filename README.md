@@ -1,32 +1,32 @@
 # 🌐 Multi-Cloud Admin Portfolio
 
-> **Deine Schnellreferenz für Cloud-Architekturen & DevOps-Tooling**  
-> Praxiserprobte CLI-Befehle, Workflows und Cheat Sheets für Multi-Cloud-Admins.
+> **Your Quick Reference for Cloud Architectures & DevOps Tooling**  
+> Battle-tested CLI commands, workflows, and cheat sheets for multi-cloud admins.
 
 ---
 
-## 🗺️ Übersicht
+## 🗺️ Overview
 
-Dieses Repository ist eine kuratierte Sammlung von Cheat Sheets und Referenzen für Admins und Architekten, die täglich mit mehreren Cloud-Plattformen und modernen DevOps-Tools arbeiten. Kein Noise, keine Theory – nur die Befehle, die wirklich gebraucht werden.
+This repository is a curated collection of cheat sheets and references for admins and architects who work daily with multiple cloud platforms and modern DevOps tools. No noise, no theory — just the commands that are actually needed.
 
 ---
 
 ## ☁️ Cloud Platforms
 
-| Provider | CLI | Schwerpunkte |
+| Provider | CLI | Focus Areas |
 |---|---|---|
 | [AWS](cheats/cloud/aws-cli-cheatsheet.md) | `aws` | EC2, S3, IAM, SSO, Profile, STS |
-| [Azure](cheats/cloud/azure-cli-cheatsheet.md) | `az` | Ressourcen, AKS, Storage, RBAC |
+| [Azure](cheats/cloud/azure-cli-cheatsheet.md) | `az` | Resources, AKS, Storage, RBAC |
 | [Google Cloud](cheats/cloud/gcp-cli-cheatsheet.md) | `gcloud` | Compute, GKE, IAM, Artifact Registry |
 | [Oracle Cloud (OCI)](cheats/cloud/oci-cli-cheatsheet.md) | `oci` | Compute, VCN, Object Storage, OKE, OCIR |
 | [Telekom Cloud (OTC)](cheats/cloud/ctc-cheatsheet.md) | `openstack` / `otc` | ECS, VPC, OBS, CCE, DNS, EVS |
-| [STACKIT](cheats/cloud/stackit-cli-cheatsheet.md) | `stackit` | Projekte, Services, Kubernetes |
+| [STACKIT](cheats/cloud/stackit-cli-cheatsheet.md) | `stackit` | Projects, Services, Kubernetes |
 
 ---
 
 ## 🛠️ DevOps Tools
 
-| Tool | Cheat Sheet | Schwerpunkte |
+| Tool | Cheat Sheet | Focus Areas |
 |---|---|---|
 | **Kubernetes** | [kubectl](cheats/devops/k8s-cheatsheet.md) | Pods, Deployments, Services, RBAC, Debugging |
 | **Helm** | [helm](cheats/devops/helm-cheatsheet.md) | Charts, Releases, Repos, Templates, Plugins |
@@ -36,20 +36,20 @@ Dieses Repository ist eine kuratierte Sammlung von Cheat Sheets und Referenzen f
 | **Docker** | [docker](cheats/devops/docker-cheatsheet.md) | Images, Container, Compose, Registry |
 | **Git** | [git](cheats/devops/git-cheatsheet.md) | Branches, Rebase, Stash, Tags, Hooks |
 | **GitHub CLI** | [gh](cheats/devops/github-cheatsheet.md) | PRs, Issues, Actions, Releases |
-| **GitLab CLI** | [glab](cheats/devops/gitlab-cheatsheet.md) | MRs, CI/CD, Registry, Variablen |
+| **GitLab CLI** | [glab](cheats/devops/gitlab-cheatsheet.md) | MRs, CI/CD, Registry, Variables |
 
 ---
 
-## 🚀 Quickstart: Cheat Sheets direkt nutzen
+## 🚀 Quickstart: Using Cheat Sheets Directly
 
-### Cloud-Zugang einrichten
+### Setting Up Cloud Access
 
 ```bash
 # AWS – SSO Login
 aws sso login --profile mein-profil
 aws sts get-caller-identity
 
-# Azure – Interaktiver Login
+# Azure – Interactive Login
 az login
 az account set --subscription "Mein Abo"
 
@@ -57,10 +57,10 @@ az account set --subscription "Mein Abo"
 gcloud auth login
 gcloud config set project mein-projekt
 
-# OCI – Konfigurationsassistent
+# OCI – Configuration Wizard
 oci setup config
 
-# Telekom Cloud (OTC) – RC-Datei sourcen
+# Telekom Cloud (OTC) – Source RC file
 source ~/Downloads/MeinProjekt-openrc.sh
 openstack token issue
 
@@ -68,28 +68,28 @@ openstack token issue
 stackit auth login
 ```
 
-### Kubernetes – Cluster wechseln und prüfen
+### Kubernetes – Switch and Check Cluster
 
 ```bash
-# Kontexte anzeigen und wechseln
+# Show and switch contexts
 kubectl config get-contexts
 kubectl config use-context mein-cluster
 
-# oder interaktiv mit kubectx
+# or interactively with kubectx
 kubectx
 
-# Schnell-Check
+# Quick check
 kubectl get nodes -o wide
 kubectl get pods -A | grep -v Running
 ```
 
-### GitOps – ArgoCD App deployen
+### GitOps – Deploy ArgoCD App
 
 ```bash
 # Login
 argocd login argocd.beispiel.de --username admin
 
-# App anlegen mit Auto-Sync
+# Create app with auto-sync
 argocd app create meine-app \
   --repo https://github.com/org/repo.git \
   --path helm/meine-app \
@@ -98,32 +98,32 @@ argocd app create meine-app \
   --sync-policy automated \
   --auto-prune --self-heal
 
-# Status prüfen
+# Check status
 argocd app get meine-app
 ```
 
-### Secrets aus Vault lesen
+### Read Secrets from Vault
 
 ```bash
 export VAULT_ADDR='https://vault.beispiel.de'
-vault login                                  # interaktiv
-vault kv get secret/meine-app               # Secret lesen
-vault kv get -field=db_password secret/meine-app | pbcopy  # direkt in Clipboard
+vault login                                  # interactive
+vault kv get secret/meine-app               # Read secret
+vault kv get -field=db_password secret/meine-app | pbcopy  # copy directly to clipboard
 ```
 
 ---
 
-## 📂 Repository-Struktur
+## 📂 Repository Structure
 
 ```
 multicloud_portfolio/
 │
-├── README.md                          # Diese Datei
+├── README.md                          # This file
 │
-└── cheats/                            # Alle Cheat Sheets
-    ├── README.md                      # Cheat-Sheet-Index
+└── cheats/                            # All cheat sheets
+    ├── README.md                      # Cheat sheet index
     │
-    ├── cloud/                         # Cloud-Provider CLIs
+    ├── cloud/                         # Cloud provider CLIs
     │   ├── aws-cli-cheatsheet.md      # Amazon Web Services
     │   ├── azure-cli-cheatsheet.md    # Microsoft Azure
     │   ├── ctc-cheatsheet.md          # Telekom Cloud (OTC/OpenStack)
@@ -131,11 +131,11 @@ multicloud_portfolio/
     │   ├── oci-cli-cheatsheet.md      # Oracle Cloud Infrastructure
     │   └── stackit-cli-cheatsheet.md  # STACKIT (Deutsche Telekom)
     │
-    └── devops/                        # DevOps-Tooling
-        ├── ansible-cheatsheet.md      # Ansible Automatisierung
+    └── devops/                        # DevOps tooling
+        ├── ansible-cheatsheet.md      # Ansible Automation
         ├── argocd-cheatsheet.md       # ArgoCD GitOps
         ├── docker-cheatsheet.md       # Docker / Container
-        ├── git-cheatsheet.md          # Git Versionskontrolle
+        ├── git-cheatsheet.md          # Git Version Control
         ├── github-cheatsheet.md       # GitHub CLI (gh)
         ├── gitlab-cheatsheet.md       # GitLab CLI (glab)
         ├── helm-cheatsheet.md         # Helm Package Manager
@@ -145,12 +145,12 @@ multicloud_portfolio/
 
 ---
 
-## 💡 Verwendete Tools & Installation
+## 💡 Tools & Installation
 
 ### Cloud CLIs
 
 ```bash
-# alle auf einmal (macOS via Homebrew)
+# all at once (macOS via Homebrew)
 brew install awscli azure-cli google-cloud-sdk oci-cli
 brew install openstack-client          # OTC/Telekom Cloud
 
@@ -162,32 +162,32 @@ brew install stackit
 
 ```bash
 brew install kubectl helm argocd vault ansible
-brew install kubectx k9s stern        # Kubernetes-Extras
-brew install docker                   # oder Docker Desktop
+brew install kubectx k9s stern        # Kubernetes extras
+brew install docker                   # or Docker Desktop
 ```
 
 ---
 
-## 🤝 Beitragen
+## 🤝 Contributing
 
-Ergänzungen, Korrekturen und neue Cheat Sheets sind willkommen!
+Additions, corrections, and new cheat sheets are welcome!
 
-1. Fork des Repositories
-2. Branch anlegen: `git checkout -b feat/neues-cheatsheet`
-3. Cheat Sheet im passenden Ordner anlegen (`cheats/cloud/` oder `cheats/devops/`)
-4. Pull Request erstellen
+1. Fork the repository
+2. Create a branch: `git checkout -b feat/neues-cheatsheet`
+3. Add the cheat sheet in the appropriate folder (`cheats/cloud/` or `cheats/devops/`)
+4. Create a pull request
 
-**Format-Konvention:** Jedes Cheat Sheet folgt dem Muster:
-- Abschnitte mit `## Überschrift`
-- Code immer in ` ```bash ` Blöcken
-- Kommentare auf Deutsch (`# Was macht dieser Befehl`)
-- Keine langen Erklärungen – nur das Wesentliche
+**Format Convention:** Each cheat sheet follows the pattern:
+- Sections with `## Heading`
+- Code always in ` ```bash ` blocks
+- Comments in English (`# What this command does`)
+- No lengthy explanations — just the essentials
 
 ---
 
-## 📜 Lizenz
+## 📜 License
 
-MIT License – frei verwendbar, Nennung erwünscht.
+MIT License — free to use, attribution appreciated.
 
 ---
 
@@ -195,6 +195,6 @@ MIT License – frei verwendbar, Nennung erwünscht.
 
 **Maintained by Multi-Cloud Admins, for Multi-Cloud Admins** 🚀
 
-*Gefunden, was du gesucht hast? Dann gib dem Repo einen ⭐*
+*Found what you were looking for? Give the repo a ⭐*
 
 </div>

@@ -3,16 +3,16 @@
 ## Installation & Setup
 
 ```bash
-# Installation (macOS)
+# Install (macOS)
 brew install helm
 
-# Version prüfen
+# Check version
 helm version
 
-# Shell-Completion einrichten
+# Set up shell completion
 echo 'source <(helm completion zsh)' >> ~/.zshrc
 
-# Helm-Plugin-Verzeichnis
+# Helm plugin directory
 helm plugin list
 helm env
 ```
@@ -22,162 +22,162 @@ helm env
 ## Repositories
 
 ```bash
-# Repos auflisten
+# List repos
 helm repo list
 
-# Repo hinzufügen
+# Add repo
 helm repo add stable https://charts.helm.sh/stable
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo add cert-manager https://charts.jetstack.io
 helm repo add argo https://argoproj.github.io/argo-helm
 
-# Repos aktualisieren (Paketliste neu laden)
+# Update repos (reload package list)
 helm repo update
 
-# Repo entfernen
+# Remove repo
 helm repo remove stable
 
-# Charts in einem Repo suchen
+# Search charts in a repo
 helm search repo bitnami
 helm search repo bitnami/nginx
 
-# Charts auf ArtifactHub suchen
+# Search charts on ArtifactHub
 helm search hub wordpress
 ```
 
 ---
 
-## Charts installieren
+## Installing Charts
 
 ```bash
-# Chart installieren (automatischer Release-Name)
+# Install chart (auto-generated release name)
 helm install bitnami/nginx --generate-name
 
-# Chart mit Name installieren
-helm install mein-nginx bitnami/nginx
+# Install chart with name
+helm install my-nginx bitnami/nginx
 
-# In bestimmten Namespace installieren
-helm install mein-nginx bitnami/nginx \
-  --namespace produktion \
+# Install into specific namespace
+helm install my-nginx bitnami/nginx \
+  --namespace production \
   --create-namespace
 
-# Mit Values überschreiben (--set)
-helm install mein-nginx bitnami/nginx \
+# Override values (--set)
+helm install my-nginx bitnami/nginx \
   --set replicaCount=3 \
   --set service.type=LoadBalancer
 
-# Mit values.yaml-Datei
-helm install mein-nginx bitnami/nginx \
-  -f meine-values.yaml
+# With values.yaml file
+helm install my-nginx bitnami/nginx \
+  -f my-values.yaml
 
-# Mehrere Values-Dateien (überschreiben von links nach rechts)
-helm install mein-nginx bitnami/nginx \
+# Multiple values files (overriding left to right)
+helm install my-nginx bitnami/nginx \
   -f base-values.yaml \
   -f prod-values.yaml
 
-# Spezifische Chart-Version installieren
-helm install mein-nginx bitnami/nginx \
+# Install specific chart version
+helm install my-nginx bitnami/nginx \
   --version 15.3.0
 
-# Dry-Run (nur rendern, nicht installieren)
-helm install mein-nginx bitnami/nginx \
+# Dry-run (render only, do not install)
+helm install my-nginx bitnami/nginx \
   --dry-run --debug
 
-# Atomic (automatischer Rollback bei Fehler)
-helm install mein-nginx bitnami/nginx \
+# Atomic (automatic rollback on error)
+helm install my-nginx bitnami/nginx \
   --atomic --timeout 5m
 ```
 
 ---
 
-## Releases verwalten
+## Managing Releases
 
 ```bash
-# Alle Releases auflisten
+# List all releases
 helm list
-helm ls -A                  # alle Namespaces
-helm ls -n produktion       # in bestimmtem Namespace
+helm ls -A                  # all namespaces
+helm ls -n production       # in specific namespace
 
-# Release-Status anzeigen
-helm status mein-nginx
+# Show release status
+helm status my-nginx
 
-# Release-Details / generierte Manifeste
-helm get all mein-nginx
-helm get manifest mein-nginx
-helm get values mein-nginx
-helm get notes mein-nginx
+# Release details / generated manifests
+helm get all my-nginx
+helm get manifest my-nginx
+helm get values my-nginx
+helm get notes my-nginx
 
-# Release upgraden
-helm upgrade mein-nginx bitnami/nginx \
+# Upgrade release
+helm upgrade my-nginx bitnami/nginx \
   --set replicaCount=5
 
-# Upgrade oder Install (kombiniert)
-helm upgrade --install mein-nginx bitnami/nginx \
+# Upgrade or install (combined)
+helm upgrade --install my-nginx bitnami/nginx \
   -f values.yaml \
-  --namespace produktion \
+  --namespace production \
   --create-namespace
 
-# Rollback auf vorherige Version
-helm rollback mein-nginx
+# Rollback to previous version
+helm rollback my-nginx
 
-# Rollback auf spezifische Revision
-helm rollback mein-nginx 2
+# Rollback to specific revision
+helm rollback my-nginx 2
 
-# Release-History anzeigen
-helm history mein-nginx
+# Show release history
+helm history my-nginx
 
-# Release deinstallieren
-helm uninstall mein-nginx
-helm uninstall mein-nginx -n produktion
+# Uninstall release
+helm uninstall my-nginx
+helm uninstall my-nginx -n production
 
-# Release deinstallieren (History behalten)
-helm uninstall mein-nginx --keep-history
+# Uninstall release (keep history)
+helm uninstall my-nginx --keep-history
 ```
 
 ---
 
-## Charts erstellen
+## Creating Charts
 
 ```bash
-# Neues Chart-Gerüst erstellen
-helm create mein-chart
+# Create new chart scaffold
+helm create my-chart
 
-# Chart-Struktur
-# mein-chart/
-# ├── Chart.yaml          # Metadaten
-# ├── values.yaml         # Default-Werte
-# ├── charts/             # Abhängigkeiten
-# └── templates/          # Kubernetes-Manifeste
+# Chart structure
+# my-chart/
+# ├── Chart.yaml          # Metadata
+# ├── values.yaml         # Default values
+# ├── charts/             # Dependencies
+# └── templates/          # Kubernetes manifests
 #     ├── deployment.yaml
 #     ├── service.yaml
 #     ├── ingress.yaml
-#     ├── _helpers.tpl    # Hilfsmakros
-#     └── NOTES.txt       # Post-Install Hinweise
+#     ├── _helpers.tpl    # Helper macros
+#     └── NOTES.txt       # Post-install notes
 
-# Chart validieren (Linting)
-helm lint mein-chart
+# Validate chart (linting)
+helm lint my-chart
 
-# Chart rendern (ohne Installieren)
-helm template mein-release mein-chart
-helm template mein-release mein-chart -f values.yaml
+# Render chart (without installing)
+helm template my-release my-chart
+helm template my-release my-chart -f values.yaml
 
-# Chart packen
-helm package mein-chart
+# Package chart
+helm package my-chart
 
-# Chart in lokaler Registry testen
-helm install test-release ./mein-chart --dry-run
+# Test chart in local registry
+helm install test-release ./my-chart --dry-run
 ```
 
 ---
 
-## Abhängigkeiten (Dependencies)
+## Dependencies
 
 ```bash
-# Chart.yaml mit Abhängigkeiten
+# Chart.yaml with dependencies
 cat << 'EOF' > Chart.yaml
 apiVersion: v2
-name: meine-app
+name: my-app
 version: 1.0.0
 dependencies:
   - name: postgresql
@@ -189,35 +189,35 @@ dependencies:
     condition: redis.enabled
 EOF
 
-# Abhängigkeiten herunterladen
-helm dependency update mein-chart
+# Download dependencies
+helm dependency update my-chart
 
-# Abhängigkeiten auflisten
-helm dependency list mein-chart
+# List dependencies
+helm dependency list my-chart
 
-# Abhängigkeiten neu bauen (aus charts/ Dir)
-helm dependency build mein-chart
+# Rebuild dependencies (from charts/ dir)
+helm dependency build my-chart
 ```
 
 ---
 
-## OCI-Registries (ab Helm 3.8)
+## OCI Registries (from Helm 3.8)
 
 ```bash
-# OCI-Registry-Login
+# OCI registry login
 helm registry login registry.beispiel.de \
-  --username mein-user \
-  --password mein-token
+  --username my-user \
+  --password my-token
 
-# Chart in OCI-Registry pushen
-helm push mein-chart-1.0.0.tgz oci://registry.beispiel.de/charts
+# Push chart to OCI registry
+helm push my-chart-1.0.0.tgz oci://registry.beispiel.de/charts
 
-# Chart aus OCI-Registry installieren
-helm install mein-release \
-  oci://registry.beispiel.de/charts/mein-chart \
+# Install chart from OCI registry
+helm install my-release \
+  oci://registry.beispiel.de/charts/my-chart \
   --version 1.0.0
 
-# OCI-Logout
+# OCI logout
 helm registry logout registry.beispiel.de
 ```
 
@@ -226,28 +226,28 @@ helm registry logout registry.beispiel.de
 ## Plugins
 
 ```bash
-# Nützliche Plugins installieren
+# Install useful plugins
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/jkroepke/helm-secrets
 helm plugin install https://github.com/quintush/helm-unittest
 
-# Diff zwischen installiertem Release und neuem Upgrade
-helm diff upgrade mein-nginx bitnami/nginx -f values.yaml
+# Diff between installed release and new upgrade
+helm diff upgrade my-nginx bitnami/nginx -f values.yaml
 
-# Secrets mit vals/sops verschlüsseln
-helm secrets install mein-release ./mein-chart \
+# Encrypt secrets with vals/sops
+helm secrets install my-release ./my-chart \
   -f secrets.yaml
 
-# Unit-Tests ausführen
-helm unittest mein-chart
+# Run unit tests
+helm unittest my-chart
 
-# Alle Plugins auflisten
+# List all plugins
 helm plugin list
 ```
 
 ---
 
-## Templating – Go-Templates
+## Templating – Go Templates
 
 ```yaml
 # values.yaml
@@ -271,18 +271,18 @@ resources:
 ```
 
 ```yaml
-# templates/deployment.yaml – Beispiel
+# templates/deployment.yaml – Example
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "mein-chart.fullname" . }}
+  name: {{ include "my-chart.fullname" . }}
   labels:
-    {{- include "mein-chart.labels" . | nindent 4 }}
+    {{- include "my-chart.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "mein-chart.selectorLabels" . | nindent 6 }}
+      {{- include "my-chart.selectorLabels" . | nindent 6 }}
   template:
     spec:
       containers:
@@ -296,17 +296,17 @@ spec:
 ```
 
 ```bash
-# Häufige Template-Funktionen
-{{ .Values.key }}                        # Wert aus values.yaml
-{{ .Release.Name }}                      # Release-Name
+# Common template functions
+{{ .Values.key }}                        # Value from values.yaml
+{{ .Release.Name }}                      # Release name
 {{ .Release.Namespace }}                 # Namespace
-{{ .Chart.Name }}                        # Chart-Name
-{{ .Chart.Version }}                     # Chart-Version
-{{ default "fallback" .Values.key }}     # Default-Wert
-{{ required "Pflichtfeld!" .Values.key }}# Pflichtfeld
-{{ toYaml .Values.obj | nindent 4 }}    # YAML-Ausgabe einrücken
-{{ include "helper.name" . }}           # Hilfsmakro einbinden
-{{- if .Values.ingress.enabled }}       # Bedingung
+{{ .Chart.Name }}                        # Chart name
+{{ .Chart.Version }}                     # Chart version
+{{ default "fallback" .Values.key }}     # Default value
+{{ required "Pflichtfeld!" .Values.key }}# Required field
+{{ toYaml .Values.obj | nindent 4 }}    # Indent YAML output
+{{ include "helper.name" . }}           # Include helper macro
+{{- if .Values.ingress.enabled }}       # Condition
 {{- range .Values.list }}               # Iteration
 {{ . }}
 {{- end }}
@@ -314,29 +314,29 @@ spec:
 
 ---
 
-## Tipps & Best Practices
+## Tips & Best Practices
 
 ```bash
-# Aktuell genutzte Chart-Version prüfen
+# Check currently used chart version
 helm show chart bitnami/nginx | grep version
 
-# Alle Versionen eines Charts anzeigen
+# Show all versions of a chart
 helm search repo bitnami/nginx --versions
 
-# Chart-Dokumentation anzeigen
+# Show chart documentation
 helm show readme bitnami/nginx
-helm show values bitnami/nginx           # Default-Values
+helm show values bitnami/nginx           # Default values
 
-# Default-Values als Basis für eigenes values.yaml
+# Default values as base for own values.yaml
 helm show values bitnami/nginx > my-values.yaml
 
-# Release-Manifest als Backup exportieren
-helm get manifest mein-nginx > mein-nginx-backup.yaml
+# Export release manifest as backup
+helm get manifest my-nginx > my-nginx-backup.yaml
 
-# Namespaces für alle Releases ausgeben
+# Output namespaces for all releases
 helm ls -A -o json | jq '.[] | {name, namespace, status}'
 
-# Veraltete Charts finden
+# Find outdated charts
 helm list -A -o json | \
   jq '.[] | select(.status != "deployed") | {name, status}'
 ```

@@ -1,62 +1,62 @@
 # STACKIT CLI Cheat Sheet
 
-## Installation & Konfiguration
+## Installation & Setup
 
 ```bash
 # Installation (macOS via Homebrew)
 brew install stackitcloud/tap/stackit
 
-# Alternativ: Binary direkt herunterladen
+# Alternative: download binary directly
 # https://github.com/stackitcloud/stackit-cli/releases
 
-# Login (öffnet Browser für SSO)
+# Login (opens browser for SSO)
 stackit auth login
 
 # Login via Service Account Key (CI/CD)
 stackit auth activate-service-account
 
-# Aktuelle Konfiguration anzeigen
+# Show current configuration
 stackit config list
 
-# Aktives Projekt setzen
+# Set active project
 stackit config set --project-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# Aktive Organisation setzen
+# Set active organization
 stackit config set --organization-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# CLI-Version anzeigen
+# Show CLI version
 stackit --version
 
-# Hilfe
+# Help
 stackit --help
-stackit <befehl> --help
+stackit <command> --help
 ```
 
 ---
 
-## Projekte & Organisationen
+## Projects & Organizations
 
 ```bash
-# Alle Projekte auflisten
+# List all projects
 stackit project list
 
-# Projekt erstellen
+# Create project
 stackit project create \
-  --name "Mein Projekt" \
+  --name "My Project" \
   --parent-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# Projekt-Details anzeigen
+# Show project details
 stackit project describe --project-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# Projekt aktualisieren (umbenennen)
+# Update project (rename)
 stackit project update \
   --project-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-  --name "Neuer Name"
+  --name "New Name"
 
-# Projekt löschen
+# Delete project
 stackit project delete --project-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# Mitglieder eines Projekts auflisten
+# List members of a project
 stackit project member list \
   --project-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
@@ -66,32 +66,32 @@ stackit project member list \
 ## SKE – STACKIT Kubernetes Engine
 
 ```bash
-# Cluster auflisten
+# List clusters
 stackit ske cluster list
 
-# Verfügbare Kubernetes-Versionen
+# Available Kubernetes versions
 stackit ske options kubernetes-versions
 
-# Cluster erstellen (interaktiv)
+# Create cluster (interactive)
 stackit ske cluster create \
-  --name mein-cluster \
+  --name my-cluster \
   --kubernetes-version 1.30
 
-# Cluster-Details anzeigen
-stackit ske cluster describe --name mein-cluster
+# Show cluster details
+stackit ske cluster describe --name my-cluster
 
-# kubeconfig abrufen
+# Retrieve kubeconfig
 stackit ske kubeconfig create \
-  --cluster-name mein-cluster \
+  --cluster-name my-cluster \
   --filepath ~/.kube/config
 
-# Cluster aktualisieren (z.B. K8s-Version)
+# Update cluster (e.g. K8s version)
 stackit ske cluster update \
-  --name mein-cluster \
+  --name my-cluster \
   --kubernetes-version 1.31
 
-# Cluster löschen
-stackit ske cluster delete --name mein-cluster
+# Delete cluster
+stackit ske cluster delete --name my-cluster
 ```
 
 ---
@@ -99,18 +99,18 @@ stackit ske cluster delete --name mein-cluster
 ## Server Backup Manager
 
 ```bash
-# Backup-Jobs auflisten
+# List backup jobs
 stackit server-backup backup-job list
 
-# Backup-Jobs eines Servers auflisten
+# List backup jobs for a server
 stackit server-backup backup-job list \
   --server-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# Backups auflisten
+# List backups
 stackit server-backup backup list \
   --server-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# Backup erstellen
+# Create backup
 stackit server-backup backup create \
   --server-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
   --backup-job-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -121,54 +121,54 @@ stackit server-backup backup create \
 ## Object Storage
 
 ```bash
-# Alle Buckets auflisten
+# List all buckets
 stackit object-storage bucket list
 
-# Bucket erstellen
-stackit object-storage bucket create --bucket-name mein-bucket
+# Create bucket
+stackit object-storage bucket create --bucket-name my-bucket
 
-# Bucket-Details anzeigen
-stackit object-storage bucket describe --bucket-name mein-bucket
+# Show bucket details
+stackit object-storage bucket describe --bucket-name my-bucket
 
-# Bucket löschen
-stackit object-storage bucket delete --bucket-name mein-bucket
+# Delete bucket
+stackit object-storage bucket delete --bucket-name my-bucket
 
-# Credentials (Access Key) für Object Storage erstellen
+# Create credentials (access key) for object storage
 stackit object-storage credentials-group create \
-  --credentials-group-name meine-credentials
+  --credentials-group-name my-credentials
 
-# Credentials auflisten
+# List credentials
 stackit object-storage credentials-group list
 
-# Access Key erstellen
+# Create access key
 stackit object-storage access-key create \
   --credentials-group-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
 
-> Hinweis: STACKIT Object Storage ist S3-kompatibel — `aws s3` CLI mit
-> `--endpoint-url https://object.storage.eu01.onstackit.cloud` funktioniert ebenfalls.
+> Note: STACKIT Object Storage is S3-compatible — the `aws s3` CLI with
+> `--endpoint-url https://object.storage.eu01.onstackit.cloud` works as well.
 
 ---
 
 ## DNS
 
 ```bash
-# DNS-Zonen auflisten
+# List DNS zones
 stackit dns zone list
 
-# DNS-Zone erstellen
+# Create DNS zone
 stackit dns zone create \
-  --name "meine-domain.de" \
-  --dns-name "meine-domain.de."
+  --name "my-domain.de" \
+  --dns-name "my-domain.de."
 
-# DNS-Zone beschreiben
+# Describe DNS zone
 stackit dns zone describe --zone-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# DNS Records auflisten
+# List DNS records
 stackit dns record-set list \
   --zone-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# A-Record erstellen
+# Create A record
 stackit dns record-set create \
   --zone-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
   --name "www" \
@@ -176,7 +176,7 @@ stackit dns record-set create \
   --records "1.2.3.4" \
   --ttl 300
 
-# Record löschen
+# Delete record
 stackit dns record-set delete \
   --zone-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
   --record-set-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -187,19 +187,19 @@ stackit dns record-set delete \
 ## Load Balancer
 
 ```bash
-# Load Balancer auflisten
+# List load balancers
 stackit load-balancer list
 
-# Load Balancer erstellen (via Payload-Datei)
+# Create load balancer (via payload file)
 stackit load-balancer create --payload @payload.json
 
-# Load Balancer beschreiben
-stackit load-balancer describe --name mein-lb
+# Describe load balancer
+stackit load-balancer describe --name my-lb
 
-# Load Balancer löschen
-stackit load-balancer delete --name mein-lb
+# Delete load balancer
+stackit load-balancer delete --name my-lb
 
-# Verfügbare Optionen/Plans
+# Available options/plans
 stackit load-balancer options
 ```
 
@@ -208,34 +208,34 @@ stackit load-balancer options
 ## PostgreSQL Flex (Managed DB)
 
 ```bash
-# Instanzen auflisten
+# List instances
 stackit postgresflex instance list
 
-# Instanz erstellen
+# Create instance
 stackit postgresflex instance create \
-  --name meine-db \
+  --name my-db \
   --flavor-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
   --version 15
 
-# Instanz beschreiben
+# Describe instance
 stackit postgresflex instance describe \
   --instance-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# Datenbank in einer Instanz erstellen
+# Create database in an instance
 stackit postgresflex database create \
   --instance-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-  --name mein-schema
+  --name my-schema
 
-# User erstellen
+# Create user
 stackit postgresflex user create \
   --instance-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
   --username db-user
 
-# Instanz löschen
+# Delete instance
 stackit postgresflex instance delete \
   --instance-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# Verfügbare Flavors (Größen) anzeigen
+# Show available flavors (sizes)
 stackit postgresflex options flavors
 ```
 
@@ -244,20 +244,20 @@ stackit postgresflex options flavors
 ## MariaDB Flex
 
 ```bash
-# Instanzen auflisten
+# List instances
 stackit mariadb instance list
 
-# Instanz erstellen
+# Create instance
 stackit mariadb instance create \
-  --name meine-mariadb \
+  --name my-mariadb \
   --flavor-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
   --version 10.11
 
-# Instanz beschreiben
+# Describe instance
 stackit mariadb instance describe \
   --instance-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# Instanz löschen
+# Delete instance
 stackit mariadb instance delete \
   --instance-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
@@ -267,18 +267,18 @@ stackit mariadb instance delete \
 ## Secrets Manager
 
 ```bash
-# Instanzen auflisten
+# List instances
 stackit secrets-manager instance list
 
-# Instanz erstellen
-stackit secrets-manager instance create --name mein-vault
+# Create instance
+stackit secrets-manager instance create --name my-vault
 
-# User für Secrets Manager erstellen
+# Create user for Secrets Manager
 stackit secrets-manager user create \
   --instance-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-  --description "mein service user"
+  --description "my service user"
 
-# User auflisten
+# List users
 stackit secrets-manager user list \
   --instance-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
@@ -288,50 +288,50 @@ stackit secrets-manager user list \
 ## Service Accounts & IAM
 
 ```bash
-# Service Accounts auflisten
+# List service accounts
 stackit service-account list
 
-# Service Account erstellen
-stackit service-account create --email mein-sa@mein-projekt.iam.stackit.cloud
+# Create service account
+stackit service-account create --email my-sa@my-project.iam.stackit.cloud
 
-# Service Account Key erstellen
+# Create service account key
 stackit service-account key create \
-  --service-account-email mein-sa@mein-projekt.iam.stackit.cloud
+  --service-account-email my-sa@my-project.iam.stackit.cloud
 
-# Keys auflisten
+# List keys
 stackit service-account key list \
-  --service-account-email mein-sa@mein-projekt.iam.stackit.cloud
+  --service-account-email my-sa@my-project.iam.stackit.cloud
 
-# Projektmitglied hinzufügen
+# Add project member
 stackit project member add \
   --project-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-  --subject mein-sa@mein-projekt.iam.stackit.cloud \
+  --subject my-sa@my-project.iam.stackit.cloud \
   --role editor
 ```
 
 ---
 
-## Nützliche Allgemein-Optionen
+## Useful General Options
 
 ```bash
-# Ausgabeformat: pretty (Standard), json, yaml
+# Output format: pretty (default), json, yaml
 stackit ske cluster list --output-format json
 stackit project list --output-format yaml
 
-# Projekt-ID global für eine Session überschreiben
+# Override project ID globally for a session
 stackit ske cluster list --project-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-# Async-Operationen (nicht auf Abschluss warten)
-stackit ske cluster create --name mein-cluster --async
+# Async operations (do not wait for completion)
+stackit ske cluster create --name my-cluster --async
 
-# Konfigurationsdatei anzeigen
+# Show configuration file
 cat ~/.stackit/config.json
 
-# Konfiguration zurücksetzen
+# Reset configuration
 stackit config unset --project-id
 stackit config unset --organization-id
 
-# Autocomplete installieren (bash/zsh)
+# Install autocomplete (bash/zsh)
 stackit completion bash >> ~/.bashrc
 stackit completion zsh >> ~/.zshrc
 ```
