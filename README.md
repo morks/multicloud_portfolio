@@ -13,6 +13,25 @@ https://morks.github.io/multicloud_portfolio/
 
 ---
 
+## 🌐 Cloud Provider Portals
+
+| Provider | Web Console | Status |
+|---|---|---|
+| **AWS** | [console.aws.amazon.com](https://console.aws.amazon.com) | Global |
+| **Azure** | [portal.azure.com](https://portal.azure.com) | Global |
+| **Azure Arc** | [portal.azure.com/#blade/…/AzureArc](https://portal.azure.com/#blade/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/overview) | Part of Azure |
+| **Google Cloud** | [console.cloud.google.com](https://console.cloud.google.com) | Global |
+| **Anthos** | [console.cloud.google.com/anthos](https://console.cloud.google.com/anthos) | Part of GCP |
+| **Oracle Cloud (OCI)** | [cloud.oracle.com](https://cloud.oracle.com) | Global |
+| **Telekom Cloud (OTC)** | [console.otc.t-systems.com](https://console.otc.t-systems.com) | EU (T-Systems) |
+| **OpenStack** | Deployment-specific (Horizon) | Self-hosted |
+| **STACKIT** | [portal.stackit.cloud](https://portal.stackit.cloud) | EU (Telekom) |
+| **Hetzner Cloud** | [console.hetzner.cloud](https://console.hetzner.cloud) | EU |
+| **Cloudflare** | [dash.cloudflare.com](https://dash.cloudflare.com) | Global |
+| **MeshStack** | [panel.meshcloud.io](https://panel.meshcloud.io) | SaaS |
+
+---
+
 ## ☁️ Cloud Platforms
 
 | Provider | CLI | Focus Areas |
@@ -138,6 +157,28 @@ vault kv get -field=db_password secret/meine-app | pbcopy  # copy directly to cl
 multicloud_portfolio/
 │
 ├── README.md                          # This file
+│
+├── shell-completions/                 # Shell auto-completion scripts
+│   ├── README.md                      # Setup guide
+│   ├── completions.sh                 # Main entry point (source this in rc file)
+│   ├── clouds/                        # Cloud CLI completions
+│   │   ├── aws.sh                     # AWS CLI + aws_completer
+│   │   ├── azure.sh                   # Azure CLI (az)
+│   │   ├── gcp.sh                     # Google Cloud SDK (gcloud)
+│   │   ├── oci.sh                     # Oracle Cloud CLI (oci)
+│   │   ├── openstack.sh               # OpenStack + OTC CLI
+│   │   ├── stackit.sh                 # STACKIT CLI
+│   │   ├── hetzner.sh                 # Hetzner Cloud CLI (hcloud)
+│   │   └── cloudflare.sh              # Cloudflare (wrangler)
+│   └── devops/                        # DevOps tool completions
+│       ├── kubectl.sh                 # kubectl + k alias + oc (OpenShift)
+│       ├── helm.sh                    # Helm
+│       ├── terraform.sh               # Terraform + OpenTofu
+│       ├── argocd.sh                  # ArgoCD CLI
+│       ├── flux.sh                    # FluxCD CLI
+│       ├── vault.sh                   # HashiCorp Vault
+│       ├── github.sh                  # gh + glab
+│       └── extras.sh                  # kubectx, stern, k9s
 │
 └── cheats/                            # All cheat sheets
     ├── README.md                      # Cheat sheet index

@@ -55,6 +55,10 @@ jobs:
           cp cheats/cloud/*.md  docs/cloud/
           cp cheats/devops/*.md docs/devops/
 
+          # Shell Completions README (only the guide, not the .sh scripts)
+          mkdir -p docs/shell-completions
+          cp shell-completions/README.md docs/shell-completions/README.md
+
       - name: Build Documentation
         run: mkdocs build --strict --verbose
 
