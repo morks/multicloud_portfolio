@@ -23,7 +23,9 @@ https://morks.github.io/multicloud_portfolio/
 | **Google Cloud** | [console.cloud.google.com](https://console.cloud.google.com) | Global |
 | **Anthos** | [console.cloud.google.com/anthos](https://console.cloud.google.com/anthos) | Part of GCP |
 | **Oracle Cloud (OCI)** | [cloud.oracle.com](https://cloud.oracle.com) | Global |
+| **IBM Cloud** | [cloud.ibm.com](https://cloud.ibm.com) | Global |
 | **Telekom Cloud (OTC)** | [console.otc.t-systems.com](https://console.otc.t-systems.com) | EU (T-Systems) |
+| **IONOS Cloud** | [cloud.ionos.de](https://cloud.ionos.de) | EU (DACH) |
 | **OpenStack** | Deployment-specific (Horizon) | Self-hosted |
 | **STACKIT** | [portal.stackit.cloud](https://portal.stackit.cloud) | EU (Telekom) |
 | **Hetzner Cloud** | [console.hetzner.cloud](https://console.hetzner.cloud) | EU |
@@ -40,7 +42,9 @@ https://morks.github.io/multicloud_portfolio/
 | [Azure](cheats/cloud/azure-cli-cheatsheet.md) | `az` | Resources, AKS, Storage, RBAC |
 | [Google Cloud](cheats/cloud/gcp-cli-cheatsheet.md) | `gcloud` | Compute, GKE, IAM, Artifact Registry |
 | [Oracle Cloud (OCI)](cheats/cloud/oci-cli-cheatsheet.md) | `oci` | Compute, VCN, Object Storage, OKE, OCIR |
+| [IBM Cloud](cheats/cloud/ibmcloud-cheatsheet.md) | `ibmcloud` | IKS, ROKS, COS, ICR, IAM, Resource Groups |
 | [Telekom Cloud (OTC)](cheats/cloud/ctc-cheatsheet.md) | `openstack` / `otc` | ECS, VPC, OBS, CCE, DNS, EVS |
+| [IONOS Cloud](cheats/cloud/ionos-cheatsheet.md) | `ionosctl` | Servers, Kubernetes, Networking, Load Balancer |
 | [STACKIT](cheats/cloud/stackit-cli-cheatsheet.md) | `stackit` | Projects, Services, Kubernetes |
 | [Hetzner Cloud](cheats/cloud/hetzner-cheatsheet.md) | `hcloud` | Servers, Networks, Firewalls, Load Balancers, Volumes |
 | [Cloudflare](cheats/cloud/cloudflare-cheatsheet.md) | `flarectl` / `wrangler` | DNS, CDN, Workers, Zero Trust, R2, Tunnel |
@@ -58,18 +62,26 @@ https://morks.github.io/multicloud_portfolio/
 | **Kubernetes** | [kubectl](cheats/devops/k8s-cheatsheet.md) | Pods, Deployments, Services, RBAC, Debugging |
 | **Helm** | [helm](cheats/devops/helm-cheatsheet.md) | Charts, Releases, Repos, Templates, Plugins |
 | **Terraform / OpenTofu** | [terraform](cheats/devops/terraform-cheatsheet.md) | IaC, State, Workspaces, Modules, Multi-Cloud |
+| **Pulumi** | [pulumi](cheats/devops/pulumi-cheatsheet.md) | IaC with Python/TypeScript/Go, Stacks, State, Import |
+| **Crossplane** | [crossplane](cheats/devops/crossplane-cheatsheet.md) | K8s-native IaC, Providers, Managed Resources, Compositions |
 | **ArgoCD** | [argocd](cheats/devops/argocd-cheatsheet.md) | GitOps, Apps, Sync, Projects, ApplicationSets |
+| **FluxCD** | [flux](cheats/devops/fluxcd-cheatsheet.md) | GitOps, HelmRelease, Image Automation, Multi-Tenancy |
+| **cert-manager** | [cert-manager](cheats/devops/cert-manager-cheatsheet.md) | TLS Certs, ACME, Let's Encrypt, ClusterIssuer, cmctl |
+| **Kyverno** | [kyverno](cheats/devops/kyverno-cheatsheet.md) | K8s Policy Engine, Validate, Mutate, Generate, Reports |
+| **External Secrets Operator** | [eso](cheats/devops/external-secrets-cheatsheet.md) | Sync Vault/AWS/GCP/Azure Secrets → K8s, PushSecret |
 | **Vault** | [vault](cheats/devops/vault-cheatsheet.md) | KV, PKI, Transit, Auth Methods, Policies |
 | **Ansible** | [ansible](cheats/devops/ansible-cheatsheet.md) | Inventory, Playbooks, Roles, Templates, Galaxy |
-| **Prometheus & Grafana** | [prometheus-grafana](cheats/devops/prometheus-grafana-cheatsheet.md) | PromQL, Alertmanager, Dashboards, Loki |
-| **Docker** | [docker](cheats/devops/docker-cheatsheet.md) | Images, Container, Compose, Registry |
-| **Podman** | [podman](cheats/devops/podman-cheatsheet.md) | Rootless Containers, Pods, Systemd, Compose |
-| **Trivy** | [trivy](cheats/devops/trivy-cheatsheet.md) | Image Scan, IaC Scan, Secrets, SBOM, K8s Audit |
 | **OpenShift** | [oc](cheats/devops/openshift-cheatsheet.md) | Projects, Builds, Routes, SCC, OLM Operators |
 | **Rancher** | [rancher](cheats/devops/rancher-cheatsheet.md) | Cluster Mgmt, RKE2/K3s, Fleet GitOps, App Catalog |
-| **FluxCD** | [flux](cheats/devops/fluxcd-cheatsheet.md) | GitOps, HelmRelease, Image Automation, Multi-Tenancy |
+| **Backstage** | [backstage](cheats/devops/backstage-cheatsheet.md) | Developer Portal, Software Catalog, Scaffolder, TechDocs |
+| **Prometheus & Grafana** | [prometheus-grafana](cheats/devops/prometheus-grafana-cheatsheet.md) | PromQL, Alertmanager, Dashboards, Loki |
+| **Loki** | [loki](cheats/devops/loki-cheatsheet.md) | Log Aggregation, LogQL, Promtail, logcli |
+| **OpenTelemetry** | [opentelemetry](cheats/devops/opentelemetry-cheatsheet.md) | Traces, Metrics, Logs, OTel Collector, otelcli, SDK |
+| **Docker** | [docker](cheats/devops/docker-cheatsheet.md) | Images, Container, Compose, Registry |
+| **Podman** | [podman](cheats/devops/podman-cheatsheet.md) | Rootless Containers, Pods, Systemd, Compose |
 | **NGINX** | [nginx](cheats/devops/nginx-cheatsheet.md) | Server Blocks, Reverse Proxy, Load Balancing, Ingress |
 | **HAProxy** | [haproxy](cheats/devops/haproxy-cheatsheet.md) | Frontend/Backend, ACLs, SSL, Health Checks, Stats |
+| **Trivy** | [trivy](cheats/devops/trivy-cheatsheet.md) | Image Scan, IaC Scan, Secrets, SBOM, K8s Audit |
 | **MLflow** | [mlflow](cheats/devops/mlflow-cheatsheet.md) | Experiment Tracking, Model Registry, Serving, Projects |
 | **NVIDIA AI Enterprise** | [nvidia](cheats/devops/nvidia-ai-enterprise-cheatsheet.md) | GPU Operator, NIM, Triton, MIG, DCGM Monitoring |
 | **Git** | [git](cheats/devops/git-cheatsheet.md) | Branches, Rebase, Stash, Tags, Hooks |
@@ -84,23 +96,27 @@ https://morks.github.io/multicloud_portfolio/
 
 ```bash
 # AWS – SSO Login
-aws sso login --profile mein-profil
+aws sso login --profile my-profile
 aws sts get-caller-identity
 
 # Azure – Interactive Login
 az login
-az account set --subscription "Mein Abo"
+az account set --subscription "My Subscription"
 
 # GCP – Application Default Credentials
 gcloud auth login
-gcloud config set project mein-projekt
+gcloud config set project my-project
 
 # OCI – Configuration Wizard
 oci setup config
 
 # Telekom Cloud (OTC) – Source RC file
-source ~/Downloads/MeinProjekt-openrc.sh
+source ~/Downloads/my-project-openrc.sh
 openstack token issue
+
+# IBM Cloud – Login
+ibmcloud login --sso
+ibmcloud target -g my-resource-group -r eu-de
 
 # STACKIT – Login
 stackit auth login
@@ -111,7 +127,7 @@ stackit auth login
 ```bash
 # Show and switch contexts
 kubectl config get-contexts
-kubectl config use-context mein-cluster
+kubectl config use-context my-cluster
 
 # or interactively with kubectx
 kubectx
@@ -125,28 +141,28 @@ kubectl get pods -A | grep -v Running
 
 ```bash
 # Login
-argocd login argocd.beispiel.de --username admin
+argocd login argocd.example.com --username admin
 
 # Create app with auto-sync
-argocd app create meine-app \
+argocd app create my-app \
   --repo https://github.com/org/repo.git \
-  --path helm/meine-app \
+  --path helm/my-app \
   --dest-server https://kubernetes.default.svc \
-  --dest-namespace produktion \
+  --dest-namespace production \
   --sync-policy automated \
   --auto-prune --self-heal
 
 # Check status
-argocd app get meine-app
+argocd app get my-app
 ```
 
 ### Read Secrets from Vault
 
 ```bash
-export VAULT_ADDR='https://vault.beispiel.de'
+export VAULT_ADDR='https://vault.example.com'
 vault login                                  # interactive
-vault kv get secret/meine-app               # Read secret
-vault kv get -field=db_password secret/meine-app | pbcopy  # copy directly to clipboard
+vault kv get secret/my-app                  # read secret
+vault kv get -field=db_password secret/my-app | pbcopy  # copy directly to clipboard
 ```
 
 ---

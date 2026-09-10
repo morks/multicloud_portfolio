@@ -67,23 +67,33 @@ nav:
     - Google Cloud: cloud/gcp-cli-cheatsheet.md
     - Anthos: cloud/anthos-cheatsheet.md
     - Oracle Cloud (OCI): cloud/oci-cli-cheatsheet.md
+    - IBM Cloud: cloud/ibmcloud-cheatsheet.md
     - Telekom Cloud (OTC): cloud/ctc-cheatsheet.md
     - OpenStack: cloud/openstack-cheatsheet.md
     - STACKIT: cloud/stackit-cli-cheatsheet.md
     - Hetzner Cloud: cloud/hetzner-cheatsheet.md
+    - IONOS Cloud: cloud/ionos-cheatsheet.md
     - Cloudflare: cloud/cloudflare-cheatsheet.md
     - MeshStack: cloud/meshstack-cheatsheet.md
   - 🛠️ DevOps:
     - Kubernetes: devops/k8s-cheatsheet.md
     - Helm: devops/helm-cheatsheet.md
     - Terraform / OpenTofu: devops/terraform-cheatsheet.md
+    - Pulumi: devops/pulumi-cheatsheet.md
+    - Crossplane: devops/crossplane-cheatsheet.md
     - ArgoCD: devops/argocd-cheatsheet.md
     - FluxCD: devops/fluxcd-cheatsheet.md
+    - cert-manager: devops/cert-manager-cheatsheet.md
+    - Kyverno: devops/kyverno-cheatsheet.md
+    - External Secrets Operator: devops/external-secrets-cheatsheet.md
     - HashiCorp Vault: devops/vault-cheatsheet.md
     - Ansible: devops/ansible-cheatsheet.md
     - OpenShift: devops/openshift-cheatsheet.md
     - Rancher: devops/rancher-cheatsheet.md
+    - Backstage: devops/backstage-cheatsheet.md
     - Prometheus & Grafana: devops/prometheus-grafana-cheatsheet.md
+    - Loki: devops/loki-cheatsheet.md
+    - OpenTelemetry: devops/opentelemetry-cheatsheet.md
     - Docker: devops/docker-cheatsheet.md
     - Podman: devops/podman-cheatsheet.md
     - NGINX: devops/nginx-cheatsheet.md
