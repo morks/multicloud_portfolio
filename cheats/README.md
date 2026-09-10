@@ -22,6 +22,17 @@ cheats/
 │   ├── openstack-cheatsheet.md
 │   └── stackit-cli-cheatsheet.md
 │
+├── management/                         # Cloud Management & Broker platforms
+│   ├── atlantis-cheatsheet.md
+│   ├── kestra-cheatsheet.md
+│   ├── morpheus-cheatsheet.md
+│   └── spacelift-cheatsheet.md
+│
+├── identity/                           # Identity Providers & IAM
+│   ├── keycloak-cheatsheet.md
+│   ├── okta-cheatsheet.md
+│   └── zitadel-cheatsheet.md
+│
 └── devops/                             # DevOps tools
     ├── ansible-cheatsheet.md
     ├── argocd-cheatsheet.md
@@ -53,7 +64,7 @@ cheats/
     └── vault-cheatsheet.md
 ```
 
-## ☁️ Cloud
+## ☁️ Cloud Providers
 
 | File | Content |
 |---|---|
@@ -66,6 +77,23 @@ cheats/
 | [gcp-cli-cheatsheet.md](cloud/gcp-cli-cheatsheet.md) | GCP `gcloud` – Compute, GKE, IAM |
 | [hetzner-cheatsheet.md](cloud/hetzner-cheatsheet.md) | Hetzner Cloud – Servers, Networks, Firewalls, Load Balancers |
 | [meshstack-cheatsheet.md](cloud/meshstack-cheatsheet.md) | MeshStack – Workspaces, Projects, Landing Zones, Chargeback |
+
+## 🏢 Cloud Management & Broker
+
+| File | Content |
+|---|---|
+| [atlantis-cheatsheet.md](management/atlantis-cheatsheet.md) | Atlantis – Terraform/OpenTofu PR Automation, GitOps for IaC, atlantis.yaml |
+| [kestra-cheatsheet.md](management/kestra-cheatsheet.md) | Kestra – Workflow Orchestration, Declarative YAML, Plugins, REST API |
+| [morpheus-cheatsheet.md](management/morpheus-cheatsheet.md) | Morpheus Data – Multi-Cloud Provisioning, Blueprints, Policies, Cost |
+| [spacelift-cheatsheet.md](management/spacelift-cheatsheet.md) | Spacelift – IaC Management, OPA Policies, spacectl CLI, Worker Pools |
+
+## 🔐 Identity & Access
+
+| File | Content |
+|---|---|
+| [keycloak-cheatsheet.md](identity/keycloak-cheatsheet.md) | Keycloak – OIDC, SAML, Realms, Clients, kcadm.sh, User Federation, Operator |
+| [okta-cheatsheet.md](identity/okta-cheatsheet.md) | Okta / Auth0 – okta-cli, auth0 CLI, Applications, Policies, Actions |
+| [zitadel-cheatsheet.md](identity/zitadel-cheatsheet.md) | ZITADEL – Cloud-native IAM, Organizations, Actions, gRPC/REST API |
 | [ibmcloud-cheatsheet.md](cloud/ibmcloud-cheatsheet.md) | IBM Cloud CLI – IKS, ROKS, COS, ICR, IAM, Resource Groups |
 | [ionos-cheatsheet.md](cloud/ionos-cheatsheet.md) | IONOS Cloud CLI `ionosctl` – Servers, Kubernetes, Networking, Load Balancer |
 | [oci-cli-cheatsheet.md](cloud/oci-cli-cheatsheet.md) | OCI CLI – Compute, VCN, Object Storage, OKE, OCIR |

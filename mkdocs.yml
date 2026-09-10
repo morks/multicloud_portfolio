@@ -60,7 +60,7 @@ theme:
 # ---------------------------------------------------------------------------
 nav:
   - 🏠 Start: index.md
-  - ☁️ Cloud:
+  - ☁️ Cloud Providers:
     - AWS CLI: cloud/aws-cli-cheatsheet.md
     - Azure CLI: cloud/azure-cli-cheatsheet.md
     - Azure Arc: cloud/azure-arc-cheatsheet.md
@@ -74,7 +74,16 @@ nav:
     - Hetzner Cloud: cloud/hetzner-cheatsheet.md
     - IONOS Cloud: cloud/ionos-cheatsheet.md
     - Cloudflare: cloud/cloudflare-cheatsheet.md
+  - 🏢 Cloud Management & Broker:
     - MeshStack: cloud/meshstack-cheatsheet.md
+    - Kestra: management/kestra-cheatsheet.md
+    - Atlantis: management/atlantis-cheatsheet.md
+    - Spacelift: management/spacelift-cheatsheet.md
+    - Morpheus Data: management/morpheus-cheatsheet.md
+  - 🔐 Identity & Access:
+    - Keycloak: identity/keycloak-cheatsheet.md
+    - ZITADEL: identity/zitadel-cheatsheet.md
+    - Okta / Auth0: identity/okta-cheatsheet.md
   - 🛠️ DevOps:
     - Kubernetes: devops/k8s-cheatsheet.md
     - Helm: devops/helm-cheatsheet.md

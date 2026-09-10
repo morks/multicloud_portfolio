@@ -34,24 +34,45 @@ https://morks.github.io/multicloud_portfolio/
 
 ---
 
-## ☁️ Cloud Platforms
+## ☁️ Cloud Providers
 
 | Provider | CLI | Focus Areas |
 |---|---|---|
 | [AWS](cheats/cloud/aws-cli-cheatsheet.md) | `aws` | EC2, S3, IAM, SSO, Profile, STS |
 | [Azure](cheats/cloud/azure-cli-cheatsheet.md) | `az` | Resources, AKS, Storage, RBAC |
+| [Azure Arc](cheats/cloud/azure-arc-cheatsheet.md) | `az connectedk8s` | Arc Servers, Arc Kubernetes, GitOps, Data Services |
 | [Google Cloud](cheats/cloud/gcp-cli-cheatsheet.md) | `gcloud` | Compute, GKE, IAM, Artifact Registry |
+| [Anthos](cheats/cloud/anthos-cheatsheet.md) | `gcloud` / `nomos` | Fleet, ACM, ASM, Policy Controller, Multi-Cluster |
 | [Oracle Cloud (OCI)](cheats/cloud/oci-cli-cheatsheet.md) | `oci` | Compute, VCN, Object Storage, OKE, OCIR |
 | [IBM Cloud](cheats/cloud/ibmcloud-cheatsheet.md) | `ibmcloud` | IKS, ROKS, COS, ICR, IAM, Resource Groups |
 | [Telekom Cloud (OTC)](cheats/cloud/ctc-cheatsheet.md) | `openstack` / `otc` | ECS, VPC, OBS, CCE, DNS, EVS |
-| [IONOS Cloud](cheats/cloud/ionos-cheatsheet.md) | `ionosctl` | Servers, Kubernetes, Networking, Load Balancer |
+| [OpenStack](cheats/cloud/openstack-cheatsheet.md) | `openstack` | Nova, Neutron, Cinder, Glance, Swift, Heat, Ironic |
 | [STACKIT](cheats/cloud/stackit-cli-cheatsheet.md) | `stackit` | Projects, Services, Kubernetes |
 | [Hetzner Cloud](cheats/cloud/hetzner-cheatsheet.md) | `hcloud` | Servers, Networks, Firewalls, Load Balancers, Volumes |
+| [IONOS Cloud](cheats/cloud/ionos-cheatsheet.md) | `ionosctl` | Servers, Kubernetes, Networking, Load Balancer |
 | [Cloudflare](cheats/cloud/cloudflare-cheatsheet.md) | `flarectl` / `wrangler` | DNS, CDN, Workers, Zero Trust, R2, Tunnel |
-| [Azure Arc](cheats/cloud/azure-arc-cheatsheet.md) | `az connectedk8s` | Arc Servers, Arc Kubernetes, GitOps, Data Services |
-| [Anthos](cheats/cloud/anthos-cheatsheet.md) | `gcloud` / `nomos` | Fleet, ACM, ASM, Policy Controller, Multi-Cluster |
-| [OpenStack](cheats/cloud/openstack-cheatsheet.md) | `openstack` | Nova, Neutron, Cinder, Glance, Swift, Heat, Ironic |
+
+---
+
+## 🏢 Cloud Management & Broker
+
+| Platform | CLI / Tool | Focus Areas |
+|---|---|---|
 | [MeshStack](cheats/cloud/meshstack-cheatsheet.md) | `meshstack` | Workspaces, Projects, Landing Zones, Chargeback |
+| [Kestra](cheats/management/kestra-cheatsheet.md) | `kestra` | Workflow Orchestration, Pipelines, Declarative YAML, Plugins |
+| [Atlantis](cheats/management/atlantis-cheatsheet.md) | PR comments | Terraform/OpenTofu PR Automation, GitOps for IaC |
+| [Spacelift](cheats/management/spacelift-cheatsheet.md) | `spacectl` | IaC Management, OPA Policies, Worker Pools, Module Registry |
+| [Morpheus Data](cheats/management/morpheus-cheatsheet.md) | `morpheus` | Multi-Cloud Provisioning, Blueprints, Policies, Cost Management |
+
+---
+
+## 🔐 Identity & Access
+
+| Tool | CLI | Focus Areas |
+|---|---|---|
+| [Keycloak](cheats/identity/keycloak-cheatsheet.md) | `kcadm.sh` | OIDC, SAML, Realms, Clients, User Federation, Operator |
+| [ZITADEL](cheats/identity/zitadel-cheatsheet.md) | `zitadel` | Cloud-native IAM, Orgs, Actions, gRPC/REST API |
+| [Okta / Auth0](cheats/identity/okta-cheatsheet.md) | `okta` / `auth0` | Enterprise IdP, Applications, Policies, Actions, Token Introspection |
 
 ---
 

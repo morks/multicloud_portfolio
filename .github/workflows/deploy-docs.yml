@@ -42,18 +42,22 @@ jobs:
       # im MkDocs-Kontext (docs_dir=docs/) müssen sie auf cloud/... zeigen.
       - name: Prepare docs structure
         run: |
-          mkdir -p docs/cloud docs/devops
+          mkdir -p docs/cloud docs/devops docs/management docs/identity
 
           # Startseite: README.md kopieren und Pfade anpassen
           cp README.md docs/index.md
           sed -i \
             's|cheats/cloud/|cloud/|g;
-             s|cheats/devops/|devops/|g' \
+             s|cheats/devops/|devops/|g;
+             s|cheats/management/|management/|g;
+             s|cheats/identity/|identity/|g' \
             docs/index.md
 
           # Copy all cheat sheets
-          cp cheats/cloud/*.md  docs/cloud/
-          cp cheats/devops/*.md docs/devops/
+          cp cheats/cloud/*.md       docs/cloud/
+          cp cheats/devops/*.md      docs/devops/
+          cp cheats/management/*.md  docs/management/
+          cp cheats/identity/*.md    docs/identity/
 
           # Shell Completions README (only the guide, not the .sh scripts)
           mkdir -p docs/shell-completions
