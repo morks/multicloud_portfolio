@@ -672,3 +672,13 @@ backend be_slow_app
     timeout check 5s                     # override default check timeout
     server app1 10.0.1.10:8080 check inter 10s fall 5 rise 2
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.haproxy.org](https://docs.haproxy.org/) | HAProxy documentation — configuration manual, architecture guide, Lua API, and SPOE reference. |
+| **HAProxy Config Reference** | [cbonte.github.io/haproxy-dconv](https://cbonte.github.io/haproxy-dconv/) | Browsable version of the HAProxy configuration documentation with search and anchors for all directives. |
+| **HAProxy Blog** | [haproxy.com/blog](https://www.haproxy.com/blog/) | Official HAProxy Technologies blog — best practices, performance tuning, security, and new feature deep dives. |

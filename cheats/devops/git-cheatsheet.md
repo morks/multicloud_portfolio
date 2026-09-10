@@ -311,3 +311,13 @@ chore:    build, dependencies, tooling
 ci:       CI/CD configuration
 perf:     performance improvement
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [git-scm.com/doc](https://git-scm.com/doc) | Official Git documentation — reference manual, Pro Git book (free), and tutorial guides. |
+| **Conventional Commits** | [conventionalcommits.org](https://www.conventionalcommits.org/) | Specification for structured commit messages — enables automated changelogs and semantic versioning. |
+| **Oh My Zsh git plugin** | [github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git) | Popular collection of git aliases and shell functions for zsh users. |

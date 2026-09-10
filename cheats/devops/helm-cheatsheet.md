@@ -340,3 +340,14 @@ helm ls -A -o json | jq '.[] | {name, namespace, status}'
 helm list -A -o json | \
   jq '.[] | select(.status != "deployed") | {name, status}'
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [helm.sh/docs](https://helm.sh/docs/) | Helm documentation — chart development, templating, hooks, library charts, and plugin development. |
+| **Artifact Hub** | [artifacthub.io](https://artifacthub.io/) | Central registry for Helm charts, OPA policies, Falco rules, and other cloud-native artifacts. |
+| **Terraform Provider (Helm)** | [registry.terraform.io/hashicorp/helm](https://registry.terraform.io/providers/hashicorp/helm/latest/docs) | HashiCorp Helm Terraform provider — deploy and manage Helm releases on Kubernetes clusters from Terraform/OpenTofu. |
+| **OpenTofu Provider (Helm)** | [search.opentofu.org/hashicorp/helm](https://search.opentofu.org/provider/hashicorp/helm/latest) | Helm provider in the OpenTofu registry — same `helm_release` resource as the Terraform provider. |

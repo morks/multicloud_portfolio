@@ -403,3 +403,13 @@ openstack --debug server list 2>&1 | head -50
 # https://docs.otc.t-systems.com/
 # https://github.com/opentelekomcloud/python-otcextensions
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs (OTC)** | [docs.otc.t-systems.com](https://docs.otc.t-systems.com/) | Open Telekom Cloud documentation — all service guides, API references, and architecture best practices. |
+| **Terraform Provider (OpenTelekomCloud)** | [registry.terraform.io/opentelekomcloud/opentelekomcloud](https://registry.terraform.io/providers/opentelekomcloud/opentelekomcloud/latest/docs) | Community Terraform provider for Open Telekom Cloud — covers ECS, VPC, OBS, CSS, CCE, and more OTC services. |
+| **OpenTofu Provider (OpenTelekomCloud)** | [search.opentofu.org/opentelekomcloud/opentelekomcloud](https://search.opentofu.org/provider/opentelekomcloud/opentelekomcloud/latest) | OpenTelekomCloud provider available in the OpenTofu registry for OTC infrastructure automation. |

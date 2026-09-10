@@ -558,3 +558,14 @@ watch flux get kustomizations
 # Install VS Code Flux extension
 code --install-extension weaveworks.vscode-gitops-tools
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [fluxcd.io/flux/docs](https://fluxcd.io/flux/docs/) | FluxCD documentation — installation, GitRepository, Kustomization, HelmRelease, image automation, and multi-tenancy. |
+| **Flux GitHub** | [github.com/fluxcd/flux2](https://github.com/fluxcd/flux2) | FluxCD v2 source code, releases, issue tracker, and community discussions. |
+| **Terraform Provider (Flux)** | [registry.terraform.io/fluxcd/flux](https://registry.terraform.io/providers/fluxcd/flux/latest/docs) | Official FluxCD Terraform provider — bootstraps Flux onto a Kubernetes cluster and manages its Git source configuration via IaC. |
+| **OpenTofu Provider (Flux)** | [search.opentofu.org/fluxcd/flux](https://search.opentofu.org/provider/fluxcd/flux/latest) | FluxCD provider in the OpenTofu registry — bootstrap and configure Flux as infrastructure code. |

@@ -714,3 +714,13 @@ large_client_header_buffers 4 16k;   # fix for 431 errors
 sudo nginx -s reopen
 # or use logrotate with: postrotate kill -USR1 $(cat /var/run/nginx.pid); endscript
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [nginx.org/en/docs](https://nginx.org/en/docs/) | NGINX core documentation — directives reference, configuration guide, and module documentation. |
+| **NGINX Admin Guide** | [docs.nginx.com/nginx/admin-guide](https://docs.nginx.com/nginx/admin-guide/) | NGINX Plus and OSS admin guide — load balancing, SSL/TLS, caching, security controls, and monitoring. |
+| **NGINX Config Generator** | [nginxconfig.io](https://www.digitalocean.com/community/tools/nginx) | Interactive web tool to generate production-ready NGINX configurations with best-practice security settings. |

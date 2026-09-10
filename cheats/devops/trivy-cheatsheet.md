@@ -482,3 +482,13 @@ trivy image --debug my-image:latest
 # Print the Trivy config that will be used (dry run)
 trivy image --show-suppress my-image:latest
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [aquasecurity.github.io/trivy](https://aquasecurity.github.io/trivy/latest/) | Trivy official documentation — vulnerability scanner for containers, IaC, and more |
+| **Trivy GitHub** | [github.com/aquasecurity/trivy](https://github.com/aquasecurity/trivy) | Open-source repository with releases, issues, and contribution guidelines |
+| **Aqua Security Blog** | [aquasec.com/blog](https://www.aquasec.com/blog/) | Security research, best practices, and Trivy feature announcements |

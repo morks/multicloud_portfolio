@@ -250,3 +250,14 @@ aws ec2 describe-instances \
 aws ec2 describe-instances \
   --filters "Name=tag:Name,Values=mein-server*"
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.aws.amazon.com](https://docs.aws.amazon.com/) | AWS official documentation — service references, API guides, tutorials, and architecture best practices. |
+| **AWS CLI Reference** | [awscli.amazonaws.com](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html) | Complete AWS CLI v2 command reference with all services, options, and examples. |
+| **Terraform Provider (AWS)** | [registry.terraform.io/hashicorp/aws](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) | HashiCorp AWS provider — the most widely used Terraform provider covering all AWS services. |
+| **OpenTofu Provider (AWS)** | [search.opentofu.org/hashicorp/aws](https://search.opentofu.org/provider/hashicorp/aws/latest) | AWS provider in the OpenTofu registry — fully compatible with the HashiCorp Terraform AWS provider. |

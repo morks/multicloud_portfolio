@@ -524,3 +524,14 @@ vault kv get -format=json secret/my-app | \
 # Vault documentation
 # https://developer.hashicorp.com/vault/docs
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [developer.hashicorp.com/vault/docs](https://developer.hashicorp.com/vault/docs) | HashiCorp Vault official documentation — secrets management, auth methods, policies |
+| **Vault Tutorials** | [developer.hashicorp.com/vault/tutorials](https://developer.hashicorp.com/vault/tutorials) | Hands-on tutorials for common Vault use cases and integrations |
+| **Terraform Provider (Vault)** | [registry.terraform.io/hashicorp/vault](https://registry.terraform.io/providers/hashicorp/vault/latest/docs) | Official HashiCorp Terraform provider for managing Vault resources |
+| **OpenTofu Provider (Vault)** | [search.opentofu.org/hashicorp/vault](https://search.opentofu.org/provider/hashicorp/vault/latest) | Vault provider in the OpenTofu registry |

@@ -597,3 +597,13 @@ wrangler deploy
 # Check Cloudflare system status
 curl -s https://www.cloudflarestatus.com/api/v2/status.json | jq '.status.description'
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [developers.cloudflare.com](https://developers.cloudflare.com/) | Cloudflare developer documentation — DNS, CDN, Workers, R2, Pages, Zero Trust, and all product APIs. |
+| **Terraform Provider (Cloudflare)** | [registry.terraform.io/cloudflare/cloudflare](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs) | Official Cloudflare Terraform provider — manages DNS records, zones, Workers, WAF rules, firewall rules, and more. |
+| **OpenTofu Provider (Cloudflare)** | [search.opentofu.org/cloudflare/cloudflare](https://search.opentofu.org/provider/cloudflare/cloudflare/latest) | Cloudflare provider in the OpenTofu registry — same feature set as the Terraform provider. |

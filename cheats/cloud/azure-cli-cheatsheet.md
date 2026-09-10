@@ -305,3 +305,14 @@ az interactive
 # Show help for a command
 az vm create --help
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [learn.microsoft.com/azure](https://learn.microsoft.com/en-us/azure/) | Microsoft Azure documentation hub — all services, tutorials, architectures, and reference material. |
+| **Azure CLI Reference** | [learn.microsoft.com/cli/azure](https://learn.microsoft.com/en-us/cli/azure/) | Complete Azure CLI command reference with syntax, parameters, and examples for every `az` command. |
+| **Terraform Provider (AzureRM)** | [registry.terraform.io/hashicorp/azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) | HashiCorp AzureRM provider — the standard Terraform provider for all Azure resources. |
+| **OpenTofu Provider (AzureRM)** | [search.opentofu.org/hashicorp/azurerm](https://search.opentofu.org/provider/hashicorp/azurerm/latest) | AzureRM provider in the OpenTofu registry — identical API surface to the Terraform provider. |

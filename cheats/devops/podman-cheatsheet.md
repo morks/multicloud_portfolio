@@ -626,3 +626,13 @@ podman build --layers -t my-app:1.0.0 .
 # Run Podman inside a container (rootful, for CI/CD)
 podman run --privileged --rm quay.io/podman/stable podman run alpine echo "hello"
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.podman.io](https://docs.podman.io/) | Podman documentation — rootless containers, pods, volumes, networking, and Compose support. |
+| **Podman Desktop** | [podman-desktop.io](https://podman-desktop.io/) | GUI tool for managing Podman containers, Kubernetes, and extensions — available for macOS, Windows, and Linux. |
+| **Buildah Docs** | [buildah.io](https://buildah.io/) | Buildah documentation — OCI image building without a daemon, complements Podman workflows. |

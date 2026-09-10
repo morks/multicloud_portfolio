@@ -436,3 +436,14 @@ docker history my-app:1.0.0
 # Build multi-arch image (BuildKit)
 docker buildx build --platform linux/amd64,linux/arm64 -t my-app:multi --push .
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.docker.com](https://docs.docker.com/) | Docker documentation — Engine, Compose, BuildKit, Desktop, Hub, and container networking guides. |
+| **Docker Hub** | [hub.docker.com](https://hub.docker.com/) | Docker's official image registry — search for base images, official images, and publisher-verified content. |
+| **Terraform Provider (Docker)** | [registry.terraform.io/kreuzwerker/docker](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs) | Community Docker Terraform provider — manages containers, images, networks, volumes, and Docker registries via IaC. |
+| **OpenTofu Provider (Docker)** | [search.opentofu.org/kreuzwerker/docker](https://search.opentofu.org/provider/kreuzwerker/docker/latest) | Docker provider in the OpenTofu registry — same resource set as the Terraform provider for local container management. |

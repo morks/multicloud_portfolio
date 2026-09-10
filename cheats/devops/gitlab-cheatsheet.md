@@ -308,3 +308,14 @@ glab api projects/:id/issues --jq '.[].title'
 glab alias set mrs 'mr list --assignee @me'
 glab mrs
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.gitlab.com](https://docs.gitlab.com/) | GitLab documentation — CI/CD, repositories, security scanning, Kubernetes integration, and self-hosted setup. |
+| **GitLab CI/CD Reference** | [docs.gitlab.com/ee/ci/yaml](https://docs.gitlab.com/ee/ci/yaml/) | Complete `.gitlab-ci.yml` keyword reference — all job-level and global CI/CD configuration options. |
+| **Terraform Provider (GitLab)** | [registry.terraform.io/gitlabhq/gitlab](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs) | Official GitLab Terraform provider — manages projects, groups, users, CI/CD variables, deploy keys, and protected branches. |
+| **OpenTofu Provider (GitLab)** | [search.opentofu.org/gitlabhq/gitlab](https://search.opentofu.org/provider/gitlabhq/gitlab/latest) | GitLab provider in the OpenTofu registry — full resource parity with the Terraform provider. |

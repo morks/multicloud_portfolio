@@ -634,3 +634,13 @@ gcloud container fleet features describe servicemesh --project my-project
 gcloud container fleet features describe policycontroller --project my-project
 gcloud container fleet features describe multiclusteringress --project my-project
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [cloud.google.com/anthos](https://cloud.google.com/anthos/docs) | Google Anthos product documentation — GKE Fleet, Config Management, Service Mesh, Policy Controller, and Multi-Cloud deployments. |
+| **Terraform Provider (Google)** | [registry.terraform.io/hashicorp/google](https://registry.terraform.io/providers/hashicorp/google/latest/docs) | HashiCorp Google provider — manages GKE clusters, Fleet memberships, Config Management, and Anthos features via Terraform/OpenTofu. |
+| **OpenTofu Provider (Google)** | [search.opentofu.org/hashicorp/google](https://search.opentofu.org/provider/hashicorp/google/latest) | Same Google provider available in the OpenTofu registry for IaC-as-code without proprietary lock-in. |

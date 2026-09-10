@@ -906,3 +906,15 @@ amtool silence add \
   --duration=1h \
   severity=~".*"
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Prometheus Docs** | [prometheus.io/docs](https://prometheus.io/docs/) | Prometheus documentation — data model, PromQL, configuration, alerting, and federation. |
+| **Grafana Docs** | [grafana.com/docs/grafana](https://grafana.com/docs/grafana/latest/) | Grafana documentation — dashboards, data sources, alerting, plugins, and provisioning. |
+| **PromQL Cheat Sheet** | [promlabs.com/promql-cheat-sheet](https://promlabs.com/promql-cheat-sheet/) | Concise PromQL reference — selectors, functions, aggregations, and rate/increase patterns. |
+| **Terraform Provider (Grafana)** | [registry.terraform.io/grafana/grafana](https://registry.terraform.io/providers/grafana/grafana/latest/docs) | Official Grafana Terraform provider — manages dashboards, data sources, alerts, folders, teams, and API keys as code. |
+| **OpenTofu Provider (Grafana)** | [search.opentofu.org/grafana/grafana](https://search.opentofu.org/provider/grafana/grafana/latest) | Grafana provider in the OpenTofu registry — same resource coverage as the Terraform provider. |

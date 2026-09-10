@@ -884,3 +884,13 @@ client.restore_run("<run-id>")
 
 client.restore_experiment("<experiment-id>")
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [mlflow.org/docs/latest](https://mlflow.org/docs/latest/) | MLflow documentation — tracking, projects, models, model registry, deployments, and recipes. |
+| **MLflow GitHub** | [github.com/mlflow/mlflow](https://github.com/mlflow/mlflow) | MLflow source code, issues, roadmap, and community contributions on GitHub. |
+| **MLflow on Databricks** | [docs.databricks.com/mlflow](https://docs.databricks.com/en/mlflow/index.html) | Managed MLflow on Databricks — integrated experiment tracking, model registry, and deployment. |

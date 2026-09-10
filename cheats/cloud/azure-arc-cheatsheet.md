@@ -856,3 +856,13 @@ az connectedmachine update \
     managed-by=azure-arc \
     onboarded-date=2024-01-15
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [learn.microsoft.com/azure/azure-arc](https://learn.microsoft.com/en-us/azure/azure-arc/) | Azure Arc documentation — onboarding servers, Kubernetes clusters, data services, and App Services to Azure management. |
+| **Terraform Provider (AzureRM)** | [registry.terraform.io/hashicorp/azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) | HashiCorp AzureRM provider — manages Azure Arc-enabled servers, Kubernetes clusters, and connected machines. |
+| **OpenTofu Provider (AzureRM)** | [search.opentofu.org/hashicorp/azurerm](https://search.opentofu.org/provider/hashicorp/azurerm/latest) | AzureRM provider in the OpenTofu registry for managing Azure and Azure Arc resources. |

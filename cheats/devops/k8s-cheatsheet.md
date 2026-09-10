@@ -498,3 +498,14 @@ stern my-deploy   # logs of all pods in deployment
 brew install kustomize
 kustomize build ./overlays/prod | kubectl apply -f -
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [kubernetes.io/docs](https://kubernetes.io/docs/) | Kubernetes documentation — concepts, tasks, tutorials, API reference, and kubectl cheat sheet. |
+| **kubectl Reference** | [kubernetes.io/docs/reference/kubectl](https://kubernetes.io/docs/reference/kubectl/) | Complete kubectl command reference with all resource types, flags, and output formats. |
+| **Terraform Provider (Kubernetes)** | [registry.terraform.io/hashicorp/kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs) | HashiCorp Kubernetes Terraform provider — manages namespaces, deployments, services, ConfigMaps, RBAC, and all K8s resources. |
+| **OpenTofu Provider (Kubernetes)** | [search.opentofu.org/hashicorp/kubernetes](https://search.opentofu.org/provider/hashicorp/kubernetes/latest) | Kubernetes provider in the OpenTofu registry — identical API surface to the Terraform provider. |

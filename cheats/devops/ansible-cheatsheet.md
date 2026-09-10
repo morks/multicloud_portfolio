@@ -589,3 +589,13 @@ ansible-playbook playbooks/site.yml --limit @playbooks/site.retry
 # Web UI for Ansible: https://github.com/ansible/awx
 # Enterprise: Red Hat Ansible Automation Platform (AAP)
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.ansible.com](https://docs.ansible.com/) | Ansible documentation — playbooks, inventory, roles, collections, AWX, and Ansible Automation Platform guides. |
+| **Ansible Galaxy** | [galaxy.ansible.com](https://galaxy.ansible.com/) | Community hub for Ansible roles and collections — browse, install, and share reusable automation content. |
+| **Terraform Provider (Ansible)** | [registry.terraform.io/ansible/ansible](https://registry.terraform.io/providers/ansible/ansible/latest/docs) | Community Ansible Terraform provider — run Ansible playbooks and manage inventories from within a Terraform/OpenTofu workflow. |

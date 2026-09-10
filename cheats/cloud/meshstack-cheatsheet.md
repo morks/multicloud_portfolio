@@ -535,3 +535,14 @@ done
 # Show full API documentation (Swagger UI)
 open "${MESHSTACK_URL}/api/swagger-ui.html"
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.meshcloud.io](https://docs.meshcloud.io/) | meshcloud MeshStack documentation — platform engineering, Landing Zones, tenant management, and chargeback concepts. |
+| **MeshStack API Reference** | [docs.meshcloud.io/api](https://docs.meshcloud.io/api/index.html) | MeshStack REST API reference — meshObjects, workspaces, projects, and automation endpoints. |
+| **Terraform Provider (meshcloud)** | [registry.terraform.io/meshcloud/meshstack](https://registry.terraform.io/providers/meshcloud/meshstack/latest/docs) | Official meshcloud Terraform provider — manages MeshStack Landing Zones, building blocks, service instances, and policies via IaC. |
+| **OpenTofu Provider (meshcloud)** | [search.opentofu.org/meshcloud/meshstack](https://search.opentofu.org/provider/meshcloud/meshstack/latest) | meshcloud provider available in the OpenTofu registry for platform engineering automation. |

@@ -994,3 +994,13 @@ openstack availability zone list --network
 | Zone (DNS)        | `openstack zone list`         | `openstack zone create`      | `openstack zone show`       | `openstack zone delete`      |
 | Share (Manila)    | `openstack share list`        | `openstack share create`     | `openstack share show`      | `openstack share delete`     |
 | Baremetal Node    | `openstack baremetal node list` | `openstack baremetal node create` | `openstack baremetal node show` | `openstack baremetal node delete` |
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.openstack.org](https://docs.openstack.org/) | OpenStack project documentation — Nova, Neutron, Cinder, Swift, Keystone, Glance, Heat, and all components. |
+| **Terraform Provider (OpenStack)** | [registry.terraform.io/terraform-provider-openstack/openstack](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs) | Community OpenStack Terraform provider — manages instances, networks, volumes, security groups, object storage, and more. |
+| **OpenTofu Provider (OpenStack)** | [search.opentofu.org/terraform-provider-openstack/openstack](https://search.opentofu.org/provider/terraform-provider-openstack/openstack/latest) | OpenStack provider in the OpenTofu registry — full compatibility with the Terraform provider. |

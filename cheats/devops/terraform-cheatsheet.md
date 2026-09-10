@@ -780,3 +780,15 @@ terraform state list | xargs -I{} terraform state show {}
 # Quick resource count per type
 terraform state list | sed 's/\[.*//' | cut -d. -f1-2 | sort | uniq -c | sort -rn
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Terraform Docs** | [developer.hashicorp.com/terraform/docs](https://developer.hashicorp.com/terraform/docs) | Official HashiCorp Terraform documentation — language reference, CLI, backends, providers |
+| **OpenTofu Docs** | [opentofu.org/docs](https://opentofu.org/docs) | Official OpenTofu documentation — open-source Terraform-compatible IaC tool |
+| **Terraform Registry** | [registry.terraform.io](https://registry.terraform.io) | Browse and search all public Terraform providers and modules |
+| **OpenTofu Registry** | [search.opentofu.org](https://search.opentofu.org) | Browse and search all public OpenTofu providers and modules |
+| **tflint** | [github.com/terraform-linters/tflint](https://github.com/terraform-linters/tflint) | Pluggable Terraform linter with provider-specific rule sets |

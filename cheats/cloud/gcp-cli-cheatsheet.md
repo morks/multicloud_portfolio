@@ -320,3 +320,14 @@ gcloud logging read "resource.type=gce_instance" --limit 50
 # Help for a command
 gcloud compute instances create --help
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [cloud.google.com/docs](https://cloud.google.com/docs) | Google Cloud documentation hub — all products, APIs, tutorials, quickstarts, and architecture guides. |
+| **gcloud CLI Reference** | [cloud.google.com/sdk/gcloud/reference](https://cloud.google.com/sdk/gcloud/reference) | Complete gcloud CLI reference — every command group, flag, and output format. |
+| **Terraform Provider (Google)** | [registry.terraform.io/hashicorp/google](https://registry.terraform.io/providers/hashicorp/google/latest/docs) | HashiCorp Google Cloud provider — manages GCE, GKE, Cloud SQL, Cloud Storage, IAM, and all GCP services. |
+| **OpenTofu Provider (Google)** | [search.opentofu.org/hashicorp/google](https://search.opentofu.org/provider/hashicorp/google/latest) | Google Cloud provider in the OpenTofu registry — same resource coverage as the Terraform provider. |

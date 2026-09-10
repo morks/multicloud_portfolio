@@ -618,3 +618,14 @@ spec:
       - {key: node-role.kubernetes.io/control-plane, operator: In, values: ["true"]}
 EOF
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [ranchermanager.docs.rancher.com](https://ranchermanager.docs.rancher.com/) | Rancher documentation — cluster management, multi-cloud, Fleet GitOps, monitoring, and security. |
+| **Rancher Academy** | [academy.rancher.com](https://academy.rancher.com/) | Free online courses for Rancher, K3s, RKE, and Kubernetes from SUSE. |
+| **Terraform Provider (Rancher2)** | [registry.terraform.io/rancher/rancher2](https://registry.terraform.io/providers/rancher/rancher2/latest/docs) | Official Rancher Terraform provider — manages clusters, node pools, projects, namespaces, catalogs, and cloud credentials. |
+| **OpenTofu Provider (Rancher2)** | [search.opentofu.org/rancher/rancher2](https://search.opentofu.org/provider/rancher/rancher2/latest) | Rancher2 provider in the OpenTofu registry — declare Rancher resources as infrastructure code. |

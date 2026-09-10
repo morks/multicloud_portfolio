@@ -284,3 +284,14 @@ gh api graphql -f query='{ viewer { login } }'
 gh alias set prs 'pr list --assignee @me'
 gh prs
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.github.com](https://docs.github.com/) | GitHub documentation — repositories, Actions, Packages, Security, Codespaces, and API references. |
+| **GitHub Actions Marketplace** | [github.com/marketplace?type=actions](https://github.com/marketplace?type=actions) | Browse thousands of reusable Actions for CI/CD workflows — testing, deployment, notifications, and more. |
+| **Terraform Provider (GitHub)** | [registry.terraform.io/integrations/github](https://registry.terraform.io/providers/integrations/github/latest/docs) | Official GitHub Terraform provider — manages repositories, teams, branch protections, Actions secrets, and org settings. |
+| **OpenTofu Provider (GitHub)** | [search.opentofu.org/integrations/github](https://search.opentofu.org/provider/integrations/github/latest) | GitHub provider in the OpenTofu registry — same capabilities as the Terraform provider. |

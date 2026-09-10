@@ -945,3 +945,14 @@ KUBECONFIG=~/.kube/config:~/.kube/prod-config \
   oc config view --merge --flatten > ~/.kube/merged-config
 export KUBECONFIG=~/.kube/merged-config
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.openshift.com](https://docs.openshift.com/) | Red Hat OpenShift documentation — installation, operators, builds, networking, storage, and security. |
+| **oc CLI Reference** | [docs.openshift.com/container-platform/latest/cli_reference](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html) | Complete `oc` CLI reference — all commands, flags, and examples for OpenShift cluster management. |
+| **Terraform Provider (Kubernetes)** | [registry.terraform.io/hashicorp/kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs) | HashiCorp Kubernetes provider works with OpenShift clusters — manages deployments, services, RBAC, and OpenShift-specific CRDs. |
+| **OpenTofu Provider (Kubernetes)** | [search.opentofu.org/hashicorp/kubernetes](https://search.opentofu.org/provider/hashicorp/kubernetes/latest) | Kubernetes provider in the OpenTofu registry — compatible with OpenShift API servers. |

@@ -844,3 +844,14 @@ helm list -n gpu-operator -o json | jq '.[].app_version'
 # Watch GPU Operator pods until all are Running
 watch kubectl get pods -n gpu-operator
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs (NVIDIA AI Enterprise)** | [docs.nvidia.com/ai-enterprise](https://docs.nvidia.com/ai-enterprise/) | NVIDIA AI Enterprise documentation — GPU Operator, NIM, NeMo, Triton, and enterprise support guides. |
+| **NGC Catalog** | [catalog.ngc.nvidia.com](https://catalog.ngc.nvidia.com/) | NVIDIA GPU Cloud catalog — pre-built containers, models, Helm charts, and SDKs for AI/ML workloads. |
+| **GPU Operator Docs** | [docs.nvidia.com/datacenter/cloud-native/gpu-operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/index.html) | NVIDIA GPU Operator documentation — Kubernetes deployment, node feature discovery, and driver management. |
+| **Terraform Provider (NVIDIA)** | [registry.terraform.io/nvidia/ngc](https://registry.terraform.io/providers/nvidia/ngc/latest/docs) | Official NVIDIA NGC Terraform provider — manages NGC teams, users, org credentials, and API keys for NGC resources. |

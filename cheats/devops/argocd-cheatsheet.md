@@ -385,3 +385,13 @@ kubectl get pods -n argocd
 kubectl -n argocd get deploy argocd-server \
   -o jsonpath='{.spec.template.spec.containers[0].image}'
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [argo-cd.readthedocs.io](https://argo-cd.readthedocs.io/) | ArgoCD documentation — getting started, application management, SSO, RBAC, notifications, and operator guides. |
+| **Terraform Provider (ArgoCD)** | [registry.terraform.io/oboukili/argocd](https://registry.terraform.io/providers/oboukili/argocd/latest/docs) | Community ArgoCD Terraform provider — manages Applications, Projects, repositories, and cluster secrets via IaC. |
+| **OpenTofu Provider (ArgoCD)** | [search.opentofu.org/oboukili/argocd](https://search.opentofu.org/provider/oboukili/argocd/latest) | ArgoCD provider in the OpenTofu registry — declare ArgoCD resources as code alongside your infrastructure. |

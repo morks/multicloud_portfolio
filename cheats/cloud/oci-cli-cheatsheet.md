@@ -370,3 +370,14 @@ default_profile=DEFAULT" >> ~/.oci/oci_cli_rc
 # Automatic pagination for large result sets
 oci iam compartment list --all
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.oracle.com/iaas](https://docs.oracle.com/en-us/iaas/Content/home.htm) | Oracle Cloud Infrastructure documentation — all services, API references, tutorials, and architecture guides. |
+| **OCI CLI Reference** | [docs.oracle.com/iaas/tools/oci-cli](https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/) | Complete OCI CLI command reference with all resources, parameters, and output options. |
+| **Terraform Provider (OCI)** | [registry.terraform.io/oracle/oci](https://registry.terraform.io/providers/oracle/oci/latest/docs) | Official Oracle OCI Terraform provider — manages Compute, Networking, Storage, Database, and all OCI services. |
+| **OpenTofu Provider (OCI)** | [search.opentofu.org/oracle/oci](https://search.opentofu.org/provider/oracle/oci/latest) | OCI provider in the OpenTofu registry — full feature parity with the Terraform provider. |

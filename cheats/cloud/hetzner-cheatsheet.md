@@ -728,3 +728,14 @@ echo "$HCLOUD_TOKEN" | hcloud context create my-project
 # Show current active context
 hcloud context list | grep "^\*"
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Official Docs** | [docs.hetzner.com](https://docs.hetzner.com/) | Hetzner documentation — Cloud servers, dedicated servers, storage, networking, and DNS products. |
+| **hcloud CLI Reference** | [github.com/hetznercloud/cli](https://github.com/hetznercloud/cli) | Open-source hcloud CLI source, releases, and usage examples on GitHub. |
+| **Terraform Provider (Hetzner)** | [registry.terraform.io/hetznercloud/hcloud](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs) | Official Hetzner Cloud Terraform provider — manages servers, networks, load balancers, firewalls, volumes, and SSH keys. |
+| **OpenTofu Provider (Hetzner)** | [search.opentofu.org/hetznercloud/hcloud](https://search.opentofu.org/provider/hetznercloud/hcloud/latest) | Hetzner Cloud provider in the OpenTofu registry — identical API surface to the Terraform provider. |
