@@ -335,3 +335,12 @@ stackit config unset --organization-id
 stackit completion bash >> ~/.bashrc
 stackit completion zsh >> ~/.zshrc
 ```
+
+---
+
+## Further Resources
+
+| Resource | Link | Description |
+|----------|------|-------------|
+| **Landing Zone** | [stackit-landing-zone/architecture.md](https://github.com/stackitcloud/stackit-landing-zone/blob/main/docs/architecture.md) | Reference architecture for a STACKIT Landing Zone — network topology, account structure, security guardrails, and deployment patterns for enterprise-ready cloud environments. |
+| **AGENTS.md** | [professional-service/AGENTS.md](https://github.com/stackitcloud/professional-service/blob/main/AGENTS.md) | Guidelines and conventions for AI-agent-based interactions with STACKIT services — intended for developers building or using agentic workflows on the STACKIT platform. |
