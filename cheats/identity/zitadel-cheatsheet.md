@@ -1,5 +1,17 @@
 # ZITADEL Cheat Sheet
 
+## Overview
+
+**ZITADEL** is a cloud-native, open-source IAM platform built for multi-tenancy, API-first usage, and modern SaaS architectures.
+
+| | |
+|---|---|
+| **Strengths** | Multi-org/tenant by design · API-first (gRPC + REST) · Actions for dynamic auth logic (TypeScript) · cloud-native architecture (CockroachDB/PostgreSQL) · self-hosted or ZITADEL Cloud |
+| **Weaknesses** | Younger ecosystem than Keycloak · fewer enterprise integrations · smaller community · ZITADEL Cloud pricing can add up |
+| **Best for** | SaaS platforms with multi-tenant requirements, API-driven authentication, modern cloud-native applications, teams preferring code-first IAM configuration |
+
+---
+
 ## Installation & Setup
 
 ```bash

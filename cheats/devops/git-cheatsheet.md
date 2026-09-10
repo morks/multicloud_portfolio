@@ -1,5 +1,17 @@
 # Git Cheat Sheet
 
+## Overview
+
+**Git** is the distributed version control system that is the foundation of all modern software development — every commit, branch, and merge tracked locally and remotely.
+
+| | |
+|---|---|
+| **Strengths** | Distributed model (full local history) · fast branching & merging · immutable commit history · massive ecosystem (GitHub, GitLab, Bitbucket) · works offline · industry standard |
+| **Weaknesses** | Complex history rewriting (rebase pitfalls for beginners) · poor binary file handling · CLI learning curve · merge conflicts still require manual resolution |
+| **Best for** | Every software project — version control, team collaboration, code review workflows, CI/CD trigger source, auditable change history |
+
+---
+
 ## Installation & Setup
 
 ```bash

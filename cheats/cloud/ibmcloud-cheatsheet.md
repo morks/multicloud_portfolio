@@ -1,5 +1,17 @@
 # IBM Cloud CLI Cheat Sheet
 
+## Overview
+
+**IBM Cloud** is IBM's enterprise cloud platform focused on hybrid cloud (OpenShift), regulated industries, and Watson AI services.
+
+| | |
+|---|---|
+| **Strengths** | Best-in-class managed OpenShift (ROKS) · financial services cloud certifications · Watson AI integrations · mainframe & on-prem connectivity · strong compliance posture |
+| **Weaknesses** | Smaller ecosystem than hyperscalers · higher cost · less developer-friendly tooling · complex pricing model |
+| **Best for** | Regulated industries (finance, healthcare, government), OpenShift workloads, Watson/watsonx AI, mainframe-to-cloud integration |
+
+---
+
 ## Installation & Setup
 
 ```bash

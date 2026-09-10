@@ -1,5 +1,17 @@
 # Ansible Cheat Sheet
 
+## Overview
+
+**Ansible** is an agentless IT automation tool for configuration management, application deployment, and orchestration using human-readable YAML playbooks over SSH.
+
+| | |
+|---|---|
+| **Strengths** | Agentless (SSH-based) · readable YAML · 10,000+ modules on Ansible Galaxy · idempotent execution · works on Linux, Windows, network devices · AWX/AAP for enterprise |
+| **Weaknesses** | Performance at scale (serial by default, forks help) · no built-in state management like Terraform · complex playbooks become hard to maintain · Python dependency on managed nodes |
+| **Best for** | Server configuration management, OS-level automation, application deployment, complementing Terraform (infra = TF, config = Ansible), network device automation |
+
+---
+
 ## Installation & Setup
 
 ```bash

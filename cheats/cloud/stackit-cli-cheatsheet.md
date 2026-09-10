@@ -1,5 +1,17 @@
 # STACKIT CLI Cheat Sheet
 
+## Overview
+
+**STACKIT** is the Schwarz Group's (Lidl, Kaufland) European cloud platform, offering GDPR-compliant services from German data centers.
+
+| | |
+|---|---|
+| **Strengths** | GDPR-compliant · German data centers (Baden-Württemberg) · competitive EU pricing · good developer experience · growing service portfolio · EU data sovereignty guarantee |
+| **Weaknesses** | Smaller ecosystem than hyperscalers · limited global regions · maturing service portfolio · smaller community & documentation |
+| **Best for** | EU-based workloads requiring data sovereignty, GDPR compliance, retail & commerce, cost-optimized European cloud deployments |
+
+---
+
 ## Installation & Setup
 
 ```bash

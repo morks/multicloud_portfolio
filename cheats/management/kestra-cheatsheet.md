@@ -1,5 +1,17 @@
 # Kestra Cheat Sheet
 
+## Overview
+
+**Kestra** is an open-source, cloud-native workflow orchestration platform that lets you build, schedule, and monitor pipelines and automation workflows using declarative YAML.
+
+| | |
+|---|---|
+| **Strengths** | 400+ plugins (dbt, Spark, S3, Slack, HTTP…) · real-time UI with live logs · Git-native flows · self-hosted or Kestra Cloud · event-driven triggers · no code required |
+| **Weaknesses** | Young ecosystem · UI can be slow on very large deployments · limited RBAC in OSS version · community smaller than Airflow/Prefect |
+| **Best for** | Data pipelines & ETL, cross-service workflow automation, CI/CD orchestration, scheduled tasks, replacing cron + custom scripts |
+
+---
+
 ## Installation & Setup
 
 ```bash

@@ -1,5 +1,17 @@
 # HAProxy Cheat Sheet
 
+## Overview
+
+**HAProxy** is the industry reference open-source TCP/HTTP load balancer and proxy — battle-tested for extreme high-traffic, mission-critical environments.
+
+| | |
+|---|---|
+| **Strengths** | Exceptional throughput & low latency · rich ACL system for routing logic · runtime API for zero-downtime config changes · detailed built-in stats · L4 & L7 load balancing |
+| **Weaknesses** | Verbose config format (not YAML) · no native service discovery · less K8s-native than NGINX · complex SSL configuration · steep learning curve for advanced ACLs |
+| **Best for** | High-throughput L4/L7 load balancing, TCP proxying, enterprise on-prem load balancing, complex routing logic with ACLs, mission-critical traffic management |
+
+---
+
 ## Installation & Setup
 
 ```bash

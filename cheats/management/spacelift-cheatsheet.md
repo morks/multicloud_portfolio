@@ -1,5 +1,17 @@
 # Spacelift Cheat Sheet
 
+## Overview
+
+**Spacelift** is an enterprise IaC management platform supporting Terraform, OpenTofu, Pulumi, Ansible, and CloudFormation with OPA-based policy enforcement.
+
+| | |
+|---|---|
+| **Strengths** | OPA policy engine (plan/trigger/access policies) · self-hosted private worker pools · module registry · multi-tool support · audit logs · fine-grained RBAC |
+| **Weaknesses** | SaaS-first (self-hosted worker setup is complex) · cost scales with usage · OPA/Rego learning curve · smaller community than Terraform Cloud |
+| **Best for** | Enterprise IaC governance across multiple teams, replacing Terraform Cloud/Enterprise, enforcing OPA policies on infra changes, multi-tool IaC environments |
+
+---
+
 ## Key Concepts
 
 ```bash

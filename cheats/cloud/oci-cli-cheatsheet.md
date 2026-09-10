@@ -1,5 +1,17 @@
 # OCI CLI Cheat Sheet (Oracle Cloud Infrastructure)
 
+## Overview
+
+**Oracle Cloud Infrastructure (OCI)** is Oracle's second-generation cloud, optimized for Oracle Database workloads and price-sensitive compute.
+
+| | |
+|---|---|
+| **Strengths** | Aggressive pricing (best $/OCPU for compute) · high-performance bare metal · Oracle DB native (Autonomous DB, Exadata) · generous Always Free tier · fast networking |
+| **Weaknesses** | Smaller managed service portfolio · less mature developer tooling · smaller ecosystem & community · primarily Oracle-workload focused |
+| **Best for** | Oracle Database migrations, legacy enterprise applications, cost-sensitive compute, Oracle Exadata in the cloud |
+
+---
+
 ## Installation & Setup
 
 ```bash

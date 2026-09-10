@@ -1,5 +1,17 @@
 # CTC Cheat Sheet (Telekom Cloud / Open Telekom Cloud)
 
+## Overview
+
+**Telekom Cloud (Open Telekom Cloud / OTC)** is T-Systems' OpenStack-based cloud platform with a strong focus on European data sovereignty and GDPR compliance.
+
+| | |
+|---|---|
+| **Strengths** | GDPR-compliant from the ground up · German data centers (Frankfurt, Biere) · OpenStack API compatibility · competitive EU pricing · suitable for public sector |
+| **Weaknesses** | Smaller managed service portfolio · less documentation in English · fewer automation tools than hyperscalers · limited global presence |
+| **Best for** | German & EU regulated workloads, public sector, GDPR-sensitive data, OpenStack-compatible migrations, cost-effective EU hosting |
+
+---
+
 > The Open Telekom Cloud (OTC) is based on OpenStack. CLI tools: `otc` (proprietary client) as well as the standard OpenStack CLIs `openstack`, `swift`, `nova`, `neutron`, etc.
 
 ## Installation & Setup

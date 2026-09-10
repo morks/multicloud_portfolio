@@ -1,5 +1,17 @@
 # FluxCD Cheat Sheet
 
+## Overview
+
+**FluxCD** is a CNCF-graduated GitOps operator for Kubernetes that continuously reconciles cluster state from Git repositories.
+
+| | |
+|---|---|
+| **Strengths** | CNCF graduated · lightweight & CLI-native · native image update automation · excellent multi-tenancy via namespace isolation · no external UI dependency · OCI artifact support |
+| **Weaknesses** | No built-in web UI (CLI/kubectl only) · steeper learning curve vs ArgoCD · notification setup requires extra config · smaller community than ArgoCD |
+| **Best for** | GitOps purists, automated image updates, multi-tenancy K8s platforms, CI-less deployment pipelines, teams preferring kubectl over a web UI |
+
+---
+
 ## Installation & Setup
 
 ```bash

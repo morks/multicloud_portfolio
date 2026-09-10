@@ -1,5 +1,17 @@
 # Backstage Cheat Sheet
 
+## Overview
+
+**Backstage** is Spotify's open-source developer portal framework for building internal developer platforms (IDPs) with a software catalog, scaffolder, and TechDocs.
+
+| | |
+|---|---|
+| **Strengths** | Extensible plugin ecosystem (200+ plugins) · Software Catalog for service discovery · Scaffolder for golden path templates · TechDocs for integrated documentation · CNCF project |
+| **Weaknesses** | Complex to set up and maintain · plugin quality varies widely · requires TypeScript/React skills for customization · significant ongoing maintenance burden |
+| **Best for** | Platform engineering teams building IDPs, software catalog & service ownership, standardizing golden paths, unifying tooling under one developer portal |
+
+---
+
 ## Installation & Setup
 
 ```bash

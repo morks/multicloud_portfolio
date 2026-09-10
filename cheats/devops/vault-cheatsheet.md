@@ -1,5 +1,17 @@
 # HashiCorp Vault Cheat Sheet
 
+## Overview
+
+**HashiCorp Vault** is an enterprise secrets management platform providing dynamic secrets, PKI, encryption-as-a-service, and fine-grained access policies.
+
+| | |
+|---|---|
+| **Strengths** | Dynamic secret generation (DB, cloud, SSH) · PKI & certificate authority engine · transit encryption · K8s auth integration · audit logging · huge ecosystem · open-source core |
+| **Weaknesses** | Complex HA setup (Raft/Consul) · seal/unseal operations require care · enterprise features behind paid license · steep learning curve for policies & mounts |
+| **Best for** | Dynamic database credentials, PKI/TLS infrastructure, encryption-as-a-service, centralized secret management across multi-cloud environments |
+
+---
+
 ## Installation & Setup
 
 ```bash

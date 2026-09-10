@@ -1,5 +1,17 @@
 # Anthos Cheat Sheet (Google Cloud)
 
+## Overview
+
+**Anthos** is Google Cloud's multi-cloud and hybrid Kubernetes management platform — run and manage K8s clusters anywhere under a unified control plane.
+
+| | |
+|---|---|
+| **Strengths** | Consistent K8s across GCP/on-prem/AWS/Azure · Config Management (ACM) · Anthos Service Mesh (Istio) · Policy Controller (OPA Gatekeeper) · binary authorization |
+| **Weaknesses** | Expensive licensing · requires GCP account even for on-prem · complex to operate · significant learning curve · being superseded partially by GKE Enterprise |
+| **Best for** | Enterprise multi-cloud Kubernetes, compliance-heavy environments, consistent policy enforcement across clusters, hybrid cloud with GCP as control plane |
+
+---
+
 ## Installation & Setup
 
 ```bash

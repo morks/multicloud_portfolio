@@ -1,5 +1,17 @@
 # Azure CLI Cheat Sheet
 
+## Overview
+
+**Azure** is Microsoft's cloud platform, deeply integrated with the Microsoft/Windows and enterprise software ecosystem.
+
+| | |
+|---|---|
+| **Strengths** | Best-in-class Entra ID / Active Directory integration · strong hybrid cloud story · Office 365 & Microsoft 365 synergy · enterprise agreements & compliance certifications |
+| **Weaknesses** | Complex portal UX · inconsistent CLI experience across services · pricing complexity · slower innovation cadence than AWS in some areas |
+| **Best for** | Microsoft-centric enterprises, hybrid cloud, Windows & .NET workloads, regulated industries with existing Microsoft agreements |
+
+---
+
 ## Installation & Setup
 
 ```bash

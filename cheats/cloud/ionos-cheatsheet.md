@@ -1,5 +1,17 @@
 # IONOS Cloud CLI Cheat Sheet
 
+## Overview
+
+**IONOS Cloud** is the cloud platform of IONOS (United Internet / 1&1), offering European-hosted infrastructure with strong DACH market presence.
+
+| | |
+|---|---|
+| **Strengths** | European data sovereignty · GDPR-compliant · competitive pricing · dedicated server options · good S3-compatible object storage · DCD (Data Center Designer) UI |
+| **Weaknesses** | Less mature developer tooling · smaller managed service catalog · fewer integrations · ionosctl CLI is newer and less battle-tested |
+| **Best for** | DACH market workloads, SME infrastructure, GDPR-sensitive data, dedicated servers, web hosting, cost-efficient EU compute |
+
+---
+
 ## Installation & Setup
 
 ```bash

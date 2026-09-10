@@ -1,5 +1,17 @@
 # cert-manager Cheat Sheet
 
+## Overview
+
+**cert-manager** is a Kubernetes-native certificate management controller that automatically provisions and renews TLS certificates from Let's Encrypt, Vault, or custom CAs.
+
+| | |
+|---|---|
+| **Strengths** | Fully automated cert lifecycle · multiple issuer backends (ACME, Vault, CA, self-signed) · Ingress annotation integration · cmctl CLI · wildcard cert support · CNCF project |
+| **Weaknesses** | Debugging failed cert issuance is complex (multi-step chain) · misconfigured issuers fail silently · version upgrades require CRD migration care · ACME DNS-01 setup can be fiddly |
+| **Best for** | Automated TLS for K8s Ingress & services, Let's Encrypt integration, internal PKI with Vault backend, mTLS certificate provisioning |
+
+---
+
 ## Installation & Setup
 
 ```bash

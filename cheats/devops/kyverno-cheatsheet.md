@@ -1,5 +1,17 @@
 # Kyverno Cheat Sheet
 
+## Overview
+
+**Kyverno** is a Kubernetes-native policy engine that validates, mutates, and generates resources using YAML-based policies — no Rego or separate DSL required.
+
+| | |
+|---|---|
+| **Strengths** | YAML-native policies (no Rego) · validate + mutate + generate in one tool · PolicyReport CRD for audit · CLI for offline testing · large policy library · CNCF project |
+| **Weaknesses** | Less expressive than OPA for very complex logic · large policy sets can slow admission webhook · limited use outside K8s · debugging mutating policies can be tricky |
+| **Best for** | K8s admission control, enforcing resource standards (labels, limits, registry restrictions), auto-generating default resources, compliance guardrails without OPA complexity |
+
+---
+
 ## Installation & Setup
 
 ```bash

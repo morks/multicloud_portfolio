@@ -1,5 +1,17 @@
 # Atlantis Cheat Sheet
 
+## Overview
+
+**Atlantis** is an open-source Terraform/OpenTofu pull request automation server — GitOps for infrastructure code, running plan/apply directly from PR comments.
+
+| | |
+|---|---|
+| **Strengths** | Simple self-hosted setup · plan output directly in PRs · full audit trail in Git · supports Terraform, OpenTofu, Terragrunt · no SaaS dependency · integrates with GitHub/GitLab/Bitbucket |
+| **Weaknesses** | No built-in UI or run history · no native RBAC beyond PR approval · single point of failure if unmanaged · stateless (no persistent dashboard) |
+| **Best for** | Teams adopting GitOps for Terraform, PR-based IaC review workflows, open-source alternative to Terraform Cloud/Enterprise, small-to-medium platform teams |
+
+---
+
 ## Installation & Setup
 
 ```bash

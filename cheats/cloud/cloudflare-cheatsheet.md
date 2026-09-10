@@ -1,5 +1,17 @@
 # Cloudflare Cheat Sheet (flarectl & wrangler)
 
+## Overview
+
+**Cloudflare** is a global edge network platform providing CDN, DDoS protection, Zero Trust networking, DNS, and serverless compute (Workers) across 300+ PoPs worldwide.
+
+| | |
+|---|---|
+| **Strengths** | 300+ global PoPs · fastest authoritative DNS · industry-leading DDoS mitigation · Workers edge compute · Zero Trust (ZTNA/SASE) · generous free tier · Warp VPN |
+| **Weaknesses** | Not a full cloud provider (no general compute/storage) · Workers runtime limitations vs Node.js · complex WAF rule management · R2/D1 still maturing |
+| **Best for** | CDN & web acceleration, DDoS protection, authoritative DNS, Zero Trust network access, edge computing with Workers, API gateway, Tunnel for exposing local services |
+
+---
+
 ## Installation & Setup
 
 ```bash

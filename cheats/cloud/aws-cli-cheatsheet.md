@@ -1,5 +1,17 @@
 # AWS CLI Cheat Sheet
 
+## Overview
+
+**AWS** is Amazon's cloud platform offering 200+ services — the world's largest and most mature public cloud.
+
+| | |
+|---|---|
+| **Strengths** | Widest service breadth · largest ecosystem & community · most mature tooling · global region coverage · richest AI/ML portfolio |
+| **Weaknesses** | Complex and opaque pricing · steep IAM learning curve · vendor lock-in risk · console can overwhelm |
+| **Best for** | Enterprise workloads at scale, startups needing rapid growth, AI/ML, serverless, global multi-region deployments |
+
+---
+
 ## Installation & Setup
 
 ```bash

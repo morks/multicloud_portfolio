@@ -1,5 +1,17 @@
 # Docker Cheat Sheet
 
+## Overview
+
+**Docker** is the container platform that standardized containerization — build, ship, and run container images with a simple CLI and the Docker Hub ecosystem.
+
+| | |
+|---|---|
+| **Strengths** | Industry-standard image format (OCI) · massive Docker Hub ecosystem · Compose for local multi-service dev · BuildKit for fast multi-stage builds · multi-arch support · broad CI/CD integration |
+| **Weaknesses** | Daemon requires root by default (security concern) · Docker Desktop licensing for enterprises · large attack surface without hardening · Compose v2 migration still ongoing |
+| **Best for** | Local development environments, building & publishing container images, CI/CD pipelines, Docker Compose for multi-service local stacks |
+
+---
+
 ## Installation & Setup
 
 ```bash

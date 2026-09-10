@@ -1,5 +1,17 @@
 # OpenShift / OKD Cheat Sheet
 
+## Overview
+
+**OpenShift** is Red Hat's enterprise Kubernetes distribution with integrated CI/CD, image registry, developer console, and hardened security defaults.
+
+| | |
+|---|---|
+| **Strengths** | Integrated developer experience (Source-to-Image, BuildConfig, pipelines) · hardened security (SCCs, SELinux) · built-in registry · OLM operator lifecycle management · enterprise support |
+| **Weaknesses** | Opinionated (restricts root containers by default) · expensive Red Hat subscription · complex upgrade paths · slower than vanilla K8s for some workloads · heavy resource footprint |
+| **Best for** | Enterprise K8s with developer self-service, regulated environments (FIPS, CC), Red Hat/IBM ecosystem, organizations wanting full enterprise support and SLAs |
+
+---
+
 ## Installation & Setup
 
 ```bash

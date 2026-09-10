@@ -1,5 +1,17 @@
 # Hetzner Cloud (hcloud) Cheat Sheet
 
+## Overview
+
+**Hetzner Cloud** is a German cloud provider renowned for its exceptional price-performance ratio — simple, fast, and affordable VMs and dedicated servers in EU.
+
+| | |
+|---|---|
+| **Strengths** | Best price-to-performance in EU · clean simple API · solid uptime · excellent hcloud CLI · affordable Load Balancers & Volumes · Falkenstein, Nuremberg, Helsinki, Ashburn DCs |
+| **Weaknesses** | No managed Kubernetes (only LKE-lite via Hetzner K8s) · limited enterprise managed services · fewer regions than hyperscalers · no SLA-heavy enterprise support |
+| **Best for** | Cost-optimized EU workloads, self-managed Kubernetes (K3s/RKE2 on Hetzner), developers, VMs, object storage, budget-conscious infrastructure |
+
+---
+
 ## Installation & Setup
 
 ```bash

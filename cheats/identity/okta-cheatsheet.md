@@ -1,5 +1,17 @@
 # Okta & Auth0 Cheat Sheet
 
+## Overview
+
+**Okta** (workforce SSO) and **Auth0** (developer-centric auth, now part of Okta) are the leading enterprise and developer identity-as-a-service platforms.
+
+| | |
+|---|---|
+| **Strengths** | Zero ops overhead · massive integration catalog · enterprise-grade reliability & uptime · Universal Login (Auth0) · adaptive MFA · Okta Workflows automation |
+| **Weaknesses** | Expensive at scale · vendor lock-in · complex pricing tiers · Auth0 and Okta still partially separate products · data residency options limited on lower tiers |
+| **Best for** | Okta: enterprise workforce SSO/MFA/lifecycle; Auth0: customer-facing auth for web/mobile apps; both: when zero IdP ops overhead is required |
+
+---
+
 > Okta and Auth0 are both Okta, Inc. products. Okta targets enterprise workforce identity;
 > Auth0 targets developer-focused customer identity (CIAM).
 

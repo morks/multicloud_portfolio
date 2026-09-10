@@ -1,5 +1,17 @@
 # Prometheus & Grafana Cheat Sheet
 
+## Overview
+
+**Prometheus & Grafana** are the de-facto Kubernetes monitoring stack — Prometheus collects and stores time-series metrics, Grafana visualizes and alerts on them.
+
+| | |
+|---|---|
+| **Strengths** | CNCF graduated · powerful PromQL query language · massive ecosystem (exporters, dashboards) · Grafana multi-datasource · Alertmanager routing · kube-prometheus-stack Helm chart |
+| **Weaknesses** | Long-term storage requires Thanos/Cortex/Mimir · high-cardinality labels cause performance issues · Grafana dashboard sprawl · Alertmanager config is complex |
+| **Best for** | Kubernetes & infrastructure monitoring, SLO/SLA tracking, alerting pipelines, unified observability dashboards alongside Loki & Tempo |
+
+---
+
 ## Installation & Setup
 
 ```bash

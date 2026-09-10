@@ -1,5 +1,17 @@
 # MeshStack Cheat Sheet (meshcloud)
 
+## Overview
+
+**MeshStack** is meshcloud's cloud management platform for building internal cloud platforms with multi-cloud tenant management, Landing Zones, and chargeback.
+
+| | |
+|---|---|
+| **Strengths** | Multi-cloud tenant automation · Landing Zone orchestration · chargeback & showback · policy enforcement across clouds · self-service developer portal · pre-built cloud integrations |
+| **Weaknesses** | SaaS-only (limited self-hosted option) · smaller community · expensive for small organizations · requires dedicated platform team |
+| **Best for** | Platform engineering teams managing multi-cloud at scale, enterprise chargeback/showback, compliance-driven Landing Zone automation, internal cloud brokerage |
+
+---
+
 ## Installation & Setup
 
 ```bash

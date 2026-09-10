@@ -1,5 +1,17 @@
 # Morpheus Data Cheat Sheet
 
+## Overview
+
+**Morpheus Data** is an enterprise hybrid cloud management platform for provisioning, managing, and governing resources across VMs, containers, and multiple clouds from a single pane of glass.
+
+| | |
+|---|---|
+| **Strengths** | Full VM & container lifecycle management · broad cloud integrations (AWS, Azure, GCP, VMware, Nutanix…) · cost analytics · ServiceNow integration · on-prem deployable · built-in monitoring |
+| **Weaknesses** | Complex initial setup · expensive enterprise licensing · steep learning curve · UI can be overwhelming · heavy resource footprint |
+| **Best for** | Enterprise IT automation, multi-cloud VM provisioning, ITSM/ServiceNow integration, replacing vRA/vRealize, cost management across hybrid environments |
+
+---
+
 ## Key Concepts
 
 ```bash

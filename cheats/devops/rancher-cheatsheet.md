@@ -1,5 +1,17 @@
 # Rancher Cheat Sheet
 
+## Overview
+
+**Rancher** is SUSE's open-source multi-cluster Kubernetes management platform supporting RKE2, K3s, and any CNCF-conformant K8s distribution.
+
+| | |
+|---|---|
+| **Strengths** | Unified multi-cluster UI · built-in monitoring & logging · Fleet GitOps for fleet management · supports any K8s distro · RBAC across clusters · app catalog · free & open-source |
+| **Weaknesses** | Heavy resource footprint for Rancher server · complex upgrades · Rancher itself can become a single point of failure · some features lag behind upstream K8s |
+| **Best for** | Managing multiple K8s clusters from one UI, RKE2/K3s deployments, team-based cluster provisioning, on-prem K8s management without cloud-specific tools |
+
+---
+
 ## Installation & Setup
 
 ```bash

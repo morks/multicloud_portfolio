@@ -1,5 +1,17 @@
 # Terraform / OpenTofu Cheat Sheet
 
+## Overview
+
+**Terraform / OpenTofu** is the most widely adopted Infrastructure as Code tool for provisioning and managing resources across 4000+ providers using declarative HCL.
+
+| | |
+|---|---|
+| **Strengths** | Massive provider ecosystem · readable HCL syntax · plan/apply workflow with drift detection · modular design · OpenTofu is the fully open-source fork under Linux Foundation |
+| **Weaknesses** | State file management complexity · HCL limits for complex logic · BSL license change drove the OpenTofu fork · no built-in secret handling · parallel team workflows need care |
+| **Best for** | Multi-cloud infrastructure provisioning, infrastructure lifecycle management, team-based IaC with state locking, replacing manual ClickOps |
+
+---
+
 ## Installation & Setup
 
 ```bash

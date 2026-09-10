@@ -1,5 +1,17 @@
 # GitHub Cheat Sheet
 
+## Overview
+
+**GitHub CLI (gh)** is the official command-line tool for GitHub — manage repositories, pull requests, issues, Actions workflows, and the GitHub API directly from your terminal.
+
+| | |
+|---|---|
+| **Strengths** | Full GitHub API access · scriptable for automation · PR/Issue management without browser · Actions workflow triggers · Codespaces support · alias system for custom commands |
+| **Weaknesses** | GitHub-only (no GitLab/Bitbucket) · some features lag behind the web UI · requires PAT or GitHub App authentication management |
+| **Best for** | GitHub-centric teams, PR and issue automation scripts, CI/CD pipeline management, GitHub Actions triggering, repository administration at scale |
+
+---
+
 ## GitHub CLI (`gh`) – Installation & Login
 
 ```bash

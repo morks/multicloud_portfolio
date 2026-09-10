@@ -1,5 +1,17 @@
 # Trivy Cheat Sheet
 
+## Overview
+
+**Trivy** is an all-in-one open-source security scanner for container images, filesystems, Git repos, IaC, Kubernetes clusters, and SBOMs.
+
+| | |
+|---|---|
+| **Strengths** | Fast single-binary · comprehensive scanning (CVEs, misconfigs, secrets, SBOM, licenses) · CI-friendly · K8s cluster scanning · supports 100+ OS/language ecosystems · Aqua Security backed |
+| **Weaknesses** | Some false positives in certain package ecosystems · large vulnerability DB download · fix suggestions are informational only · requires tuning for low-noise CI gates |
+| **Best for** | CI/CD security scanning, container image vulnerability assessment, IaC misconfiguration detection, SBOM generation, Kubernetes security auditing |
+
+---
+
 ## Installation & Setup
 
 ```bash

@@ -1,5 +1,17 @@
 # Pulumi Cheat Sheet
 
+## Overview
+
+**Pulumi** is a modern Infrastructure as Code platform using real programming languages (Python, TypeScript, Go, C#) instead of DSLs like HCL.
+
+| | |
+|---|---|
+| **Strengths** | Full language power (loops, functions, tests, abstractions) · same language as application code · 130+ providers · Pulumi AI · testing with real test frameworks · ComponentResource for reuse |
+| **Weaknesses** | Requires language runtime · slower execution than Terraform for large stacks · smaller ecosystem · Pulumi Cloud needed for comfortable team state management |
+| **Best for** | Dev-centric teams preferring code over HCL, complex IaC logic, infrastructure testing, multi-language organizations, Terraform migrations seeking more expressiveness |
+
+---
+
 ## Installation & Setup
 
 ```bash

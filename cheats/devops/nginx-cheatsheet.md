@@ -1,5 +1,17 @@
 # NGINX Cheat Sheet
 
+## Overview
+
+**NGINX** is a high-performance open-source web server, reverse proxy, load balancer, and the most popular Kubernetes Ingress controller.
+
+| | |
+|---|---|
+| **Strengths** | Extremely fast & memory-efficient · flexible configuration · TLS termination · caching · rate limiting · widely used as K8s Ingress controller · NGINX Plus for enterprise features |
+| **Weaknesses** | Config syntax can be unintuitive (especially for complex upstreams) · no native dynamic config reload without Plus · debugging complex configurations is challenging |
+| **Best for** | Static file serving, reverse proxy & API gateway, L7 load balancing, TLS termination, Kubernetes Ingress, rate limiting & basic WAF |
+
+---
+
 ## Installation & Setup
 
 ```bash

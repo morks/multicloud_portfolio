@@ -1,5 +1,17 @@
 # OpenStack CLI Cheat Sheet
 
+## Overview
+
+**OpenStack** is the most widely deployed open-source cloud infrastructure software, powering private clouds and telecom operators worldwide.
+
+| | |
+|---|---|
+| **Strengths** | Full infrastructure control · no vendor lock-in · self-hosted on any hardware · large ecosystem · runs the clouds of many EU/telco providers · free license |
+| **Weaknesses** | Heavy operational overhead · steep learning curve · upgrade complexity · requires dedicated ops team · inconsistent quality across deployments |
+| **Best for** | Private cloud, telco NFV/VNF, research & academia, large-scale cost-sensitive deployments, data sovereignty requirements |
+
+---
+
 > Generic OpenStack reference for self-hosted, private cloud, and any OpenStack-compatible environment.
 > Covers the unified `openstack` client (python-openstackclient) and individual service CLIs.
 > For Telekom / Open Telekom Cloud (OTC) specifics see `ctc-cheatsheet.md`.

@@ -1,5 +1,17 @@
 # Azure Arc Cheat Sheet
 
+## Overview
+
+**Azure Arc** extends Azure management and governance to any infrastructure — on-premises servers, other clouds, and edge environments.
+
+| | |
+|---|---|
+| **Strengths** | Unified governance across all environments · Azure Policy & Defender for non-Azure K8s · GitOps for on-prem clusters · Arc-enabled data services (SQL, PostgreSQL) · single pane of glass |
+| **Weaknesses** | Requires outbound connectivity to Azure · complex initial setup · additional cost for some Arc features · limited offline operation |
+| **Best for** | Hybrid/multi-cloud governance, extending Azure Security Center to on-prem, Arc-enabled K8s management, regulated environments needing unified compliance |
+
+---
+
 ## Installation & Setup
 
 ```bash

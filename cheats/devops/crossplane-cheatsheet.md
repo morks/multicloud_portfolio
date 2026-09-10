@@ -1,5 +1,17 @@
 # Crossplane Cheat Sheet
 
+## Overview
+
+**Crossplane** is a Kubernetes-native control plane for infrastructure provisioning — manage cloud resources as Kubernetes custom resources using GitOps workflows.
+
+| | |
+|---|---|
+| **Strengths** | K8s-native (no separate state file) · GitOps compatible · powerful abstraction via Compositions · self-service infrastructure APIs via Claims · CNCF project · growing provider ecosystem |
+| **Weaknesses** | Complex composition model · steep learning curve · slower reconciliation than Terraform · debugging Compositions is hard · requires a running K8s cluster |
+| **Best for** | Platform engineering teams building internal cloud platforms, K8s-native IaC, self-service infrastructure APIs, teams already running K8s wanting no separate IaC toolchain |
+
+---
+
 ## Installation & Setup
 
 ```bash

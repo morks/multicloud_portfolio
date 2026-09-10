@@ -1,5 +1,17 @@
 # NVIDIA AI Enterprise / GPU Computing Cheat Sheet
 
+## Overview
+
+**NVIDIA AI Enterprise** is NVIDIA's enterprise software platform for production AI/ML on GPUs in Kubernetes — including the GPU Operator, NIM microservices, Triton, and NeMo.
+
+| | |
+|---|---|
+| **Strengths** | Production-grade GPU management in K8s · NIM for optimized LLM inference · MIG partitioning for GPU sharing · DCGM metrics for Prometheus · NGC catalog of pre-built containers |
+| **Weaknesses** | Requires NVIDIA hardware · enterprise license cost · GPU Operator complexity · MIG configuration requires expertise · not all models available as NIMs |
+| **Best for** | GPU-accelerated K8s workloads, LLM inference with NIM, ML training at scale, GPU monitoring with DCGM, enterprise AI on-premises deployments |
+
+---
+
 ## Installation & Setup
 
 ```bash

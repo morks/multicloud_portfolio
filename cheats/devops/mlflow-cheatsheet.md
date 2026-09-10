@@ -1,5 +1,17 @@
 # MLflow Cheat Sheet
 
+## Overview
+
+**MLflow** is an open-source ML lifecycle platform for experiment tracking, model packaging, model registry, and deployment — framework and language agnostic.
+
+| | |
+|---|---|
+| **Strengths** | Framework-agnostic (scikit-learn, PyTorch, TensorFlow, XGBoost…) · simple Python API · model versioning & registry · Databricks managed integration · self-hostable · REST API |
+| **Weaknesses** | Limited built-in scheduling · model serving is basic (no auto-scaling) · scaling tracking server requires additional infra · UI is functional but not feature-rich |
+| **Best for** | ML experiment tracking & comparison, model versioning & promotion, team ML collaboration, model deployment pipelines, Databricks-integrated ML workflows |
+
+---
+
 ## Installation & Setup
 
 ```bash

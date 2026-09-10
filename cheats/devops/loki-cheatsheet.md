@@ -1,5 +1,17 @@
 # Grafana Loki Cheat Sheet
 
+## Overview
+
+**Grafana Loki** is a horizontally scalable log aggregation system designed to be cost-effective — it indexes only labels, not log content, making it "like Prometheus, but for logs".
+
+| | |
+|---|---|
+| **Strengths** | Low storage cost (label index only) · tight Grafana integration · LogQL query language · works alongside existing Prometheus stack · Promtail/Alloy/Fluent Bit support |
+| **Weaknesses** | Full-text search is expensive (bloom filters help) · not as mature as Elasticsearch for complex log analytics · label cardinality must be managed carefully |
+| **Best for** | Kubernetes log aggregation, cost-effective logging alongside Prometheus/Grafana, LogQL-based log analysis, replacing EFK stack for simpler use cases |
+
+---
+
 ## Installation
 
 ```bash

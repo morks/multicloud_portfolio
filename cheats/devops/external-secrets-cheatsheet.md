@@ -1,5 +1,17 @@
 # External Secrets Operator (ESO) Cheat Sheet
 
+## Overview
+
+**External Secrets Operator (ESO)** is a Kubernetes operator that synchronizes secrets from external stores (Vault, AWS Secrets Manager, GCP Secret Manager, Azure Key Vault) into native K8s Secrets.
+
+| | |
+|---|---|
+| **Strengths** | 20+ provider backends · unified API for all secret stores · templating for output secrets · ClusterSecretStore for cross-namespace use · PushSecret for reverse sync · no secrets in Git |
+| **Weaknesses** | Adds operational complexity · debugging sync failures requires understanding both the operator and the backend · secret rotation needs careful planning · refresh interval tuning matters |
+| **Best for** | Centralized secret management with Vault/cloud KMS, eliminating secrets-in-Git, enterprise secret governance across K8s namespaces |
+
+---
+
 ## Installation & Setup
 
 ```bash

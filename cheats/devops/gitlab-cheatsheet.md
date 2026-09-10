@@ -1,5 +1,17 @@
 # GitLab Cheat Sheet
 
+## Overview
+
+**GitLab CLI (glab)** is the official command-line tool for GitLab — manage merge requests, CI/CD pipelines, issues, and repositories from your terminal, including self-hosted instances.
+
+| | |
+|---|---|
+| **Strengths** | Full GitLab API access · self-hosted GitLab support · MR & pipeline automation · CI/CD variable management · works with gitlab.com and on-prem · alias support |
+| **Weaknesses** | GitLab-only · some API features not yet in CLI · occasional lag behind GitLab UI features · less community content than gh |
+| **Best for** | GitLab-centric teams, MR automation, CI/CD pipeline management, self-hosted GitLab administration, scripting GitLab workflows in CI/CD |
+
+---
+
 ## GitLab CLI (`glab`) – Installation & Login
 
 ```bash

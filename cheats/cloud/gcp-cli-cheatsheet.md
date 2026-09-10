@@ -1,5 +1,17 @@
 # Google Cloud CLI (gcloud) Cheat Sheet
 
+## Overview
+
+**Google Cloud Platform (GCP)** is Google's public cloud, industry-leading in Kubernetes, data analytics, and AI/ML services.
+
+| | |
+|---|---|
+| **Strengths** | Best managed Kubernetes (GKE) · leading AI/ML services (Vertex AI, Gemini) · BigQuery for analytics · fastest global private network · competitive pricing for egress |
+| **Weaknesses** | Smaller enterprise ecosystem than AWS/Azure · fewer regions · historically less enterprise support focus · some services get deprecated abruptly |
+| **Best for** | Kubernetes-first workloads, data analytics & ML/AI, media & gaming, startups, cost-competitive cloud migration |
+
+---
+
 ## Installation & Setup
 
 ```bash

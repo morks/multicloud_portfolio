@@ -1,5 +1,17 @@
 # ArgoCD Cheat Sheet
 
+## Overview
+
+**ArgoCD** is a declarative GitOps continuous delivery tool for Kubernetes with a rich web UI and multi-cluster support.
+
+| | |
+|---|---|
+| **Strengths** | Visual real-time sync UI · multi-cluster management · RBAC & SSO · ApplicationSets for fleet deployments · app-of-apps pattern · drift detection & auto-sync |
+| **Weaknesses** | UI complexity at scale · webhook setup required for fast sync · Git as single source of truth can feel limiting · resource-heavy at very large scale |
+| **Best for** | GitOps delivery pipelines, K8s application lifecycle management, multi-cluster deployments, team-based CD with visibility and audit trail |
+
+---
+
 ## Installation & Setup
 
 ```bash

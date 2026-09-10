@@ -1,5 +1,17 @@
 # Kubernetes (kubectl) Cheat Sheet
 
+## Overview
+
+**Kubernetes (K8s)** is the de-facto standard open-source container orchestration platform for automating deployment, scaling, and management of containerized workloads.
+
+| | |
+|---|---|
+| **Strengths** | Self-healing & auto-scaling · declarative configuration · massive CNCF ecosystem · cloud-agnostic · rolling deployments & rollbacks · extensible via CRDs & operators |
+| **Weaknesses** | Steep learning curve · operational complexity · verbose YAML · networking complexity · overkill for simple workloads |
+| **Best for** | Microservices at scale, cloud-native applications, CI/CD delivery pipelines, stateful workloads, multi-team platform engineering |
+
+---
+
 ## Installation & Setup
 
 ```bash

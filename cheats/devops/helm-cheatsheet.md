@@ -1,5 +1,17 @@
 # Helm Cheat Sheet
 
+## Overview
+
+**Helm** is the package manager for Kubernetes — bundle, version, and deploy K8s manifests as reusable, configurable charts.
+
+| | |
+|---|---|
+| **Strengths** | Templating engine for DRY K8s configs · versioned releases with rollback · large public chart ecosystem (Artifact Hub) · values override pattern · hooks for lifecycle events |
+| **Weaknesses** | Go template debugging is painful · complex nested values files · no built-in schema validation by default · charts can become a maintenance burden |
+| **Best for** | Packaging and distributing K8s applications, managing releases with rollback, sharing reusable infrastructure blueprints across teams |
+
+---
+
 ## Installation & Setup
 
 ```bash

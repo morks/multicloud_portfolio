@@ -1,5 +1,17 @@
 # Keycloak Cheat Sheet
 
+## Overview
+
+**Keycloak** is the leading open-source Identity and Access Management (IAM) solution, providing SSO, OIDC, SAML 2.0, OAuth2, and fine-grained authorization.
+
+| | |
+|---|---|
+| **Strengths** | Feature-complete (OIDC, SAML, social logins, MFA, LDAP/AD federation, fine-grained authz) · large community · Kubernetes Operator · highly extensible via SPIs · battle-tested at scale |
+| **Weaknesses** | Complex administration · memory-hungry (JVM-based) · performance tuning required at scale · upgrade migrations can be breaking · steep learning curve for advanced flows |
+| **Best for** | Self-hosted enterprise SSO, API gateway authentication, B2C & B2B auth, replacing commercial IdP on-prem, regulated environments needing data sovereignty |
+
+---
+
 ## Installation & Setup
 
 ```bash

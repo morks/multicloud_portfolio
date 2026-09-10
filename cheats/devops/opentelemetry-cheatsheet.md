@@ -1,5 +1,17 @@
 # OpenTelemetry (OTel) Cheat Sheet
 
+## Overview
+
+**OpenTelemetry (OTel)** is the CNCF standard for observability instrumentation — a vendor-neutral API/SDK/Collector for traces, metrics, and logs across any language and backend.
+
+| | |
+|---|---|
+| **Strengths** | Vendor-neutral (no lock-in) · unified API for traces, metrics & logs · supports all major languages · W3C Trace Context standard · eliminates per-vendor agent sprawl · CNCF project |
+| **Weaknesses** | Configuration complexity (Collector pipelines) · SDK maturity varies by language · operational overhead for Collector fleet · migration from existing agents takes effort |
+| **Best for** | Standardizing observability across polyglot microservices, distributed tracing, replacing vendor-specific agents, sending telemetry to any backend (Jaeger, Tempo, Prometheus, Datadog) |
+
+---
+
 ## Core Concepts
 
 ```bash

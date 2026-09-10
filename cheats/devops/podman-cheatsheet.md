@@ -1,5 +1,17 @@
 # Podman Cheat Sheet
 
+## Overview
+
+**Podman** is a daemonless, rootless container engine from Red Hat — a secure, Docker-compatible alternative that runs containers without a privileged background daemon.
+
+| | |
+|---|---|
+| **Strengths** | Rootless by default (more secure) · no daemon required · Docker CLI-compatible (alias docker=podman) · systemd integration (podman generate systemd) · Podman Desktop · RHEL native |
+| **Weaknesses** | Smaller ecosystem than Docker · some Docker Compose compatibility gaps (podman-compose) · less community content & examples · networking differences from Docker |
+| **Best for** | Security-conscious deployments, RHEL/Fedora/CentOS environments, rootless container workloads, replacing Docker in CI/CD pipelines, systemd-managed containers |
+
+---
+
 ## Installation & Setup
 
 ```bash
